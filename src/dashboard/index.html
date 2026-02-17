@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Trading Risk Dashboard</title>
+<style>
+:root {
+  --bg: #050505;
+  --line: #222;
+  --fg: #f8f8f8;
+  --muted: #999;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: radial-gradient(circle at 15% 10%, #131313 0%, #070707 35%, #050505 100%);
+  color: var(--fg);
+  font-family: "SF Mono", "JetBrains Mono", "Menlo", monospace;
+}
+.wrap { max-width: 1250px; margin: 0 auto; padding: 26px 16px 50px; }
+.topbar {
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 14px;
+}
+.top-actions { display: flex; gap: 8px; align-items: center; }
+.h1 { font-size: 18px; letter-spacing: 0.08em; text-transform: uppercase; }
+.muted { color: var(--muted); font-size: 12px; }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 10px; }
+.card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px;
+  background: linear-gradient(180deg, #101010 0%, #070707 100%);
+}
+.label { color: var(--muted); text-transform: uppercase; font-size: 10px; letter-spacing: 0.06em; }
+.kpi { font-size: 25px; margin-top: 6px; }
+.span-3 { grid-column: span 3; }
+.span-4 { grid-column: span 4; }
+.span-6 { grid-column: span 6; }
+.span-8 { grid-column: span 8; }
+.span-12 { grid-column: span 12; }
+button {
+  appearance: none;
+  border: 1px solid #5a5a5a;
+  color: var(--fg);
+  background: #0f0f0f;
+  border-radius: 8px;
+  padding: 9px 10px;
+  font-family: inherit;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+button:hover { background: #171717; }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 8px; }
+.btn-wide { grid-column: span 2; }
+pre {
+  margin: 0;
+  background: #030303;
+  border: 1px solid #1f1f1f;
+  border-radius: 8px;
+  padding: 10px;
+  max-height: 280px;
+  overflow: auto;
+  font-size: 11px;
+  line-height: 1.35;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th, td { text-align: left; padding: 7px 5px; border-bottom: 1px solid #1d1d1d; vertical-align: top; }
+th { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+.badge {
+  border: 1px solid #555;
+  border-radius: 999px;
+  padding: 2px 7px;
+  font-size: 10px;
+  display: inline-block;
+}
+@media (max-width: 960px) {
+  .span-3, .span-4, .span-6, .span-8 { grid-column: span 12; }
+  .kpi { font-size: 21px; }
+}
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="h1">Trading Control + Risk Dashboard</div>
+    <div class="top-actions">
+      <button id="toggleAdvanced">Show Advanced</button>
+      <div class="muted" id="lastUpdated">waiting for runtime status...</div>
+    </div>
+  </div>
+
+  <div class="grid" id="kpis"></div>
+
+  <div class="grid" style="margin-top:10px;">
+    <section class="card span-4">
+      <div class="label">Simple Workflow</div>
+      <div class="muted">Run ideas once, then launch bot.</div>
+      <div class="btn-row">
+        <button class="btn-wide" data-action="simple_launch">One-Click Launch</button>
+        <button data-action="run_scan">Run BTC Scan</button>
+        <button data-action="run_ideas">Run Ideas</button>
+        <button data-action="start_bot">Start Bot</button>
+        <button data-action="stop_bot">Stop Bot</button>
+        <button class="btn-wide" data-action="stop_all">Stop All</button>
+      </div>
+      <div class="muted" id="controlMsg" style="margin-top:10px;">idle</div>
+    </section>
+
+    <section class="card span-4">
+      <div class="label">Autopilot Workflow</div>
+      <div class="muted">Recurring ideas cycle + keep bot alive.</div>
+      <div class="btn-row">
+        <button data-action="start_autopilot">Start Autopilot</button>
+        <button data-action="stop_autopilot">Stop Autopilot</button>
+      </div>
+      <table style="margin-top:10px;"><tbody id="workflowRows"></tbody></table>
+    </section>
+
+    <section class="card span-4">
+      <div class="label">Process State</div>
+      <table><tbody id="procRows"></tbody></table>
+    </section>
+
+    <section class="card span-6">
+      <div class="label">System + Risk</div>
+      <table><tbody id="systemRows"></tbody></table>
+    </section>
+
+    <section class="card span-6 advanced-only hidden">
+      <div class="label">Strategy Diagnostics</div>
+      <table><tbody id="diagRows"></tbody></table>
+    </section>
+
+    <section class="card span-8">
+      <div class="label">Portfolio (Idea Factory)</div>
+      <table>
+        <thead><tr><th>Token</th><th>Market</th><th>Family</th><th>Weight</th><th>Score</th></tr></thead>
+        <tbody id="portfolioRows"></tbody>
+      </table>
+    </section>
+
+    <section class="card span-4 advanced-only hidden">
+      <div class="label">BTC Scan Log</div>
+      <pre id="scanLog"></pre>
+    </section>
+
+    <section class="card span-4 advanced-only hidden">
+      <div class="label">Ideas Process Log</div>
+      <pre id="ideasLog"></pre>
+    </section>
+
+    <section class="card span-12 advanced-only hidden">
+      <div class="label">Bot Log + Execution Events</div>
+      <pre id="botLog"></pre>
+      <table style="margin-top:10px;">
+        <thead><tr><th>Time</th><th>Type</th><th>Status</th><th>Token</th><th>Side</th><th>Size</th><th>Price</th><th>Reason</th></tr></thead>
+        <tbody id="eventRows"></tbody>
+      </table>
+    </section>
+  </div>
+</div>
+<script>
+const fmt = (n, d=4) => Number.isFinite(Number(n)) ? Number(n).toFixed(d) : '-';
+const short = (x) => x ? String(x).slice(0,8) + '...' : '-';
+let lastControlMessage = 'idle';
+let showAdvanced = false;
+
+function row(k,v){ return '<tr><td class="label">' + k + '</td><td>' + (v ?? '-') + '</td></tr>'; }
+
+async function control(action){
+  const res = await fetch('/api/control', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ action }),
+  });
+  const payload = await res.json();
+  lastControlMessage = '[' + action + '] ' + (payload.message || (payload.ok ? 'ok' : 'failed'));
+  await refresh();
+}
+
+async function refresh(){
+  const res = await fetch('/api/status', { cache: 'no-store' });
+  const data = await res.json();
+  const status = data.runtime || {};
+  const risk = status.risk || {};
+  const paper = status.paper || {};
+  const counters = status.counters || {};
+  const config = status.config || {};
+  const idea = data.idea || {};
+  const control = data.control || {};
+  const workflow = control.workflow || {};
+  const bot = (control.processes && control.processes.bot) || {};
+  const ideas = (control.processes && control.processes.ideas) || {};
+  const scan = (control.processes && control.processes.scan) || {};
+  const portfolio = (idea.results && idea.results.portfolio) || [];
+
+  document.getElementById('lastUpdated').textContent = 'runtime: ' + (status.updatedAt || 'n/a') + ' | idea: ' + (idea.generatedAt || 'n/a');
+  document.getElementById('controlMsg').textContent = lastControlMessage;
+
+  document.getElementById('kpis').innerHTML = '' +
+    '<section class="card span-3"><div class="label">Equity</div><div class="kpi">' + fmt(risk.equity ?? paper.equity ?? 0,2) + '</div></section>' +
+    '<section class="card span-3"><div class="label">Daily PnL</div><div class="kpi">' + fmt(risk.dailyPnl ?? 0,2) + '</div></section>' +
+    '<section class="card span-3"><div class="label">Gross Exposure</div><div class="kpi">' + fmt(risk.grossExposure ?? 0,2) + '</div></section>' +
+    '<section class="card span-3"><div class="label">Kill Switch</div><div class="kpi">' + (risk.killSwitchActive ? 'ON' : 'OFF') + '</div></section>' +
+    '<section class="card span-3"><div class="label">Signals Seen</div><div class="kpi">' + (counters.signalsSeen ?? 0) + '</div></section>' +
+    '<section class="card span-3"><div class="label">Executed</div><div class="kpi">' + (counters.signalsExecuted ?? 0) + '</div></section>' +
+    '<section class="card span-3"><div class="label">Blocked</div><div class="kpi">' + (counters.signalsBlocked ?? 0) + '</div></section>' +
+    '<section class="card span-3"><div class="label">Order Failures</div><div class="kpi">' + (counters.orderFailures ?? 0) + '</div></section>';
+
+  document.getElementById('workflowRows').innerHTML = [
+    row('Simple In Flight', workflow.simpleRunInFlight ? '<span class="badge">YES</span>' : 'NO'),
+    row('Autopilot', workflow.autopilotEnabled ? '<span class="badge">ON</span>' : 'OFF'),
+    row('Interval (ms)', workflow.autopilotIntervalMs),
+    row('Next Cycle', workflow.nextAutopilotAt),
+    row('Last Cycle', workflow.lastCycleAt),
+    row('Cycle Status', workflow.lastCycleStatus),
+    row('Cycle Msg', workflow.lastCycleMessage),
+  ].join('');
+
+  document.getElementById('procRows').innerHTML = [
+    row('Bot Running', bot.running ? '<span class="badge">RUNNING</span>' : 'STOPPED'),
+    row('Bot PID', bot.pid),
+    row('Bot Exit', bot.lastExitCode),
+    row('Scan Running', scan.running ? '<span class="badge">RUNNING</span>' : 'IDLE'),
+    row('Scan Exit', scan.lastExitCode),
+    row('Ideas Running', ideas.running ? '<span class="badge">RUNNING</span>' : 'IDLE'),
+    row('Ideas PID', ideas.pid),
+    row('Ideas Exit', ideas.lastExitCode),
+  ].join('');
+
+  document.getElementById('systemRows').innerHTML = [
+    row('Execution Mode', config.executionMode),
+    row('Strategy Mode', config.strategyMode),
+    row('Strategy Name', status.strategy && status.strategy.name),
+    row('Chain', config.chainId),
+    row('Funder', config.funderAddressMasked),
+    row('Snapshots', status.marketUniverse && status.marketUniverse.totalSnapshots),
+    row('Paper Trades', paper.trades),
+    row('Open Positions', paper.openPositions),
+    row('Max Gross', risk.limits && risk.limits.maxGrossExposureNotional),
+    row('Max Per Market', risk.limits && risk.limits.maxPerMarketNotional),
+    row('Max Order', risk.limits && risk.limits.maxOrderNotional),
+    row('Max Daily Loss', risk.limits && risk.limits.maxDailyLoss),
+  ].join('');
+
+  const diag = (status.strategy && status.strategy.diagnostics) || {};
+  const sample = Array.isArray(diag.stateSample) ? diag.stateSample.slice(0,6) : [];
+  document.getElementById('diagRows').innerHTML = [
+    row('Token Plans', diag.tokenPlanCount ?? '-'),
+    row('Tracked Tokens', diag.trackedTokenCount ?? '-'),
+    ...sample.map(function(s){
+      const family = s.lastSelection && s.lastSelection.family ? s.lastSelection.family : '-';
+      const bucket = s.lastSelection && s.lastSelection.bucket ? s.lastSelection.bucket : '-';
+      return row(short(s.tokenId), family + ' @ ' + bucket);
+    }),
+  ].join('');
+
+  document.getElementById('portfolioRows').innerHTML = portfolio.slice(0, 30).map(function(p){
+    return '<tr>' +
+      '<td>' + short(p.tokenId) + '</td>' +
+      '<td>' + (p.marketType || '-') + '</td>' +
+      '<td>' + (p.family || '-') + '</td>' +
+      '<td>' + fmt(p.targetWeight,4) + '</td>' +
+      '<td>' + fmt(p.score,3) + '</td>' +
+      '</tr>';
+  }).join('') || '<tr><td colspan="5" class="muted">No portfolio data yet. Run ideas from this UI.</td></tr>';
+
+  const botLogs = Array.isArray(bot.logs) ? bot.logs.slice(0, 120).join('\n') : '';
+  const ideasLogs = Array.isArray(ideas.logs) ? ideas.logs.slice(0, 120).join('\n') : '';
+  const scanLogs = Array.isArray(scan.logs) ? scan.logs.slice(0, 120).join('\n') : '';
+  document.getElementById('botLog').textContent = botLogs || '(no bot logs yet)';
+  document.getElementById('ideasLog').textContent = ideasLogs || '(no ideas logs yet)';
+  document.getElementById('scanLog').textContent = scanLogs || '(no scan logs yet)';
+
+  const events = Array.isArray(status.recentEvents) ? status.recentEvents.slice(0, 50) : [];
+  document.getElementById('eventRows').innerHTML = events.map(function(e){
+    const t = (e.at || '-').replace('T',' ').replace('Z','');
+    return '<tr>' +
+      '<td>' + t + '</td>' +
+      '<td>' + (e.type || '-') + '</td>' +
+      '<td>' + (e.status || '-') + '</td>' +
+      '<td>' + short(e.tokenId) + '</td>' +
+      '<td>' + (e.side || '-') + '</td>' +
+      '<td>' + (e.size ?? '-') + '</td>' +
+      '<td>' + (e.price ?? '-') + '</td>' +
+      '<td>' + (e.reason || e.details || '-') + '</td>' +
+      '</tr>';
+  }).join('') || '<tr><td colspan="8" class="muted">No execution events yet.</td></tr>';
+
+  const buttons = document.querySelectorAll('button[data-action]');
+  buttons.forEach(function(btn){
+    const action = btn.getAttribute('data-action') || '';
+    let disable = false;
+    if (action === 'run_ideas' && ideas.running) disable = true;
+    if (action === 'run_scan' && scan.running) disable = true;
+    if (action === 'start_bot' && bot.running) disable = true;
+    if (action === 'stop_bot' && !bot.running) disable = true;
+    if (action === 'start_autopilot' && workflow.autopilotEnabled) disable = true;
+    if (action === 'stop_autopilot' && !workflow.autopilotEnabled) disable = true;
+    if (action === 'simple_launch' && (workflow.simpleRunInFlight || ideas.running || scan.running)) disable = true;
+    btn.disabled = disable;
+  });
+}
+
+function applyAdvancedVisibility(){
+  Array.from(document.querySelectorAll('.advanced-only')).forEach(function(el){
+    if (showAdvanced) el.classList.remove('hidden');
+    else el.classList.add('hidden');
+  });
+  const toggle = document.getElementById('toggleAdvanced');
+  if (toggle) toggle.textContent = showAdvanced ? 'Hide Advanced' : 'Show Advanced';
+}
+
+Array.from(document.querySelectorAll('button[data-action]')).forEach(function(btn){
+  btn.addEventListener('click', function(){
+    const action = btn.getAttribute('data-action');
+    if (!action) return;
+    control(action).catch(function(err){
+      lastControlMessage = 'control error: ' + (err && err.message ? err.message : String(err));
+    });
+  });
+});
+
+document.getElementById('toggleAdvanced').addEventListener('click', function(){
+  showAdvanced = !showAdvanced;
+  applyAdvancedVisibility();
+});
+
+setInterval(function(){ refresh().catch(function(){}); }, 2500);
+applyAdvancedVisibility();
+refresh().catch(function(){});
+</script>
+</body>
+</html>

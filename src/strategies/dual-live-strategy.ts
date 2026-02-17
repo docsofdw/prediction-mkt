@@ -112,4 +112,10 @@ export class DualLiveStrategy implements Strategy {
   async teardown(): Promise<void> {
     return;
   }
+
+  getDiagnostics(): unknown {
+    return {
+      trackedTokens: this.history.size,
+    };
+  }
 }

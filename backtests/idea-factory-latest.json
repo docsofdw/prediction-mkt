@@ -1,0 +1,3343 @@
+{
+  "generatedAt": "2026-02-17T07:13:43.380Z",
+  "startedAt": "2026-02-17T07:13:35.303Z",
+  "config": {
+    "interval": "max",
+    "fidelity": 60,
+    "maxMarketsPerCategory": 8,
+    "minBars": 100,
+    "fold": {
+      "minTrainBars": 70,
+      "foldTestBars": 24,
+      "foldStepBars": 10,
+      "maxFolds": 8
+    },
+    "perFamilyCap": 150,
+    "topPerMarket": 8,
+    "risk": {
+      "minBarsBetweenTrades": 2
+    }
+  },
+  "summary": {
+    "bitcoin": "markets=7 avgCandidates=450.0 avgTopScore=0.768",
+    "weather": "markets=7 avgCandidates=420.0 avgTopScore=0.768",
+    "portfolioAlgos": 20
+  },
+  "automation": {
+    "commands": {
+      "research": "npm run ideas:build",
+      "dryRunBacktest": "npm run backtest"
+    },
+    "cadence": {
+      "hourly": "refresh rankings for active markets",
+      "daily": "full candidate sweep + memory update",
+      "weekly": "parameter grid refresh and threshold recalibration"
+    }
+  },
+  "memoryHints": [
+    {
+      "tokenId": "90435811253665578014957380826505992530054077692143838383981805324273750424057",
+      "marketType": "bitcoin",
+      "regimeBucket": "bitcoin:trend-low:mr-high:vol-low",
+      "leaderboard": [
+        {
+          "family": "btc-breakout",
+          "avgScore": 0.7907572383073499,
+          "winRate": 0.3333333333333333
+        },
+        {
+          "family": "btc-momentum",
+          "avgScore": 0.7626429101707498,
+          "winRate": 0.3333333333333333
+        }
+      ]
+    },
+    {
+      "tokenId": "13244681086321087932946246027856416106585284024824496763706748621681543444582",
+      "marketType": "bitcoin",
+      "regimeBucket": "bitcoin:trend-low:mr-high:vol-low",
+      "leaderboard": [
+        {
+          "family": "btc-breakout",
+          "avgScore": 0.7907572383073499,
+          "winRate": 0.3333333333333333
+        },
+        {
+          "family": "btc-momentum",
+          "avgScore": 0.7626429101707498,
+          "winRate": 0.3333333333333333
+        }
+      ]
+    },
+    {
+      "tokenId": "28946595841244317705636126646676849578876740730186646421280828201004700559420",
+      "marketType": "bitcoin",
+      "regimeBucket": "bitcoin:trend-low:mr-high:vol-high",
+      "leaderboard": [
+        {
+          "family": "btc-momentum",
+          "avgScore": 0.7669487750556792,
+          "winRate": 0.3333333333333333
+        },
+        {
+          "family": "btc-breakout",
+          "avgScore": 0.7542316258351891,
+          "winRate": 0.3333333333333333
+        }
+      ]
+    },
+    {
+      "tokenId": "74341056958547120660405490893413766202610642702385621904694146292080006615573",
+      "marketType": "bitcoin",
+      "regimeBucket": "bitcoin:trend-high:mr-high:vol-high",
+      "leaderboard": [
+        {
+          "family": "btc-breakout",
+          "avgScore": 0.7893095768374164,
+          "winRate": 0.3333333333333333
+        },
+        {
+          "family": "btc-momentum",
+          "avgScore": 0.7565701559020044,
+          "winRate": 0.3333333333333333
+        }
+      ]
+    },
+    {
+      "tokenId": "8441400852834915183759801017793514978104486628517653995211751018945988243154",
+      "marketType": "bitcoin",
+      "regimeBucket": "bitcoin:trend-low:mr-high:vol-high",
+      "leaderboard": [
+        {
+          "family": "btc-momentum",
+          "avgScore": 0.7669487750556792,
+          "winRate": 0.3333333333333333
+        },
+        {
+          "family": "btc-breakout",
+          "avgScore": 0.7542316258351891,
+          "winRate": 0.3333333333333333
+        }
+      ]
+    },
+    {
+      "tokenId": "105267568073659068217311993901927962476298440625043565106676088842803600775810",
+      "marketType": "bitcoin",
+      "regimeBucket": "bitcoin:trend-low:mr-low:vol-low",
+      "leaderboard": [
+        {
+          "family": "btc-momentum",
+          "avgScore": 0.7500000000000001,
+          "winRate": 0.3333333333333333
+        }
+      ]
+    },
+    {
+      "tokenId": "14642427631762357507939608294887050551300827907746951519205602696553287464979",
+      "marketType": "bitcoin",
+      "regimeBucket": "bitcoin:trend-high:mr-high:vol-high",
+      "leaderboard": [
+        {
+          "family": "btc-breakout",
+          "avgScore": 0.7893095768374164,
+          "winRate": 0.3333333333333333
+        },
+        {
+          "family": "btc-momentum",
+          "avgScore": 0.7565701559020044,
+          "winRate": 0.3333333333333333
+        }
+      ]
+    },
+    {
+      "tokenId": "90435811253665578014957380826505992530054077692143838383981805324273750424057",
+      "marketType": "weather",
+      "regimeBucket": "weather:trend-low:mr-high:vol-low",
+      "leaderboard": [
+        {
+          "family": "weather-drift-trend",
+          "avgScore": 0.7938424821002388,
+          "winRate": 0.3333333333333333
+        },
+        {
+          "family": "weather-mean-reversion",
+          "avgScore": 0.7547732696897375,
+          "winRate": 0.3333333333333333
+        }
+      ]
+    },
+    {
+      "tokenId": "13244681086321087932946246027856416106585284024824496763706748621681543444582",
+      "marketType": "weather",
+      "regimeBucket": "weather:trend-low:mr-high:vol-low",
+      "leaderboard": [
+        {
+          "family": "weather-drift-trend",
+          "avgScore": 0.7938424821002388,
+          "winRate": 0.3333333333333333
+        },
+        {
+          "family": "weather-mean-reversion",
+          "avgScore": 0.7547732696897375,
+          "winRate": 0.3333333333333333
+        }
+      ]
+    },
+    {
+      "tokenId": "28946595841244317705636126646676849578876740730186646421280828201004700559420",
+      "marketType": "weather",
+      "regimeBucket": "weather:trend-low:mr-high:vol-high",
+      "leaderboard": [
+        {
+          "family": "weather-range-reversion",
+          "avgScore": 0.7703532219570408,
+          "winRate": 0.4
+        },
+        {
+          "family": "weather-mean-reversion",
+          "avgScore": 0.7607875894988066,
+          "winRate": 0
+        }
+      ]
+    },
+    {
+      "tokenId": "74341056958547120660405490893413766202610642702385621904694146292080006615573",
+      "marketType": "weather",
+      "regimeBucket": "weather:trend-high:mr-high:vol-high",
+      "leaderboard": [
+        {
+          "family": "weather-mean-reversion",
+          "avgScore": 0.7684964200477326,
+          "winRate": 0.3333333333333333
+        }
+      ]
+    },
+    {
+      "tokenId": "8441400852834915183759801017793514978104486628517653995211751018945988243154",
+      "marketType": "weather",
+      "regimeBucket": "weather:trend-low:mr-high:vol-high",
+      "leaderboard": [
+        {
+          "family": "weather-range-reversion",
+          "avgScore": 0.7703532219570408,
+          "winRate": 0.4
+        },
+        {
+          "family": "weather-mean-reversion",
+          "avgScore": 0.7607875894988066,
+          "winRate": 0
+        }
+      ]
+    },
+    {
+      "tokenId": "105267568073659068217311993901927962476298440625043565106676088842803600775810",
+      "marketType": "weather",
+      "regimeBucket": "weather:trend-low:mr-low:vol-low",
+      "leaderboard": [
+        {
+          "family": "weather-mean-reversion",
+          "avgScore": 0.7500000000000001,
+          "winRate": 0.3333333333333333
+        }
+      ]
+    },
+    {
+      "tokenId": "14642427631762357507939608294887050551300827907746951519205602696553287464979",
+      "marketType": "weather",
+      "regimeBucket": "weather:trend-high:mr-high:vol-high",
+      "leaderboard": [
+        {
+          "family": "weather-mean-reversion",
+          "avgScore": 0.7684964200477326,
+          "winRate": 0.3333333333333333
+        }
+      ]
+    }
+  ],
+  "results": {
+    "bitcoin": [
+      {
+        "marketType": "bitcoin",
+        "tokenId": "90435811253665578014957380826505992530054077692143838383981805324273750424057",
+        "question": "Will Jesus Christ return before GTA VI?",
+        "interval": "max",
+        "fidelity": 60,
+        "volume": 9361287.754704,
+        "bars": 741,
+        "profile": {
+          "trendiness": 0.000029335256644673296,
+          "meanReversion": 0.07940971173451865,
+          "volatility": 0.003009952064290473,
+          "tailRisk": 0
+        },
+        "regimeBucket": "bitcoin:trend-low:mr-high:vol-low",
+        "candidatesEvaluated": 450,
+        "topAlgos": [
+          {
+            "id": "btc-bo-14-4-0.004-0.01",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 14,
+              "confirmWindow": 4,
+              "volatilityFloor": 0.004,
+              "stopToFlat": 0.01
+            },
+            "score": 0.7907572383073498,
+            "metrics": {
+              "avgTestPnl": 0.0006250000000000006,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.125,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0.036458333333333336,
+              "avgTradeCount": 0.125,
+              "consistency": 0.125,
+              "overfitPenalty": 0.0012500000000000011,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-bo-14-4-0.004-0.02",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 14,
+              "confirmWindow": 4,
+              "volatilityFloor": 0.004,
+              "stopToFlat": 0.02
+            },
+            "score": 0.7907572383073498,
+            "metrics": {
+              "avgTestPnl": 0.0006250000000000006,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.125,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0.036458333333333336,
+              "avgTradeCount": 0.125,
+              "consistency": 0.125,
+              "overfitPenalty": 0.0012500000000000011,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-bo-14-6-0.004-0.01",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 14,
+              "confirmWindow": 6,
+              "volatilityFloor": 0.004,
+              "stopToFlat": 0.01
+            },
+            "score": 0.7907572383073498,
+            "metrics": {
+              "avgTestPnl": 0.0006250000000000006,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.125,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0.036458333333333336,
+              "avgTradeCount": 0.125,
+              "consistency": 0.125,
+              "overfitPenalty": 0.0012500000000000011,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-bo-14-6-0.004-0.03",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 14,
+              "confirmWindow": 6,
+              "volatilityFloor": 0.004,
+              "stopToFlat": 0.03
+            },
+            "score": 0.7907572383073498,
+            "metrics": {
+              "avgTestPnl": 0.0006250000000000006,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.125,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0.036458333333333336,
+              "avgTradeCount": 0.125,
+              "consistency": 0.125,
+              "overfitPenalty": 0.0012500000000000011,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-20-0.005",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 20,
+              "threshold": 0.005
+            },
+            "score": 0.7865701559020044,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0.041666666666666664,
+              "avgTradeCount": 0.25,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-20-0.0075",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 20,
+              "threshold": 0.0075
+            },
+            "score": 0.7865701559020044,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0.020833333333333332,
+              "avgTradeCount": 0.125,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-20-0.01",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 20,
+              "threshold": 0.01
+            },
+            "score": 0.7865701559020044,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0.020833333333333332,
+              "avgTradeCount": 0.125,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-28-0.005",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 28,
+              "threshold": 0.005
+            },
+            "score": 0.7865701559020044,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          }
+        ]
+      },
+      {
+        "marketType": "bitcoin",
+        "tokenId": "13244681086321087932946246027856416106585284024824496763706748621681543444582",
+        "question": "Will Trump deport 250,000-500,000 people?",
+        "interval": "max",
+        "fidelity": 60,
+        "volume": 7288832.70087,
+        "bars": 741,
+        "profile": {
+          "trendiness": 0.0000016583173292737449,
+          "meanReversion": 0.23437124040709864,
+          "volatility": 0.013749679299545169,
+          "tailRisk": 0.030687230142722288
+        },
+        "regimeBucket": "bitcoin:trend-low:mr-high:vol-low",
+        "candidatesEvaluated": 450,
+        "topAlgos": [
+          {
+            "id": "btc-mom-6-20-0.005",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 6,
+              "longWindow": 20,
+              "threshold": 0.005
+            },
+            "score": 0.7653006681514477,
+            "metrics": {
+              "avgTestPnl": 0.0038124999999999964,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.2642033749485253,
+              "avgTestSortino": 0.37544262426588787,
+              "avgTestDrawdown": 0.0005000000000000004,
+              "avgExposure": 0.041666666666666664,
+              "avgTradeCount": 0.25,
+              "consistency": 0.25,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0004999999999999449
+            }
+          },
+          {
+            "id": "btc-mom-12-20-0.002",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 12,
+              "longWindow": 20,
+              "threshold": 0.002
+            },
+            "score": 0.7628730512249442,
+            "metrics": {
+              "avgTestPnl": 0.0037500000000000033,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.2048005611838768,
+              "avgTestSortino": 0.5166284913846355,
+              "avgTestDrawdown": 0.003124999999999989,
+              "avgExposure": 0.06249999999999999,
+              "avgTradeCount": 0.625,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0035000000000000586
+            }
+          },
+          {
+            "id": "btc-mom-8-20-0.0075",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 8,
+              "longWindow": 20,
+              "threshold": 0.0075
+            },
+            "score": 0.7597550111358574,
+            "metrics": {
+              "avgTestPnl": 0.003375000000000003,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.15624912636043115,
+              "avgTestSortino": 0.19683399718793082,
+              "avgTestDrawdown": 0.00043750000000000733,
+              "avgExposure": 0.020833333333333332,
+              "avgTradeCount": 0.125,
+              "consistency": 0.125,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-10-20-0.005",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 10,
+              "longWindow": 20,
+              "threshold": 0.005
+            },
+            "score": 0.7597550111358574,
+            "metrics": {
+              "avgTestPnl": 0.003375000000000003,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.15624912636043115,
+              "avgTestSortino": 0.19683399718793082,
+              "avgTestDrawdown": 0.00043750000000000733,
+              "avgExposure": 0.020833333333333332,
+              "avgTradeCount": 0.125,
+              "consistency": 0.125,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-8-20-0.0035",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 8,
+              "longWindow": 20,
+              "threshold": 0.0035
+            },
+            "score": 0.7591759465478841,
+            "metrics": {
+              "avgTestPnl": 0.0030624999999999958,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.18229935747509407,
+              "avgTestSortino": 0.3598143693965676,
+              "avgTestDrawdown": 0.0018124999999999808,
+              "avgExposure": 0.07291666666666667,
+              "avgTradeCount": 0.5,
+              "consistency": 0.375,
+              "overfitPenalty": 0.005687499999999887,
+              "tailPenalty": 0.0035000000000000586
+            }
+          },
+          {
+            "id": "btc-mom-4-20-0.0075",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 20,
+              "threshold": 0.0075
+            },
+            "score": 0.7507572383073498,
+            "metrics": {
+              "avgTestPnl": 0.00043749999999999345,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.10795424858809419,
+              "avgTestSortino": 0.17860862707795705,
+              "avgTestDrawdown": 0.00006249999999999312,
+              "avgExposure": 0.020833333333333332,
+              "avgTradeCount": 0.125,
+              "consistency": 0.125,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-6-20-0.0075",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 6,
+              "longWindow": 20,
+              "threshold": 0.0075
+            },
+            "score": 0.7507572383073498,
+            "metrics": {
+              "avgTestPnl": 0.00043749999999999345,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.10795424858809419,
+              "avgTestSortino": 0.17860862707795705,
+              "avgTestDrawdown": 0.00006249999999999312,
+              "avgExposure": 0.020833333333333332,
+              "avgTradeCount": 0.125,
+              "consistency": 0.125,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-8-20-0.005",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 8,
+              "longWindow": 20,
+              "threshold": 0.005
+            },
+            "score": 0.7488195991091314,
+            "metrics": {
+              "avgTestPnl": 0.00331250000000001,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.031249126360431173,
+              "avgTestSortino": 0.17131847903393937,
+              "avgTestDrawdown": 0.0005000000000000004,
+              "avgExposure": 0.03125,
+              "avgTradeCount": 0.25,
+              "consistency": 0.125,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0004999999999999449
+            }
+          }
+        ]
+      },
+      {
+        "marketType": "bitcoin",
+        "tokenId": "28946595841244317705636126646676849578876740730186646421280828201004700559420",
+        "question": "Will GTA 6 cost $100+?",
+        "interval": "max",
+        "fidelity": 60,
+        "volume": 4647948.577004,
+        "bars": 741,
+        "profile": {
+          "trendiness": 0.0013457745767087436,
+          "meanReversion": 0.11966972762321283,
+          "volatility": 0.10764991285197438,
+          "tailRisk": 0.2220690481898823
+        },
+        "regimeBucket": "bitcoin:trend-low:mr-high:vol-high",
+        "candidatesEvaluated": 450,
+        "topAlgos": [
+          {
+            "id": "btc-mom-10-20-0.0035",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 10,
+              "longWindow": 20,
+              "threshold": 0.0035
+            },
+            "score": 0.767260579064588,
+            "metrics": {
+              "avgTestPnl": 0.00006249999999999962,
+              "medianTestPnl": 0.0002500000000000002,
+              "avgTestSharpe": 0.1693087856751735,
+              "avgTestSortino": 0.05567879273566801,
+              "avgTestDrawdown": 0.0009999999999999998,
+              "avgExposure": 0.16145833333333334,
+              "avgTradeCount": 1.125,
+              "consistency": 0.5,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0019999999999999983
+            }
+          },
+          {
+            "id": "btc-mom-4-28-0.002",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 28,
+              "threshold": 0.002
+            },
+            "score": 0.7667928730512249,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-28-0.0035",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 28,
+              "threshold": 0.0035
+            },
+            "score": 0.7667928730512249,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-28-0.005",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 28,
+              "threshold": 0.005
+            },
+            "score": 0.7667928730512249,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-28-0.0075",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 28,
+              "threshold": 0.0075
+            },
+            "score": 0.7667928730512249,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-28-0.01",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 28,
+              "threshold": 0.01
+            },
+            "score": 0.7667928730512249,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-36-0.002",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 36,
+              "threshold": 0.002
+            },
+            "score": 0.7667928730512249,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-36-0.0035",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 36,
+              "threshold": 0.0035
+            },
+            "score": 0.7667928730512249,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          }
+        ]
+      },
+      {
+        "marketType": "bitcoin",
+        "tokenId": "74341056958547120660405490893413766202610642702385621904694146292080006615573",
+        "question": "Starmer out by February 28, 2026?",
+        "interval": "max",
+        "fidelity": 60,
+        "volume": 4577886.601209,
+        "bars": 294,
+        "profile": {
+          "trendiness": 0.004788676102323389,
+          "meanReversion": 0.18015189491711356,
+          "volatility": 0.19320170031219547,
+          "tailRisk": 0.37068947401601227
+        },
+        "regimeBucket": "bitcoin:trend-high:mr-high:vol-high",
+        "candidatesEvaluated": 450,
+        "topAlgos": [
+          {
+            "id": "btc-bo-14-10-0.004-0.03",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 14,
+              "confirmWindow": 10,
+              "volatilityFloor": 0.004,
+              "stopToFlat": 0.03
+            },
+            "score": 0.7893095768374165,
+            "metrics": {
+              "avgTestPnl": 0.0155,
+              "medianTestPnl": 0.014250000000000002,
+              "avgTestSharpe": 0.5789764484066413,
+              "avgTestSortino": 0.5420090653049255,
+              "avgTestDrawdown": 0.021124999999999998,
+              "avgExposure": 0.2708333333333333,
+              "avgTradeCount": 1.25,
+              "consistency": 0.75,
+              "overfitPenalty": 0.05012499999999999,
+              "tailPenalty": 0.0335
+            }
+          },
+          {
+            "id": "btc-bo-14-10-0.007-0.02",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 14,
+              "confirmWindow": 10,
+              "volatilityFloor": 0.007,
+              "stopToFlat": 0.02
+            },
+            "score": 0.7893095768374165,
+            "metrics": {
+              "avgTestPnl": 0.0155,
+              "medianTestPnl": 0.014250000000000002,
+              "avgTestSharpe": 0.5789764484066413,
+              "avgTestSortino": 0.5420090653049255,
+              "avgTestDrawdown": 0.021124999999999998,
+              "avgExposure": 0.2708333333333333,
+              "avgTradeCount": 1.25,
+              "consistency": 0.75,
+              "overfitPenalty": 0.05012499999999999,
+              "tailPenalty": 0.0335
+            }
+          },
+          {
+            "id": "btc-bo-14-10-0.007-0.03",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 14,
+              "confirmWindow": 10,
+              "volatilityFloor": 0.007,
+              "stopToFlat": 0.03
+            },
+            "score": 0.7893095768374165,
+            "metrics": {
+              "avgTestPnl": 0.0155,
+              "medianTestPnl": 0.014250000000000002,
+              "avgTestSharpe": 0.5789764484066413,
+              "avgTestSortino": 0.5420090653049255,
+              "avgTestDrawdown": 0.021124999999999998,
+              "avgExposure": 0.2708333333333333,
+              "avgTradeCount": 1.25,
+              "consistency": 0.75,
+              "overfitPenalty": 0.05012499999999999,
+              "tailPenalty": 0.0335
+            }
+          },
+          {
+            "id": "btc-bo-14-10-0.01-0.02",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 14,
+              "confirmWindow": 10,
+              "volatilityFloor": 0.01,
+              "stopToFlat": 0.02
+            },
+            "score": 0.7893095768374165,
+            "metrics": {
+              "avgTestPnl": 0.0155,
+              "medianTestPnl": 0.014250000000000002,
+              "avgTestSharpe": 0.5789764484066413,
+              "avgTestSortino": 0.5420090653049255,
+              "avgTestDrawdown": 0.021124999999999998,
+              "avgExposure": 0.2708333333333333,
+              "avgTradeCount": 1.25,
+              "consistency": 0.75,
+              "overfitPenalty": 0.05012499999999999,
+              "tailPenalty": 0.0335
+            }
+          },
+          {
+            "id": "btc-bo-14-10-0.01-0.03",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 14,
+              "confirmWindow": 10,
+              "volatilityFloor": 0.01,
+              "stopToFlat": 0.03
+            },
+            "score": 0.7893095768374165,
+            "metrics": {
+              "avgTestPnl": 0.0155,
+              "medianTestPnl": 0.014250000000000002,
+              "avgTestSharpe": 0.5789764484066413,
+              "avgTestSortino": 0.5420090653049255,
+              "avgTestDrawdown": 0.021124999999999998,
+              "avgExposure": 0.2708333333333333,
+              "avgTradeCount": 1.25,
+              "consistency": 0.75,
+              "overfitPenalty": 0.05012499999999999,
+              "tailPenalty": 0.0335
+            }
+          },
+          {
+            "id": "btc-bo-14-10-0.013-0.02",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 14,
+              "confirmWindow": 10,
+              "volatilityFloor": 0.013,
+              "stopToFlat": 0.02
+            },
+            "score": 0.7893095768374165,
+            "metrics": {
+              "avgTestPnl": 0.0155,
+              "medianTestPnl": 0.014250000000000002,
+              "avgTestSharpe": 0.5789764484066413,
+              "avgTestSortino": 0.5420090653049255,
+              "avgTestDrawdown": 0.021124999999999998,
+              "avgExposure": 0.2708333333333333,
+              "avgTradeCount": 1.25,
+              "consistency": 0.75,
+              "overfitPenalty": 0.05012499999999999,
+              "tailPenalty": 0.0335
+            }
+          },
+          {
+            "id": "btc-bo-14-8-0.004-0.02",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 14,
+              "confirmWindow": 8,
+              "volatilityFloor": 0.004,
+              "stopToFlat": 0.02
+            },
+            "score": 0.7884187082405345,
+            "metrics": {
+              "avgTestPnl": 0.0155,
+              "medianTestPnl": 0.014250000000000002,
+              "avgTestSharpe": 0.5789764484066413,
+              "avgTestSortino": 0.5420090653049255,
+              "avgTestDrawdown": 0.021124999999999998,
+              "avgExposure": 0.2708333333333333,
+              "avgTradeCount": 1.25,
+              "consistency": 0.75,
+              "overfitPenalty": 0.05137499999999999,
+              "tailPenalty": 0.0335
+            }
+          },
+          {
+            "id": "btc-bo-14-8-0.007-0.02",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 14,
+              "confirmWindow": 8,
+              "volatilityFloor": 0.007,
+              "stopToFlat": 0.02
+            },
+            "score": 0.7884187082405345,
+            "metrics": {
+              "avgTestPnl": 0.0155,
+              "medianTestPnl": 0.014250000000000002,
+              "avgTestSharpe": 0.5789764484066413,
+              "avgTestSortino": 0.5420090653049255,
+              "avgTestDrawdown": 0.021124999999999998,
+              "avgExposure": 0.2708333333333333,
+              "avgTradeCount": 1.25,
+              "consistency": 0.75,
+              "overfitPenalty": 0.05137499999999999,
+              "tailPenalty": 0.0335
+            }
+          }
+        ]
+      },
+      {
+        "marketType": "bitcoin",
+        "tokenId": "8441400852834915183759801017793514978104486628517653995211751018945988243154",
+        "question": "GTA VI released before June 2026?",
+        "interval": "max",
+        "fidelity": 60,
+        "volume": 3618860.822165,
+        "bars": 735,
+        "profile": {
+          "trendiness": 0.0006478340965348328,
+          "meanReversion": 0.12222220256783443,
+          "volatility": 0.14820352144475493,
+          "tailRisk": 0.23100616016427095
+        },
+        "regimeBucket": "bitcoin:trend-low:mr-high:vol-high",
+        "candidatesEvaluated": 450,
+        "topAlgos": [
+          {
+            "id": "btc-bo-20-4-0.004-0.01",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 20,
+              "confirmWindow": 4,
+              "volatilityFloor": 0.004,
+              "stopToFlat": 0.01
+            },
+            "score": 0.7542316258351892,
+            "metrics": {
+              "avgTestPnl": 0.0010624999999999996,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.17129663296010414,
+              "avgTestSortino": 0.008558164961018203,
+              "avgTestDrawdown": 0.0007500000000000002,
+              "avgExposure": 0.026041666666666664,
+              "avgTradeCount": 0.25,
+              "consistency": 0.25,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-bo-20-4-0.004-0.02",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 20,
+              "confirmWindow": 4,
+              "volatilityFloor": 0.004,
+              "stopToFlat": 0.02
+            },
+            "score": 0.7542316258351892,
+            "metrics": {
+              "avgTestPnl": 0.0010624999999999996,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.17129663296010414,
+              "avgTestSortino": 0.008558164961018203,
+              "avgTestDrawdown": 0.0007500000000000002,
+              "avgExposure": 0.026041666666666664,
+              "avgTradeCount": 0.25,
+              "consistency": 0.25,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-bo-20-4-0.007-0.01",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 20,
+              "confirmWindow": 4,
+              "volatilityFloor": 0.007,
+              "stopToFlat": 0.01
+            },
+            "score": 0.7542316258351892,
+            "metrics": {
+              "avgTestPnl": 0.0010624999999999996,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.17129663296010414,
+              "avgTestSortino": 0.008558164961018203,
+              "avgTestDrawdown": 0.0007500000000000002,
+              "avgExposure": 0.026041666666666664,
+              "avgTradeCount": 0.25,
+              "consistency": 0.25,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-bo-20-4-0.007-0.02",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 20,
+              "confirmWindow": 4,
+              "volatilityFloor": 0.007,
+              "stopToFlat": 0.02
+            },
+            "score": 0.7542316258351892,
+            "metrics": {
+              "avgTestPnl": 0.0010624999999999996,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.17129663296010414,
+              "avgTestSortino": 0.008558164961018203,
+              "avgTestDrawdown": 0.0007500000000000002,
+              "avgExposure": 0.026041666666666664,
+              "avgTradeCount": 0.25,
+              "consistency": 0.25,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-bo-20-4-0.01-0.01",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 20,
+              "confirmWindow": 4,
+              "volatilityFloor": 0.01,
+              "stopToFlat": 0.01
+            },
+            "score": 0.7542316258351892,
+            "metrics": {
+              "avgTestPnl": 0.0010624999999999996,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.17129663296010414,
+              "avgTestSortino": 0.008558164961018203,
+              "avgTestDrawdown": 0.0007500000000000002,
+              "avgExposure": 0.026041666666666664,
+              "avgTradeCount": 0.25,
+              "consistency": 0.25,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-bo-20-4-0.01-0.03",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 20,
+              "confirmWindow": 4,
+              "volatilityFloor": 0.01,
+              "stopToFlat": 0.03
+            },
+            "score": 0.7542316258351892,
+            "metrics": {
+              "avgTestPnl": 0.0010624999999999996,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.17129663296010414,
+              "avgTestSortino": 0.008558164961018203,
+              "avgTestDrawdown": 0.0007500000000000002,
+              "avgExposure": 0.026041666666666664,
+              "avgTradeCount": 0.25,
+              "consistency": 0.25,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-bo-20-4-0.013-0.01",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 20,
+              "confirmWindow": 4,
+              "volatilityFloor": 0.013,
+              "stopToFlat": 0.01
+            },
+            "score": 0.7542316258351892,
+            "metrics": {
+              "avgTestPnl": 0.0010624999999999996,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.17129663296010414,
+              "avgTestSortino": 0.008558164961018203,
+              "avgTestDrawdown": 0.0007500000000000002,
+              "avgExposure": 0.026041666666666664,
+              "avgTradeCount": 0.25,
+              "consistency": 0.25,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-bo-20-4-0.013-0.03",
+            "family": "btc-breakout",
+            "params": {
+              "breakoutWindow": 20,
+              "confirmWindow": 4,
+              "volatilityFloor": 0.013,
+              "stopToFlat": 0.03
+            },
+            "score": 0.7542316258351892,
+            "metrics": {
+              "avgTestPnl": 0.0010624999999999996,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.17129663296010414,
+              "avgTestSortino": 0.008558164961018203,
+              "avgTestDrawdown": 0.0007500000000000002,
+              "avgExposure": 0.026041666666666664,
+              "avgTradeCount": 0.25,
+              "consistency": 0.25,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          }
+        ]
+      },
+      {
+        "marketType": "bitcoin",
+        "tokenId": "105267568073659068217311993901927962476298440625043565106676088842803600775810",
+        "question": "Will bitcoin hit $1m before GTA VI?",
+        "interval": "max",
+        "fidelity": 60,
+        "volume": 3115648.984483,
+        "bars": 741,
+        "profile": {
+          "trendiness": 8.433400995758769e-7,
+          "meanReversion": 0,
+          "volatility": 0.001073259857928812,
+          "tailRisk": 0
+        },
+        "regimeBucket": "bitcoin:trend-low:mr-low:vol-low",
+        "candidatesEvaluated": 450,
+        "topAlgos": [
+          {
+            "id": "btc-mom-4-20-0.002",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 20,
+              "threshold": 0.002
+            },
+            "score": 0.7500000000000001,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-20-0.0035",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 20,
+              "threshold": 0.0035
+            },
+            "score": 0.7500000000000001,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-20-0.005",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 20,
+              "threshold": 0.005
+            },
+            "score": 0.7500000000000001,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-20-0.0075",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 20,
+              "threshold": 0.0075
+            },
+            "score": 0.7500000000000001,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-20-0.01",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 20,
+              "threshold": 0.01
+            },
+            "score": 0.7500000000000001,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-28-0.002",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 28,
+              "threshold": 0.002
+            },
+            "score": 0.7500000000000001,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-28-0.0035",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 28,
+              "threshold": 0.0035
+            },
+            "score": 0.7500000000000001,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "btc-mom-4-28-0.005",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 4,
+              "longWindow": 28,
+              "threshold": 0.005
+            },
+            "score": 0.7500000000000001,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          }
+        ]
+      },
+      {
+        "marketType": "bitcoin",
+        "tokenId": "14642427631762357507939608294887050551300827907746951519205602696553287464979",
+        "question": "Will the U.S. collect between $500b and $1t in revenue in 2025?",
+        "interval": "max",
+        "fidelity": 60,
+        "volume": 2540131.519461,
+        "bars": 741,
+        "profile": {
+          "trendiness": 0.0025600599842311132,
+          "meanReversion": 0.19524667506336943,
+          "volatility": 0.3476280735913218,
+          "tailRisk": 0.5744928285308178
+        },
+        "regimeBucket": "bitcoin:trend-high:mr-high:vol-high",
+        "candidatesEvaluated": 450,
+        "topAlgos": [
+          {
+            "id": "btc-mom-10-20-0.002",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 10,
+              "longWindow": 20,
+              "threshold": 0.002
+            },
+            "score": 0.7565701559020045,
+            "metrics": {
+              "avgTestPnl": 0.0008125000000000001,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.10887318818099606,
+              "avgTestSortino": 0.34871208143788257,
+              "avgTestDrawdown": 0.0009375000000000002,
+              "avgExposure": 0.16666666666666666,
+              "avgTradeCount": 1,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0025000000000000005
+            }
+          },
+          {
+            "id": "btc-mom-10-20-0.0035",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 10,
+              "longWindow": 20,
+              "threshold": 0.0035
+            },
+            "score": 0.7565701559020045,
+            "metrics": {
+              "avgTestPnl": 0.0008125000000000001,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.10887318818099606,
+              "avgTestSortino": 0.34871208143788257,
+              "avgTestDrawdown": 0.0009375000000000002,
+              "avgExposure": 0.16666666666666666,
+              "avgTradeCount": 1,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0025000000000000005
+            }
+          },
+          {
+            "id": "btc-mom-10-20-0.005",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 10,
+              "longWindow": 20,
+              "threshold": 0.005
+            },
+            "score": 0.7565701559020045,
+            "metrics": {
+              "avgTestPnl": 0.0008125000000000001,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.10887318818099606,
+              "avgTestSortino": 0.34871208143788257,
+              "avgTestDrawdown": 0.0009375000000000002,
+              "avgExposure": 0.16666666666666666,
+              "avgTradeCount": 1,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0025000000000000005
+            }
+          },
+          {
+            "id": "btc-mom-10-20-0.0075",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 10,
+              "longWindow": 20,
+              "threshold": 0.0075
+            },
+            "score": 0.7565701559020045,
+            "metrics": {
+              "avgTestPnl": 0.0008125000000000001,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.10887318818099606,
+              "avgTestSortino": 0.34871208143788257,
+              "avgTestDrawdown": 0.0009375000000000002,
+              "avgExposure": 0.16666666666666666,
+              "avgTradeCount": 1,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0025000000000000005
+            }
+          },
+          {
+            "id": "btc-mom-10-20-0.01",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 10,
+              "longWindow": 20,
+              "threshold": 0.01
+            },
+            "score": 0.7565701559020045,
+            "metrics": {
+              "avgTestPnl": 0.0008125000000000001,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.10887318818099606,
+              "avgTestSortino": 0.34871208143788257,
+              "avgTestDrawdown": 0.0009375000000000002,
+              "avgExposure": 0.16666666666666666,
+              "avgTradeCount": 1,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0025000000000000005
+            }
+          },
+          {
+            "id": "btc-mom-12-20-0.002",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 12,
+              "longWindow": 20,
+              "threshold": 0.002
+            },
+            "score": 0.7565701559020045,
+            "metrics": {
+              "avgTestPnl": 0.0008125000000000001,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.10887318818099606,
+              "avgTestSortino": 0.34871208143788257,
+              "avgTestDrawdown": 0.0009375000000000002,
+              "avgExposure": 0.16666666666666666,
+              "avgTradeCount": 1,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0025000000000000005
+            }
+          },
+          {
+            "id": "btc-mom-12-20-0.0035",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 12,
+              "longWindow": 20,
+              "threshold": 0.0035
+            },
+            "score": 0.7565701559020045,
+            "metrics": {
+              "avgTestPnl": 0.0008125000000000001,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.10887318818099606,
+              "avgTestSortino": 0.34871208143788257,
+              "avgTestDrawdown": 0.0009375000000000002,
+              "avgExposure": 0.16666666666666666,
+              "avgTradeCount": 1,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0025000000000000005
+            }
+          },
+          {
+            "id": "btc-mom-12-20-0.005",
+            "family": "btc-momentum",
+            "params": {
+              "shortWindow": 12,
+              "longWindow": 20,
+              "threshold": 0.005
+            },
+            "score": 0.7565701559020045,
+            "metrics": {
+              "avgTestPnl": 0.0008125000000000001,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.10887318818099606,
+              "avgTestSortino": 0.34871208143788257,
+              "avgTestDrawdown": 0.0009375000000000002,
+              "avgExposure": 0.16666666666666666,
+              "avgTradeCount": 1,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0025000000000000005
+            }
+          }
+        ]
+      }
+    ],
+    "weather": [
+      {
+        "marketType": "weather",
+        "tokenId": "90435811253665578014957380826505992530054077692143838383981805324273750424057",
+        "question": "Will Jesus Christ return before GTA VI?",
+        "interval": "max",
+        "fidelity": 60,
+        "volume": 9361287.754704,
+        "bars": 741,
+        "profile": {
+          "trendiness": 0.000029335256644673296,
+          "meanReversion": 0.07940971173451865,
+          "volatility": 0.003009952064290473,
+          "tailRisk": 0
+        },
+        "regimeBucket": "weather:trend-low:mr-high:vol-low",
+        "candidatesEvaluated": 420,
+        "topAlgos": [
+          {
+            "id": "w-mr-24-1-0.2",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 24,
+              "zEntry": 1,
+              "zExit": 0.2
+            },
+            "score": 0.7547732696897376,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0.125,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-24-1-0.3",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 24,
+              "zEntry": 1,
+              "zExit": 0.3
+            },
+            "score": 0.7547732696897376,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0.125,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-24-1-0.4",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 24,
+              "zEntry": 1,
+              "zExit": 0.4
+            },
+            "score": 0.7547732696897376,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0.125,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-24-1-0.5",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 24,
+              "zEntry": 1,
+              "zExit": 0.5
+            },
+            "score": 0.7547732696897376,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0.125,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-24-1.2-0.2",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 24,
+              "zEntry": 1.2,
+              "zExit": 0.2
+            },
+            "score": 0.7547732696897376,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0.125,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-24-1.2-0.3",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 24,
+              "zEntry": 1.2,
+              "zExit": 0.3
+            },
+            "score": 0.7547732696897376,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0.125,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-24-1.2-0.4",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 24,
+              "zEntry": 1.2,
+              "zExit": 0.4
+            },
+            "score": 0.7547732696897376,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0.125,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-24-1.2-0.5",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 24,
+              "zEntry": 1.2,
+              "zExit": 0.5
+            },
+            "score": 0.7547732696897376,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0.125,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          }
+        ]
+      },
+      {
+        "marketType": "weather",
+        "tokenId": "13244681086321087932946246027856416106585284024824496763706748621681543444582",
+        "question": "Will Trump deport 250,000-500,000 people?",
+        "interval": "max",
+        "fidelity": 60,
+        "volume": 7288832.70087,
+        "bars": 741,
+        "profile": {
+          "trendiness": 0.0000016583173292737449,
+          "meanReversion": 0.23437124040709864,
+          "volatility": 0.013749679299545169,
+          "tailRisk": 0.030687230142722288
+        },
+        "regimeBucket": "weather:trend-low:mr-high:vol-low",
+        "candidatesEvaluated": 420,
+        "topAlgos": [
+          {
+            "id": "w-dt-20-6-0.0006-0.04",
+            "family": "weather-drift-trend",
+            "params": {
+              "trendWindow": 20,
+              "triggerWindow": 6,
+              "minSlope": 0.0006,
+              "maxDistance": 0.04
+            },
+            "score": 0.7938424821002389,
+            "metrics": {
+              "avgTestPnl": 0.003375000000000003,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.15624912636043115,
+              "avgTestSortino": 0.19683399718793082,
+              "avgTestDrawdown": 0.00043750000000000733,
+              "avgExposure": 0.020833333333333332,
+              "avgTradeCount": 0.125,
+              "consistency": 0.125,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-dt-20-8-0.0006-0.03",
+            "family": "weather-drift-trend",
+            "params": {
+              "trendWindow": 20,
+              "triggerWindow": 8,
+              "minSlope": 0.0006,
+              "maxDistance": 0.03
+            },
+            "score": 0.7938424821002389,
+            "metrics": {
+              "avgTestPnl": 0.003375000000000003,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.15624912636043115,
+              "avgTestSortino": 0.19683399718793082,
+              "avgTestDrawdown": 0.00043750000000000733,
+              "avgExposure": 0.020833333333333332,
+              "avgTradeCount": 0.125,
+              "consistency": 0.125,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-dt-20-8-0.0006-0.05",
+            "family": "weather-drift-trend",
+            "params": {
+              "trendWindow": 20,
+              "triggerWindow": 8,
+              "minSlope": 0.0006,
+              "maxDistance": 0.05
+            },
+            "score": 0.7938424821002389,
+            "metrics": {
+              "avgTestPnl": 0.003375000000000003,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.15624912636043115,
+              "avgTestSortino": 0.19683399718793082,
+              "avgTestDrawdown": 0.00043750000000000733,
+              "avgExposure": 0.020833333333333332,
+              "avgTradeCount": 0.125,
+              "consistency": 0.125,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-dt-20-10-0.0006-0.02",
+            "family": "weather-drift-trend",
+            "params": {
+              "trendWindow": 20,
+              "triggerWindow": 10,
+              "minSlope": 0.0006,
+              "maxDistance": 0.02
+            },
+            "score": 0.7938424821002389,
+            "metrics": {
+              "avgTestPnl": 0.003375000000000003,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.15624912636043115,
+              "avgTestSortino": 0.19683399718793082,
+              "avgTestDrawdown": 0.00043750000000000733,
+              "avgExposure": 0.020833333333333332,
+              "avgTradeCount": 0.125,
+              "consistency": 0.125,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-dt-20-10-0.0006-0.04",
+            "family": "weather-drift-trend",
+            "params": {
+              "trendWindow": 20,
+              "triggerWindow": 10,
+              "minSlope": 0.0006,
+              "maxDistance": 0.04
+            },
+            "score": 0.7938424821002389,
+            "metrics": {
+              "avgTestPnl": 0.003375000000000003,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.15624912636043115,
+              "avgTestSortino": 0.19683399718793082,
+              "avgTestDrawdown": 0.00043750000000000733,
+              "avgExposure": 0.020833333333333332,
+              "avgTradeCount": 0.125,
+              "consistency": 0.125,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-dt-20-12-0.0006-0.03",
+            "family": "weather-drift-trend",
+            "params": {
+              "trendWindow": 20,
+              "triggerWindow": 12,
+              "minSlope": 0.0006,
+              "maxDistance": 0.03
+            },
+            "score": 0.7938424821002389,
+            "metrics": {
+              "avgTestPnl": 0.003375000000000003,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.15624912636043115,
+              "avgTestSortino": 0.19683399718793082,
+              "avgTestDrawdown": 0.00043750000000000733,
+              "avgExposure": 0.020833333333333332,
+              "avgTradeCount": 0.125,
+              "consistency": 0.125,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-dt-20-12-0.0006-0.05",
+            "family": "weather-drift-trend",
+            "params": {
+              "trendWindow": 20,
+              "triggerWindow": 12,
+              "minSlope": 0.0006,
+              "maxDistance": 0.05
+            },
+            "score": 0.7938424821002389,
+            "metrics": {
+              "avgTestPnl": 0.003375000000000003,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.15624912636043115,
+              "avgTestSortino": 0.19683399718793082,
+              "avgTestDrawdown": 0.00043750000000000733,
+              "avgExposure": 0.020833333333333332,
+              "avgTradeCount": 0.125,
+              "consistency": 0.125,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-16-1.8-0.5",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.8,
+              "zExit": 0.5
+            },
+            "score": 0.7837708830548925,
+            "metrics": {
+              "avgTestPnl": 0.0049999999999999906,
+              "medianTestPnl": 0.0047499999999999765,
+              "avgTestSharpe": 0.3522555700828781,
+              "avgTestSortino": 0.004834901249732376,
+              "avgTestDrawdown": 0.004562499999999997,
+              "avgExposure": 0.09375,
+              "avgTradeCount": 1.125,
+              "consistency": 0.5,
+              "overfitPenalty": 0.04112499999999991,
+              "tailPenalty": 0.015000000000000013
+            }
+          }
+        ]
+      },
+      {
+        "marketType": "weather",
+        "tokenId": "28946595841244317705636126646676849578876740730186646421280828201004700559420",
+        "question": "Will GTA 6 cost $100+?",
+        "interval": "max",
+        "fidelity": 60,
+        "volume": 4647948.577004,
+        "bars": 741,
+        "profile": {
+          "trendiness": 0.0013457745767087436,
+          "meanReversion": 0.11966972762321283,
+          "volatility": 0.10764991285197438,
+          "tailRisk": 0.2220690481898823
+        },
+        "regimeBucket": "weather:trend-low:mr-high:vol-high",
+        "candidatesEvaluated": 420,
+        "topAlgos": [
+          {
+            "id": "w-rr-20-1-0.25-0.06",
+            "family": "weather-range-reversion",
+            "params": {
+              "window": 20,
+              "zEntry": 1,
+              "zExit": 0.25,
+              "volatilityCeiling": 0.06
+            },
+            "score": 0.7621957040572793,
+            "metrics": {
+              "avgTestPnl": 0.0005624999999999996,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.4102174861154139,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0.020833333333333332,
+              "avgTradeCount": 0.375,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-rr-20-1-0.45-0.06",
+            "family": "weather-range-reversion",
+            "params": {
+              "window": 20,
+              "zEntry": 1,
+              "zExit": 0.45,
+              "volatilityCeiling": 0.06
+            },
+            "score": 0.7621957040572793,
+            "metrics": {
+              "avgTestPnl": 0.0005624999999999996,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.4102174861154139,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0.020833333333333332,
+              "avgTradeCount": 0.375,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-16-1.2-0.2",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.2,
+              "zExit": 0.2
+            },
+            "score": 0.7607875894988066,
+            "metrics": {
+              "avgTestPnl": 0.0006875,
+              "medianTestPnl": 0.0005000000000000004,
+              "avgTestSharpe": 0.49979125201810776,
+              "avgTestSortino": 0.14864118508744226,
+              "avgTestDrawdown": 0.0008125000000000001,
+              "avgExposure": 0.17187499999999997,
+              "avgTradeCount": 1.25,
+              "consistency": 0.625,
+              "overfitPenalty": 0.0091875,
+              "tailPenalty": 0.0015000000000000013
+            }
+          },
+          {
+            "id": "w-mr-16-1.4-0.2",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.4,
+              "zExit": 0.2
+            },
+            "score": 0.7607875894988066,
+            "metrics": {
+              "avgTestPnl": 0.0006875,
+              "medianTestPnl": 0.0005000000000000004,
+              "avgTestSharpe": 0.49979125201810776,
+              "avgTestSortino": 0.14864118508744226,
+              "avgTestDrawdown": 0.0008125000000000001,
+              "avgExposure": 0.17187499999999997,
+              "avgTradeCount": 1.25,
+              "consistency": 0.625,
+              "overfitPenalty": 0.0091875,
+              "tailPenalty": 0.0015000000000000013
+            }
+          },
+          {
+            "id": "w-mr-16-1.2-0.4",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.2,
+              "zExit": 0.4
+            },
+            "score": 0.7590214797136038,
+            "metrics": {
+              "avgTestPnl": 0.0008125000000000001,
+              "medianTestPnl": 0.0005000000000000004,
+              "avgTestSharpe": 0.560980749179443,
+              "avgTestSortino": 0.18372812497479302,
+              "avgTestDrawdown": 0.0008125000000000001,
+              "avgExposure": 0.16145833333333334,
+              "avgTradeCount": 1.5,
+              "consistency": 0.625,
+              "overfitPenalty": 0.013999999999999999,
+              "tailPenalty": 0.0015000000000000013
+            }
+          },
+          {
+            "id": "w-mr-16-1.6-0.2",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.6,
+              "zExit": 0.2
+            },
+            "score": 0.7573508353221956,
+            "metrics": {
+              "avgTestPnl": 0.0006875,
+              "medianTestPnl": 0.0002500000000000002,
+              "avgTestSharpe": 0.400763263064029,
+              "avgTestSortino": 0.1582126068208014,
+              "avgTestDrawdown": 0.00075,
+              "avgExposure": 0.15104166666666666,
+              "avgTradeCount": 1,
+              "consistency": 0.5,
+              "overfitPenalty": 0.009625,
+              "tailPenalty": 0.0015000000000000013
+            }
+          },
+          {
+            "id": "w-rr-20-1-0.35-0.05",
+            "family": "weather-range-reversion",
+            "params": {
+              "window": 20,
+              "zEntry": 1,
+              "zExit": 0.35,
+              "volatilityCeiling": 0.05
+            },
+            "score": 0.7528162291169452,
+            "metrics": {
+              "avgTestPnl": 0.0004999999999999996,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.2852174861154139,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0.015625,
+              "avgTradeCount": 0.25,
+              "consistency": 0.25,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-16-1.2-0.5",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.2,
+              "zExit": 0.5
+            },
+            "score": 0.7523866348448689,
+            "metrics": {
+              "avgTestPnl": 0.0008749999999999997,
+              "medianTestPnl": 0.0005000000000000004,
+              "avgTestSharpe": 0.6176471319096509,
+              "avgTestSortino": 0.08166605235882658,
+              "avgTestDrawdown": 0.0007500000000000004,
+              "avgExposure": 0.15625,
+              "avgTradeCount": 1.625,
+              "consistency": 0.625,
+              "overfitPenalty": 0.015437500000000002,
+              "tailPenalty": 0.0015000000000000013
+            }
+          }
+        ]
+      },
+      {
+        "marketType": "weather",
+        "tokenId": "74341056958547120660405490893413766202610642702385621904694146292080006615573",
+        "question": "Starmer out by February 28, 2026?",
+        "interval": "max",
+        "fidelity": 60,
+        "volume": 4577886.601209,
+        "bars": 294,
+        "profile": {
+          "trendiness": 0.004788676102323389,
+          "meanReversion": 0.18015189491711356,
+          "volatility": 0.19320170031219547,
+          "tailRisk": 0.37068947401601227
+        },
+        "regimeBucket": "weather:trend-high:mr-high:vol-high",
+        "candidatesEvaluated": 420,
+        "topAlgos": [
+          {
+            "id": "w-mr-16-1.2-0.2",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.2,
+              "zExit": 0.2
+            },
+            "score": 0.7585918854415276,
+            "metrics": {
+              "avgTestPnl": 0.016812500000000005,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.06207747932631999,
+              "avgTestSortino": 2.1514481417129705,
+              "avgTestDrawdown": 0.025187499999999998,
+              "avgExposure": 0.23437499999999997,
+              "avgTradeCount": 1.25,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.053000000000000005
+            }
+          },
+          {
+            "id": "w-mr-16-1.2-0.3",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.2,
+              "zExit": 0.3
+            },
+            "score": 0.7585918854415276,
+            "metrics": {
+              "avgTestPnl": 0.016812500000000005,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.06207747932631999,
+              "avgTestSortino": 2.1514481417129705,
+              "avgTestDrawdown": 0.025187499999999998,
+              "avgExposure": 0.23437499999999997,
+              "avgTradeCount": 1.25,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.053000000000000005
+            }
+          },
+          {
+            "id": "w-mr-16-1.2-0.4",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.2,
+              "zExit": 0.4
+            },
+            "score": 0.7585918854415276,
+            "metrics": {
+              "avgTestPnl": 0.016812500000000005,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.06207747932631999,
+              "avgTestSortino": 2.1514481417129705,
+              "avgTestDrawdown": 0.025187499999999998,
+              "avgExposure": 0.23437499999999997,
+              "avgTradeCount": 1.25,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.053000000000000005
+            }
+          },
+          {
+            "id": "w-mr-16-1.2-0.5",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.2,
+              "zExit": 0.5
+            },
+            "score": 0.7585918854415276,
+            "metrics": {
+              "avgTestPnl": 0.016812500000000005,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.06207747932631999,
+              "avgTestSortino": 2.1514481417129705,
+              "avgTestDrawdown": 0.025187499999999998,
+              "avgExposure": 0.23437499999999997,
+              "avgTradeCount": 1.25,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.053000000000000005
+            }
+          },
+          {
+            "id": "w-mr-16-1.8-0.2",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.8,
+              "zExit": 0.2
+            },
+            "score": 0.7550119331742243,
+            "metrics": {
+              "avgTestPnl": 0.0271875,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.48011768887547346,
+              "avgTestSortino": 3.626955372924634,
+              "avgTestDrawdown": 0.0058125,
+              "avgExposure": 0.16145833333333331,
+              "avgTradeCount": 0.875,
+              "consistency": 0.375,
+              "overfitPenalty": 0.10525000000000001,
+              "tailPenalty": 0.009999999999999995
+            }
+          },
+          {
+            "id": "w-mr-16-1.8-0.5",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.8,
+              "zExit": 0.5
+            },
+            "score": 0.7547732696897375,
+            "metrics": {
+              "avgTestPnl": 0.0271875,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.48011768887547346,
+              "avgTestSortino": 3.626955372924634,
+              "avgTestDrawdown": 0.0058125,
+              "avgExposure": 0.16145833333333331,
+              "avgTradeCount": 0.875,
+              "consistency": 0.375,
+              "overfitPenalty": 0.10718750000000002,
+              "tailPenalty": 0.009999999999999995
+            }
+          },
+          {
+            "id": "w-mr-16-1.8-0.4",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.8,
+              "zExit": 0.4
+            },
+            "score": 0.7545346062052506,
+            "metrics": {
+              "avgTestPnl": 0.0271875,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.48011768887547346,
+              "avgTestSortino": 3.626955372924634,
+              "avgTestDrawdown": 0.0058125,
+              "avgExposure": 0.16145833333333331,
+              "avgTradeCount": 0.875,
+              "consistency": 0.375,
+              "overfitPenalty": 0.10875000000000001,
+              "tailPenalty": 0.009999999999999995
+            }
+          },
+          {
+            "id": "w-mr-16-1.8-0.3",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.8,
+              "zExit": 0.3
+            },
+            "score": 0.7542959427207637,
+            "metrics": {
+              "avgTestPnl": 0.0271875,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.48011768887547346,
+              "avgTestSortino": 3.626955372924634,
+              "avgTestDrawdown": 0.0058125,
+              "avgExposure": 0.16145833333333331,
+              "avgTradeCount": 0.875,
+              "consistency": 0.375,
+              "overfitPenalty": 0.11175000000000002,
+              "tailPenalty": 0.009999999999999995
+            }
+          }
+        ]
+      },
+      {
+        "marketType": "weather",
+        "tokenId": "8441400852834915183759801017793514978104486628517653995211751018945988243154",
+        "question": "GTA VI released before June 2026?",
+        "interval": "max",
+        "fidelity": 60,
+        "volume": 3618860.822165,
+        "bars": 735,
+        "profile": {
+          "trendiness": 0.0006478340965348328,
+          "meanReversion": 0.12222220256783443,
+          "volatility": 0.14820352144475493,
+          "tailRisk": 0.23100616016427095
+        },
+        "regimeBucket": "weather:trend-low:mr-high:vol-high",
+        "candidatesEvaluated": 420,
+        "topAlgos": [
+          {
+            "id": "w-rr-20-1-0.25-0.04",
+            "family": "weather-range-reversion",
+            "params": {
+              "window": 20,
+              "zEntry": 1,
+              "zExit": 0.25,
+              "volatilityCeiling": 0.04
+            },
+            "score": 0.7758711217183771,
+            "metrics": {
+              "avgTestPnl": 0.0013124999999999999,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.13137143190167128,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0.010416666666666666,
+              "avgTradeCount": 0.25,
+              "consistency": 0.125,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-rr-20-1-0.35-0.05",
+            "family": "weather-range-reversion",
+            "params": {
+              "window": 20,
+              "zEntry": 1,
+              "zExit": 0.35,
+              "volatilityCeiling": 0.05
+            },
+            "score": 0.7758711217183771,
+            "metrics": {
+              "avgTestPnl": 0.0013124999999999999,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.13137143190167128,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0.010416666666666666,
+              "avgTradeCount": 0.25,
+              "consistency": 0.125,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-rr-20-1-0.45-0.04",
+            "family": "weather-range-reversion",
+            "params": {
+              "window": 20,
+              "zEntry": 1,
+              "zExit": 0.45,
+              "volatilityCeiling": 0.04
+            },
+            "score": 0.7756324582338903,
+            "metrics": {
+              "avgTestPnl": 0.0013124999999999999,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.13137143190167128,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0.010416666666666666,
+              "avgTradeCount": 0.25,
+              "consistency": 0.125,
+              "overfitPenalty": 1.3010426069826053e-18,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-rr-20-1-0.25-0.06",
+            "family": "weather-range-reversion",
+            "params": {
+              "window": 20,
+              "zEntry": 1,
+              "zExit": 0.25,
+              "volatilityCeiling": 0.06
+            },
+            "score": 0.7715751789976134,
+            "metrics": {
+              "avgTestPnl": 0.0013124999999999999,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.13137143190167128,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0.010416666666666666,
+              "avgTradeCount": 0.25,
+              "consistency": 0.125,
+              "overfitPenalty": 0.005687499999999998,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-rr-20-1-0.45-0.06",
+            "family": "weather-range-reversion",
+            "params": {
+              "window": 20,
+              "zEntry": 1,
+              "zExit": 0.45,
+              "volatilityCeiling": 0.06
+            },
+            "score": 0.7696658711217185,
+            "metrics": {
+              "avgTestPnl": 0.0013124999999999999,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.13137143190167128,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0.010416666666666666,
+              "avgTradeCount": 0.25,
+              "consistency": 0.125,
+              "overfitPenalty": 0.006125000000000002,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-rr-20-1-0.25-0.03",
+            "family": "weather-range-reversion",
+            "params": {
+              "window": 20,
+              "zEntry": 1,
+              "zExit": 0.25,
+              "volatilityCeiling": 0.03
+            },
+            "score": 0.7626730310262531,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-rr-20-1-0.35-0.03",
+            "family": "weather-range-reversion",
+            "params": {
+              "window": 20,
+              "zEntry": 1,
+              "zExit": 0.35,
+              "volatilityCeiling": 0.03
+            },
+            "score": 0.7626730310262531,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-rr-20-1-0.45-0.03",
+            "family": "weather-range-reversion",
+            "params": {
+              "window": 20,
+              "zEntry": 1,
+              "zExit": 0.45,
+              "volatilityCeiling": 0.03
+            },
+            "score": 0.7626730310262531,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          }
+        ]
+      },
+      {
+        "marketType": "weather",
+        "tokenId": "105267568073659068217311993901927962476298440625043565106676088842803600775810",
+        "question": "Will bitcoin hit $1m before GTA VI?",
+        "interval": "max",
+        "fidelity": 60,
+        "volume": 3115648.984483,
+        "bars": 741,
+        "profile": {
+          "trendiness": 8.433400995758769e-7,
+          "meanReversion": 0,
+          "volatility": 0.001073259857928812,
+          "tailRisk": 0
+        },
+        "regimeBucket": "weather:trend-low:mr-low:vol-low",
+        "candidatesEvaluated": 420,
+        "topAlgos": [
+          {
+            "id": "w-mr-16-1-0.2",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1,
+              "zExit": 0.2
+            },
+            "score": 0.7500000000000001,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-16-1-0.3",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1,
+              "zExit": 0.3
+            },
+            "score": 0.7500000000000001,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-16-1-0.4",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1,
+              "zExit": 0.4
+            },
+            "score": 0.7500000000000001,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-16-1-0.5",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1,
+              "zExit": 0.5
+            },
+            "score": 0.7500000000000001,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-16-1.2-0.2",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.2,
+              "zExit": 0.2
+            },
+            "score": 0.7500000000000001,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-16-1.2-0.3",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.2,
+              "zExit": 0.3
+            },
+            "score": 0.7500000000000001,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-16-1.2-0.4",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.2,
+              "zExit": 0.4
+            },
+            "score": 0.7500000000000001,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          },
+          {
+            "id": "w-mr-16-1.2-0.5",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.2,
+              "zExit": 0.5
+            },
+            "score": 0.7500000000000001,
+            "metrics": {
+              "avgTestPnl": 0,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0,
+              "avgTestSortino": 0,
+              "avgTestDrawdown": 0,
+              "avgExposure": 0,
+              "avgTradeCount": 0,
+              "consistency": 0,
+              "overfitPenalty": 0,
+              "tailPenalty": 0
+            }
+          }
+        ]
+      },
+      {
+        "marketType": "weather",
+        "tokenId": "14642427631762357507939608294887050551300827907746951519205602696553287464979",
+        "question": "Will the U.S. collect between $500b and $1t in revenue in 2025?",
+        "interval": "max",
+        "fidelity": 60,
+        "volume": 2540131.519461,
+        "bars": 741,
+        "profile": {
+          "trendiness": 0.0025600599842311132,
+          "meanReversion": 0.19524667506336943,
+          "volatility": 0.3476280735913218,
+          "tailRisk": 0.5744928285308178
+        },
+        "regimeBucket": "weather:trend-high:mr-high:vol-high",
+        "candidatesEvaluated": 420,
+        "topAlgos": [
+          {
+            "id": "w-mr-16-1.6-0.2",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.6,
+              "zExit": 0.2
+            },
+            "score": 0.7784009546539381,
+            "metrics": {
+              "avgTestPnl": 0.00043749999999999995,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.17837275452122558,
+              "avgTestSortino": 0.11481983169296142,
+              "avgTestDrawdown": 0.0005000000000000001,
+              "avgExposure": 0.06770833333333333,
+              "avgTradeCount": 0.625,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0010000000000000009
+            }
+          },
+          {
+            "id": "w-mr-16-1.6-0.3",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.6,
+              "zExit": 0.3
+            },
+            "score": 0.7784009546539381,
+            "metrics": {
+              "avgTestPnl": 0.00043749999999999995,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.17837275452122558,
+              "avgTestSortino": 0.11481983169296142,
+              "avgTestDrawdown": 0.0005000000000000001,
+              "avgExposure": 0.06770833333333333,
+              "avgTradeCount": 0.625,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0010000000000000009
+            }
+          },
+          {
+            "id": "w-mr-16-1.6-0.4",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.6,
+              "zExit": 0.4
+            },
+            "score": 0.7784009546539381,
+            "metrics": {
+              "avgTestPnl": 0.00043749999999999995,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.17837275452122558,
+              "avgTestSortino": 0.11481983169296142,
+              "avgTestDrawdown": 0.0005000000000000001,
+              "avgExposure": 0.06770833333333333,
+              "avgTradeCount": 0.625,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0010000000000000009
+            }
+          },
+          {
+            "id": "w-mr-16-1.6-0.5",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.6,
+              "zExit": 0.5
+            },
+            "score": 0.7784009546539381,
+            "metrics": {
+              "avgTestPnl": 0.00043749999999999995,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.17837275452122558,
+              "avgTestSortino": 0.11481983169296142,
+              "avgTestDrawdown": 0.0005000000000000001,
+              "avgExposure": 0.06770833333333333,
+              "avgTradeCount": 0.625,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0010000000000000009
+            }
+          },
+          {
+            "id": "w-mr-16-1.8-0.2",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.8,
+              "zExit": 0.2
+            },
+            "score": 0.7784009546539381,
+            "metrics": {
+              "avgTestPnl": 0.00043749999999999995,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.17837275452122558,
+              "avgTestSortino": 0.11481983169296142,
+              "avgTestDrawdown": 0.0005000000000000001,
+              "avgExposure": 0.06770833333333333,
+              "avgTradeCount": 0.625,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0010000000000000009
+            }
+          },
+          {
+            "id": "w-mr-16-1.8-0.3",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.8,
+              "zExit": 0.3
+            },
+            "score": 0.7784009546539381,
+            "metrics": {
+              "avgTestPnl": 0.00043749999999999995,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.17837275452122558,
+              "avgTestSortino": 0.11481983169296142,
+              "avgTestDrawdown": 0.0005000000000000001,
+              "avgExposure": 0.06770833333333333,
+              "avgTradeCount": 0.625,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0010000000000000009
+            }
+          },
+          {
+            "id": "w-mr-16-1.8-0.4",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.8,
+              "zExit": 0.4
+            },
+            "score": 0.7784009546539381,
+            "metrics": {
+              "avgTestPnl": 0.00043749999999999995,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.17837275452122558,
+              "avgTestSortino": 0.11481983169296142,
+              "avgTestDrawdown": 0.0005000000000000001,
+              "avgExposure": 0.06770833333333333,
+              "avgTradeCount": 0.625,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0010000000000000009
+            }
+          },
+          {
+            "id": "w-mr-16-1.8-0.5",
+            "family": "weather-mean-reversion",
+            "params": {
+              "window": 16,
+              "zEntry": 1.8,
+              "zExit": 0.5
+            },
+            "score": 0.7784009546539381,
+            "metrics": {
+              "avgTestPnl": 0.00043749999999999995,
+              "medianTestPnl": 0,
+              "avgTestSharpe": 0.17837275452122558,
+              "avgTestSortino": 0.11481983169296142,
+              "avgTestDrawdown": 0.0005000000000000001,
+              "avgExposure": 0.06770833333333333,
+              "avgTradeCount": 0.625,
+              "consistency": 0.375,
+              "overfitPenalty": 0,
+              "tailPenalty": 0.0010000000000000009
+            }
+          }
+        ]
+      }
+    ],
+    "portfolio": [
+      {
+        "marketType": "weather",
+        "tokenId": "13244681086321087932946246027856416106585284024824496763706748621681543444582",
+        "question": "Will Trump deport 250,000-500,000 people?",
+        "family": "weather-drift-trend",
+        "algoId": "w-dt-20-6-0.0006-0.04",
+        "params": {
+          "trendWindow": 20,
+          "triggerWindow": 6,
+          "minSlope": 0.0006,
+          "maxDistance": 0.04
+        },
+        "score": 0.7938424821002389,
+        "consistency": 0.125,
+        "targetWeight": 0.0515
+      },
+      {
+        "marketType": "weather",
+        "tokenId": "13244681086321087932946246027856416106585284024824496763706748621681543444582",
+        "question": "Will Trump deport 250,000-500,000 people?",
+        "family": "weather-drift-trend",
+        "algoId": "w-dt-20-8-0.0006-0.03",
+        "params": {
+          "trendWindow": 20,
+          "triggerWindow": 8,
+          "minSlope": 0.0006,
+          "maxDistance": 0.03
+        },
+        "score": 0.7938424821002389,
+        "consistency": 0.125,
+        "targetWeight": 0.0515
+      },
+      {
+        "marketType": "bitcoin",
+        "tokenId": "90435811253665578014957380826505992530054077692143838383981805324273750424057",
+        "question": "Will Jesus Christ return before GTA VI?",
+        "family": "btc-breakout",
+        "algoId": "btc-bo-14-4-0.004-0.01",
+        "params": {
+          "breakoutWindow": 14,
+          "confirmWindow": 4,
+          "volatilityFloor": 0.004,
+          "stopToFlat": 0.01
+        },
+        "score": 0.7907572383073498,
+        "consistency": 0.125,
+        "targetWeight": 0.0514
+      },
+      {
+        "marketType": "bitcoin",
+        "tokenId": "90435811253665578014957380826505992530054077692143838383981805324273750424057",
+        "question": "Will Jesus Christ return before GTA VI?",
+        "family": "btc-breakout",
+        "algoId": "btc-bo-14-4-0.004-0.02",
+        "params": {
+          "breakoutWindow": 14,
+          "confirmWindow": 4,
+          "volatilityFloor": 0.004,
+          "stopToFlat": 0.02
+        },
+        "score": 0.7907572383073498,
+        "consistency": 0.125,
+        "targetWeight": 0.0514
+      },
+      {
+        "marketType": "bitcoin",
+        "tokenId": "74341056958547120660405490893413766202610642702385621904694146292080006615573",
+        "question": "Starmer out by February 28, 2026?",
+        "family": "btc-breakout",
+        "algoId": "btc-bo-14-10-0.004-0.03",
+        "params": {
+          "breakoutWindow": 14,
+          "confirmWindow": 10,
+          "volatilityFloor": 0.004,
+          "stopToFlat": 0.03
+        },
+        "score": 0.7893095768374165,
+        "consistency": 0.75,
+        "targetWeight": 0.0502
+      },
+      {
+        "marketType": "bitcoin",
+        "tokenId": "74341056958547120660405490893413766202610642702385621904694146292080006615573",
+        "question": "Starmer out by February 28, 2026?",
+        "family": "btc-breakout",
+        "algoId": "btc-bo-14-10-0.007-0.02",
+        "params": {
+          "breakoutWindow": 14,
+          "confirmWindow": 10,
+          "volatilityFloor": 0.007,
+          "stopToFlat": 0.02
+        },
+        "score": 0.7893095768374165,
+        "consistency": 0.75,
+        "targetWeight": 0.0502
+      },
+      {
+        "marketType": "weather",
+        "tokenId": "14642427631762357507939608294887050551300827907746951519205602696553287464979",
+        "question": "Will the U.S. collect between $500b and $1t in revenue in 2025?",
+        "family": "weather-mean-reversion",
+        "algoId": "w-mr-16-1.6-0.2",
+        "params": {
+          "window": 16,
+          "zEntry": 1.6,
+          "zExit": 0.2
+        },
+        "score": 0.7784009546539381,
+        "consistency": 0.375,
+        "targetWeight": 0.0505
+      },
+      {
+        "marketType": "weather",
+        "tokenId": "14642427631762357507939608294887050551300827907746951519205602696553287464979",
+        "question": "Will the U.S. collect between $500b and $1t in revenue in 2025?",
+        "family": "weather-mean-reversion",
+        "algoId": "w-mr-16-1.6-0.3",
+        "params": {
+          "window": 16,
+          "zEntry": 1.6,
+          "zExit": 0.3
+        },
+        "score": 0.7784009546539381,
+        "consistency": 0.375,
+        "targetWeight": 0.0505
+      },
+      {
+        "marketType": "weather",
+        "tokenId": "8441400852834915183759801017793514978104486628517653995211751018945988243154",
+        "question": "GTA VI released before June 2026?",
+        "family": "weather-range-reversion",
+        "algoId": "w-rr-20-1-0.25-0.04",
+        "params": {
+          "window": 20,
+          "zEntry": 1,
+          "zExit": 0.25,
+          "volatilityCeiling": 0.04
+        },
+        "score": 0.7758711217183771,
+        "consistency": 0.125,
+        "targetWeight": 0.0504
+      },
+      {
+        "marketType": "weather",
+        "tokenId": "8441400852834915183759801017793514978104486628517653995211751018945988243154",
+        "question": "GTA VI released before June 2026?",
+        "family": "weather-range-reversion",
+        "algoId": "w-rr-20-1-0.35-0.05",
+        "params": {
+          "window": 20,
+          "zEntry": 1,
+          "zExit": 0.35,
+          "volatilityCeiling": 0.05
+        },
+        "score": 0.7758711217183771,
+        "consistency": 0.125,
+        "targetWeight": 0.0504
+      },
+      {
+        "marketType": "bitcoin",
+        "tokenId": "28946595841244317705636126646676849578876740730186646421280828201004700559420",
+        "question": "Will GTA 6 cost $100+?",
+        "family": "btc-momentum",
+        "algoId": "btc-mom-10-20-0.0035",
+        "params": {
+          "shortWindow": 10,
+          "longWindow": 20,
+          "threshold": 0.0035
+        },
+        "score": 0.767260579064588,
+        "consistency": 0.5,
+        "targetWeight": 0.0498
+      },
+      {
+        "marketType": "bitcoin",
+        "tokenId": "28946595841244317705636126646676849578876740730186646421280828201004700559420",
+        "question": "Will GTA 6 cost $100+?",
+        "family": "btc-momentum",
+        "algoId": "btc-mom-4-28-0.002",
+        "params": {
+          "shortWindow": 4,
+          "longWindow": 28,
+          "threshold": 0.002
+        },
+        "score": 0.7667928730512249,
+        "consistency": 0,
+        "targetWeight": 0.0498
+      },
+      {
+        "marketType": "bitcoin",
+        "tokenId": "13244681086321087932946246027856416106585284024824496763706748621681543444582",
+        "question": "Will Trump deport 250,000-500,000 people?",
+        "family": "btc-momentum",
+        "algoId": "btc-mom-6-20-0.005",
+        "params": {
+          "shortWindow": 6,
+          "longWindow": 20,
+          "threshold": 0.005
+        },
+        "score": 0.7653006681514477,
+        "consistency": 0.25,
+        "targetWeight": 0.0497
+      },
+      {
+        "marketType": "bitcoin",
+        "tokenId": "13244681086321087932946246027856416106585284024824496763706748621681543444582",
+        "question": "Will Trump deport 250,000-500,000 people?",
+        "family": "btc-momentum",
+        "algoId": "btc-mom-12-20-0.002",
+        "params": {
+          "shortWindow": 12,
+          "longWindow": 20,
+          "threshold": 0.002
+        },
+        "score": 0.7628730512249442,
+        "consistency": 0.375,
+        "targetWeight": 0.0494
+      },
+      {
+        "marketType": "weather",
+        "tokenId": "28946595841244317705636126646676849578876740730186646421280828201004700559420",
+        "question": "Will GTA 6 cost $100+?",
+        "family": "weather-range-reversion",
+        "algoId": "w-rr-20-1-0.25-0.06",
+        "params": {
+          "window": 20,
+          "zEntry": 1,
+          "zExit": 0.25,
+          "volatilityCeiling": 0.06
+        },
+        "score": 0.7621957040572793,
+        "consistency": 0.375,
+        "targetWeight": 0.0495
+      },
+      {
+        "marketType": "weather",
+        "tokenId": "28946595841244317705636126646676849578876740730186646421280828201004700559420",
+        "question": "Will GTA 6 cost $100+?",
+        "family": "weather-range-reversion",
+        "algoId": "w-rr-20-1-0.45-0.06",
+        "params": {
+          "window": 20,
+          "zEntry": 1,
+          "zExit": 0.45,
+          "volatilityCeiling": 0.06
+        },
+        "score": 0.7621957040572793,
+        "consistency": 0.375,
+        "targetWeight": 0.0495
+      },
+      {
+        "marketType": "weather",
+        "tokenId": "74341056958547120660405490893413766202610642702385621904694146292080006615573",
+        "question": "Starmer out by February 28, 2026?",
+        "family": "weather-mean-reversion",
+        "algoId": "w-mr-16-1.2-0.2",
+        "params": {
+          "window": 16,
+          "zEntry": 1.2,
+          "zExit": 0.2
+        },
+        "score": 0.7585918854415276,
+        "consistency": 0.375,
+        "targetWeight": 0.0481
+      },
+      {
+        "marketType": "weather",
+        "tokenId": "74341056958547120660405490893413766202610642702385621904694146292080006615573",
+        "question": "Starmer out by February 28, 2026?",
+        "family": "weather-mean-reversion",
+        "algoId": "w-mr-16-1.2-0.3",
+        "params": {
+          "window": 16,
+          "zEntry": 1.2,
+          "zExit": 0.3
+        },
+        "score": 0.7585918854415276,
+        "consistency": 0.375,
+        "targetWeight": 0.0481
+      },
+      {
+        "marketType": "bitcoin",
+        "tokenId": "14642427631762357507939608294887050551300827907746951519205602696553287464979",
+        "question": "Will the U.S. collect between $500b and $1t in revenue in 2025?",
+        "family": "btc-momentum",
+        "algoId": "btc-mom-10-20-0.002",
+        "params": {
+          "shortWindow": 10,
+          "longWindow": 20,
+          "threshold": 0.002
+        },
+        "score": 0.7565701559020045,
+        "consistency": 0.375,
+        "targetWeight": 0.0491
+      },
+      {
+        "marketType": "bitcoin",
+        "tokenId": "14642427631762357507939608294887050551300827907746951519205602696553287464979",
+        "question": "Will the U.S. collect between $500b and $1t in revenue in 2025?",
+        "family": "btc-momentum",
+        "algoId": "btc-mom-10-20-0.0035",
+        "params": {
+          "shortWindow": 10,
+          "longWindow": 20,
+          "threshold": 0.0035
+        },
+        "score": 0.7565701559020045,
+        "consistency": 0.375,
+        "targetWeight": 0.0491
+      }
+    ]
+  }
+}

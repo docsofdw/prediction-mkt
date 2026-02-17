@@ -1,0 +1,110 @@
+{
+  "updatedAt": "2026-02-17T07:13:43.379Z",
+  "buckets": {
+    "bitcoin:trend-low:mr-high:vol-low": {
+      "runs": 6,
+      "familyStats": {
+        "btc-breakout": {
+          "count": 9,
+          "scoreTotal": 7.116815144766149,
+          "wins": 3
+        },
+        "btc-momentum": {
+          "count": 9,
+          "scoreTotal": 6.863786191536748,
+          "wins": 3
+        }
+      }
+    },
+    "bitcoin:trend-low:mr-high:vol-high": {
+      "runs": 6,
+      "familyStats": {
+        "btc-momentum": {
+          "count": 9,
+          "scoreTotal": 6.902538975501113,
+          "wins": 3
+        },
+        "btc-breakout": {
+          "count": 9,
+          "scoreTotal": 6.788084632516702,
+          "wins": 3
+        }
+      }
+    },
+    "bitcoin:trend-high:mr-high:vol-high": {
+      "runs": 6,
+      "familyStats": {
+        "btc-breakout": {
+          "count": 9,
+          "scoreTotal": 7.103786191536748,
+          "wins": 3
+        },
+        "btc-momentum": {
+          "count": 9,
+          "scoreTotal": 6.809131403118039,
+          "wins": 3
+        }
+      }
+    },
+    "bitcoin:trend-low:mr-low:vol-low": {
+      "runs": 3,
+      "familyStats": {
+        "btc-momentum": {
+          "count": 9,
+          "scoreTotal": 6.750000000000001,
+          "wins": 3
+        }
+      }
+    },
+    "weather:trend-low:mr-high:vol-low": {
+      "runs": 6,
+      "familyStats": {
+        "weather-mean-reversion": {
+          "count": 9,
+          "scoreTotal": 6.792959427207637,
+          "wins": 3
+        },
+        "weather-drift-trend": {
+          "count": 9,
+          "scoreTotal": 7.144582338902149,
+          "wins": 3
+        }
+      }
+    },
+    "weather:trend-low:mr-high:vol-high": {
+      "runs": 6,
+      "familyStats": {
+        "weather-range-reversion": {
+          "count": 15,
+          "scoreTotal": 11.555298329355612,
+          "wins": 6
+        },
+        "weather-mean-reversion": {
+          "count": 3,
+          "scoreTotal": 2.28236276849642,
+          "wins": 0
+        }
+      }
+    },
+    "weather:trend-high:mr-high:vol-high": {
+      "runs": 6,
+      "familyStats": {
+        "weather-mean-reversion": {
+          "count": 18,
+          "scoreTotal": 13.832935560859186,
+          "wins": 6
+        }
+      }
+    },
+    "weather:trend-low:mr-low:vol-low": {
+      "runs": 3,
+      "familyStats": {
+        "weather-mean-reversion": {
+          "count": 9,
+          "scoreTotal": 6.750000000000001,
+          "wins": 3
+        }
+      }
+    }
+  }
+}

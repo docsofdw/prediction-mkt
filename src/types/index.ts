@@ -76,6 +76,9 @@ export interface Strategy {
 
   /** Called on shutdown for cleanup */
   teardown(): Promise<void>;
+
+  /** Optional diagnostics for local observability/dashboard */
+  getDiagnostics?(): unknown;
 }
 
 // ─── Config Types ────────────────────────────────────────
@@ -88,6 +91,16 @@ export interface AppConfig {
   executionMode: "paper" | "live";
   paperInitialCash: number;
   defaultTradeSize: number;
+  strategyMode: "dual-live" | "meta-allocator";
+  ideaFactoryPath: string;
+  metaMinBars: number;
+  metaReloadMs: number;
+  metaSignalCooldownMs: number;
+  riskMaxGrossExposureNotional?: number;
+  riskMaxPerMarketNotional?: number;
+  riskMaxOrderNotional?: number;
+  riskMaxDailyLoss?: number;
+  riskShadowInitialEquity: number;
   clobHost: string;
   gammaHost: string;
   dataApiHost: string;

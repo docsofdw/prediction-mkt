@@ -87,6 +87,16 @@ export class PaperExecution {
     return this.cash + unrealized + realized;
   }
 
+  getSnapshot(): { cash: number; equity: number; trades: number; openPositions: number } {
+    const openPositions = Array.from(this.positions.values()).filter((p) => p.quantity !== 0).length;
+    return {
+      cash: this.cash,
+      equity: this.getEquity(),
+      trades: this.trades,
+      openPositions,
+    };
+  }
+
   logAccountSummary(): void {
     const openPositions = Array.from(this.positions.entries())
       .filter(([, p]) => p.quantity !== 0)

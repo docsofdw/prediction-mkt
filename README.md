@@ -84,9 +84,57 @@ npm run build    # compile TypeScript
 npm start        # run compiled JS
 ```
 
+### 6. Run the local dashboard
+
+```bash
+npm run dashboard
+```
+
+Then open `http://localhost:8787`.
+
+Dashboard env vars:
+- `DASHBOARD_HOST` (default `127.0.0.1`)
+- `DASHBOARD_PORT` (default `8787`)
+- `RUNTIME_STATUS_PATH` (default `backtests/runtime-status.json`)
+- `DASHBOARD_BOT_CMD` (default `npm run dev`)
+- `DASHBOARD_IDEAS_CMD` (default `npm run ideas:build`)
+- `DASHBOARD_SCAN_CMD` (default `npm run scan:btc:inefficiencies`)
+- `DASHBOARD_AUTOPILOT_INTERVAL_MS` (default `3600000`)
+
+The dashboard shows:
+- Runtime mode + strategy + wallet/funder mask
+- Risk guard state (equity, daily PnL, gross exposure, kill-switch)
+- Signal counters (seen/executed/blocked/failed)
+- Strategy diagnostics (meta-allocator token plans + selections)
+- Idea-factory portfolio allocation
+- Recent execution events
+- Process controls to run ideas/start-stop bot from UI
+- BTC inefficiency scanner control from UI
+- Two workflows:
+  - `Simple`: one-click `scan -> ideas -> bot`
+  - `Autopilot`: recurring `scan -> ideas` cycle + keep-bot-alive mode
+- Core vs Advanced view toggle:
+  - Core: minimal controls + risk/system status
+  - Advanced: diagnostics + logs + execution events
+
 Execution modes:
 - `EXECUTION_MODE=paper` (default): runs strategy and simulates fills/PnL
 - `EXECUTION_MODE=live`: sends real orders to CLOB
+- `STRATEGY_MODE=dual-live` (default): legacy BTC momentum + weather mean-reversion
+- `STRATEGY_MODE=meta-allocator`: regime-aware allocator driven by `backtests/idea-factory-latest.json`
+
+Meta-allocator env vars:
+- `IDEA_FACTORY_PATH` (default `backtests/idea-factory-latest.json`)
+- `META_MIN_BARS` (min local bars before signals)
+- `META_RELOAD_MS` (how often to reload idea file)
+- `META_SIGNAL_COOLDOWN_MS` (minimum gap between signals per token)
+
+Runtime risk guardrails:
+- `RISK_MAX_GROSS_EXPOSURE_NOTIONAL` (block trades that exceed total gross notional)
+- `RISK_MAX_PER_MARKET_NOTIONAL` (block trades that exceed one-token notional cap)
+- `RISK_MAX_ORDER_NOTIONAL` (block oversized single orders)
+- `RISK_MAX_DAILY_LOSS` (UTC day kill-switch; blocks all new orders after breach)
+- `RISK_SHADOW_INITIAL_EQUITY` (starting equity for guardrail shadow book)
 
 ## Trading Diagnostics
 
@@ -143,6 +191,54 @@ Backtest tuning vars in `.env`:
 - `RISK_TAKE_PROFIT`
 - `RISK_MIN_BARS_BETWEEN_TRADES`
 - `RISK_MAX_TRADES`
+
+## Idea Factory (Multi-Algo Research Pipeline)
+
+Generate and rank a large library of high-timeframe BTC + weather strategies with robust walk-forward validation:
+
+```bash
+npm run ideas:build
+```
+
+Scan BTC markets for inefficiencies and arbitrage-style dislocations:
+
+```bash
+npm run scan:btc:inefficiencies
+```
+
+What it does:
+- Discovers top-volume active BTC and weather markets
+- Pulls historical bars from CLOB `/prices-history`
+- Builds large candidate universes per market:
+  - BTC: momentum, breakout, regime-trend
+  - Weather: mean-reversion, range-reversion, drift-trend
+- Runs expanding-window multi-fold walk-forward tests
+- Scores candidates with robustness-focused metrics:
+  - out-of-sample PnL, Sharpe, Sortino, drawdown, consistency, overfit penalty
+- Persists cross-run pattern memory to `backtests/idea-memory.json`
+- Writes latest ranked playbook to `backtests/idea-factory-latest.json`
+
+Idea-factory tuning vars in `.env`:
+- `IDEA_INTERVAL` (`max | 1w | 1d | 6h | 1h`)
+- `IDEA_FIDELITY` (bar spacing in minutes)
+- `IDEA_MAX_MARKETS`
+- `IDEA_MIN_BARS`
+- `IDEA_MIN_TRAIN_BARS`
+- `IDEA_FOLD_TEST_BARS`
+- `IDEA_FOLD_STEP_BARS`
+- `IDEA_MAX_FOLDS`
+- `IDEA_MAX_CANDIDATES_PER_FAMILY`
+- `IDEA_TOP_PER_MARKET`
+
+BTC scanner tuning vars:
+- `BTC_SCAN_MAX_EVENTS`
+- `BTC_SCAN_MAX_MARKETS`
+- `BTC_SCAN_MIN_EDGE`
+- `BTC_SCAN_STRUCTURAL_THRESHOLD`
+- `BTC_SCAN_SLIPPAGE_BUFFER`
+
+Detailed workflow and governance: `docs/TRADE_IDEA_FACTORY.md`
+BTC API edge playbook: `docs/POLYMARKET_BTC_EDGE_PLAYBOOK.md`
 
 ## Architecture
 

@@ -2,6 +2,28 @@ import axios, { AxiosInstance } from "axios";
 import { GammaEvent, GammaMarket, MarketSnapshot } from "../types";
 import { log } from "../utils/logger";
 
+// Strict keyword filters to ensure market relevance
+const BITCOIN_KEYWORDS = ["bitcoin", "btc", "cryptocurrency", "crypto price", "crypto market"];
+const WEATHER_KEYWORDS = ["temperature", "rainfall", "hurricane", "weather", "storm", "climate", "tornado", "flood"];
+
+/**
+ * Check if an event is a valid Bitcoin/crypto market by examining the question text
+ */
+function isValidBitcoinMarket(event: GammaEvent): boolean {
+  const questionLower = event.title.toLowerCase();
+  const descLower = (event.description || "").toLowerCase();
+  return BITCOIN_KEYWORDS.some((kw) => questionLower.includes(kw) || descLower.includes(kw));
+}
+
+/**
+ * Check if an event is a valid weather market by examining the question text
+ */
+function isValidWeatherMarket(event: GammaEvent): boolean {
+  const questionLower = event.title.toLowerCase();
+  const descLower = (event.description || "").toLowerCase();
+  return WEATHER_KEYWORDS.some((kw) => questionLower.includes(kw) || descLower.includes(kw));
+}
+
 /**
  * MarketDiscovery — queries the Gamma API (no auth required) to find
  * and filter prediction markets by keyword, tag, or condition ID.
@@ -46,10 +68,14 @@ export class MarketDiscovery {
       results.push(...events);
     }
 
-    // Deduplicate by event ID
+    // Deduplicate by event ID and apply strict filtering
     const seen = new Set<string>();
     return results.filter((e) => {
       if (seen.has(e.id)) return false;
+      if (!isValidWeatherMarket(e)) {
+        log.debug(`Filtered out non-weather market: ${e.title}`);
+        return false;
+      }
       seen.add(e.id);
       return true;
     });
@@ -65,9 +91,14 @@ export class MarketDiscovery {
       results.push(...events);
     }
 
+    // Deduplicate by event ID and apply strict filtering
     const seen = new Set<string>();
     return results.filter((e) => {
       if (seen.has(e.id)) return false;
+      if (!isValidBitcoinMarket(e)) {
+        log.debug(`Filtered out non-bitcoin market: ${e.title}`);
+        return false;
+      }
       seen.add(e.id);
       return true;
     });

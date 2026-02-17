@@ -2,3 +2,9 @@ node_modules/
 dist/
 .env
 *.log
+
+# Local wallet reference (contains secrets)
+WALLET_REFERENCE.md
+
+# SSH keys
+*.pem
