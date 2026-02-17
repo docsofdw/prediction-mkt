@@ -1,0 +1,41 @@
+{
+  "name": "polymarket-trader",
+  "version": "1.0.0",
+  "description": "Minimal Polymarket trading scaffolding for weather and bitcoin prediction markets",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "discover": "ts-node src/scripts/discover-markets.ts",
+    "backtest": "ts-node src/scripts/backtest.ts",
+    "setup:check": "ts-node src/scripts/setup-check.ts",
+    "derive:keys": "ts-node src/scripts/derive-keys.ts",
+    "diagnose:trading": "ts-node src/scripts/diagnose-trading.ts",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "polymarket",
+    "trading",
+    "prediction-markets",
+    "bitcoin",
+    "weather"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@polymarket/clob-client": "^5.2.3",
+    "@polymarket/real-time-data-client": "^1.4.0",
+    "axios": "^1.13.5",
+    "dotenv": "^17.3.1",
+    "ethers": "^5.8.0",
+    "winston": "^3.19.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}

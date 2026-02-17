@@ -1,0 +1,2058 @@
+{
+  "generatedAt": "2026-02-17T05:50:46.902Z",
+  "config": {
+    "interval": "1w",
+    "fidelity": 15,
+    "maxPerCategory": 4,
+    "minBars": 30,
+    "trainSplit": 0.7,
+    "risk": {
+      "minBarsBetweenTrades": 2
+    }
+  },
+  "summaries": {
+    "bitcoin": "markets=3 totalPnL=-0.0555 avgSharpe=-0.285 avgWinRate=19.4% riskEvents=0",
+    "weather": "markets=3 totalPnL=0.0380 avgSharpe=-0.331 avgWinRate=93.3% riskEvents=0"
+  },
+  "results": {
+    "bitcoin": [
+      {
+        "tokenId": "13244681086321087932946246027856416106585284024824496763706748621681543444582",
+        "question": "Will Trump deport 250,000-500,000 people?",
+        "bars": 672,
+        "bestParams": {
+          "shortWindow": 8,
+          "longWindow": 32,
+          "threshold": 0.008
+        },
+        "candidatesEvaluated": 27,
+        "train": {
+          "strategyName": "bitcoin-momentum",
+          "tokenId": "13244681086321087932946246027856416106585284024824496763706748621681543444582",
+          "marketQuestion": "Will Trump deport 250,000-500,000 people?",
+          "bars": 470,
+          "trades": [
+            {
+              "timestamp": 1770738317,
+              "price": 0.89,
+              "from": 0,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770780621,
+              "price": 0.9445,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770804916,
+              "price": 0.911,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770826516,
+              "price": 0.931,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770836421,
+              "price": 0.8895,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770872418,
+              "price": 0.885,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770884115,
+              "price": 0.8525,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770893134,
+              "price": 0.851,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770897636,
+              "price": 0.8655,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770912019,
+              "price": 0.898,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770921917,
+              "price": 0.882,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770926421,
+              "price": 0.9015,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770963316,
+              "price": 0.8575,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770995718,
+              "price": 0.889,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            }
+          ],
+          "totalPnl": -0.31899999999999984,
+          "maxDrawdown": 0.36399999999999977,
+          "winRate": 0.38461538461538464,
+          "sharpe": -1.3216704973149904,
+          "riskEvents": 0
+        },
+        "test": {
+          "strategyName": "bitcoin-momentum",
+          "tokenId": "13244681086321087932946246027856416106585284024824496763706748621681543444582",
+          "marketQuestion": "Will Trump deport 250,000-500,000 people?",
+          "bars": 203,
+          "trades": [
+            {
+              "timestamp": 1771165837,
+              "price": 0.8565,
+              "from": 0,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771186518,
+              "price": 0.8945,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771205421,
+              "price": 0.872,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771272920,
+              "price": 0.8935,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            }
+          ],
+          "totalPnl": -0.06999999999999984,
+          "maxDrawdown": 0.09299999999999986,
+          "winRate": 0.3333333333333333,
+          "sharpe": -1.2104462867676455,
+          "riskEvents": 0
+        }
+      },
+      {
+        "tokenId": "28946595841244317705636126646676849578876740730186646421280828201004700559420",
+        "question": "Will GTA 6 cost $100+?",
+        "bars": 672,
+        "bestParams": {
+          "shortWindow": 6,
+          "longWindow": 24,
+          "threshold": 0.003
+        },
+        "candidatesEvaluated": 27,
+        "train": {
+          "strategyName": "bitcoin-momentum",
+          "tokenId": "28946595841244317705636126646676849578876740730186646421280828201004700559420",
+          "marketQuestion": "Will GTA 6 cost $100+?",
+          "bars": 470,
+          "trades": [
+            {
+              "timestamp": 1770724832,
+              "price": 0.0085,
+              "from": 0,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770742816,
+              "price": 0.009,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770751817,
+              "price": 0.008,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770768914,
+              "price": 0.009,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770797714,
+              "price": 0.0085,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770820215,
+              "price": 0.008,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770851715,
+              "price": 0.0075,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770863415,
+              "price": 0.0095,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770871522,
+              "price": 0.007,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770885914,
+              "price": 0.008,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770890421,
+              "price": 0.007,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770913817,
+              "price": 0.0065,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770951625,
+              "price": 0.0065,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770960616,
+              "price": 0.0085,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770962420,
+              "price": 0.0075,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770984025,
+              "price": 0.0065,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771001130,
+              "price": 0.006,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771015514,
+              "price": 0.008,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771039816,
+              "price": 0.0075,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771055115,
+              "price": 0.007,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771056914,
+              "price": 0.007,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771059624,
+              "price": 0.0075,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771068617,
+              "price": 0.007,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771090220,
+              "price": 0.007,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771112714,
+              "price": 0.007,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            }
+          ],
+          "totalPnl": -0.013999999999999995,
+          "maxDrawdown": 0.016499999999999994,
+          "winRate": 0.42857142857142855,
+          "sharpe": -1.2055102499970505,
+          "riskEvents": 0
+        },
+        "test": {
+          "strategyName": "bitcoin-momentum",
+          "tokenId": "28946595841244317705636126646676849578876740730186646421280828201004700559420",
+          "marketQuestion": "Will GTA 6 cost $100+?",
+          "bars": 203,
+          "trades": [
+            {
+              "timestamp": 1771147817,
+              "price": 0.0065,
+              "from": 0,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771150514,
+              "price": 0.0065,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771157715,
+              "price": 0.0075,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771201817,
+              "price": 0.0065,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771210819,
+              "price": 0.007,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771212615,
+              "price": 0.007,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771217126,
+              "price": 0.008,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771231515,
+              "price": 0.0075,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771272917,
+              "price": 0.005,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771278328,
+              "price": 0.0045,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771305325,
+              "price": 0.0055,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            }
+          ],
+          "totalPnl": -0.003000000000000002,
+          "maxDrawdown": 0.004000000000000001,
+          "winRate": 0.25,
+          "sharpe": -0.8841737276347829,
+          "riskEvents": 0
+        }
+      },
+      {
+        "tokenId": "74341056958547120660405490893413766202610642702385621904694146292080006615573",
+        "question": "Starmer out by February 28, 2026?",
+        "bars": 672,
+        "bestParams": {
+          "shortWindow": 8,
+          "longWindow": 16,
+          "threshold": 0.003
+        },
+        "candidatesEvaluated": 27,
+        "train": {
+          "strategyName": "bitcoin-momentum",
+          "tokenId": "74341056958547120660405490893413766202610642702385621904694146292080006615573",
+          "marketQuestion": "Starmer out by February 28, 2026?",
+          "bars": 470,
+          "trades": [
+            {
+              "timestamp": 1770717620,
+              "price": 0.1025,
+              "from": 0,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770732020,
+              "price": 0.0815,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770752716,
+              "price": 0.087,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770768038,
+              "price": 0.0825,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770774316,
+              "price": 0.0795,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770798621,
+              "price": 0.078,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770805819,
+              "price": 0.0735,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770840917,
+              "price": 0.0425,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770852624,
+              "price": 0.043,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770859817,
+              "price": 0.0415,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770875145,
+              "price": 0.0475,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770900317,
+              "price": 0.0435,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770920121,
+              "price": 0.0465,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770934518,
+              "price": 0.048,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770947120,
+              "price": 0.0485,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770981317,
+              "price": 0.047,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1770993021,
+              "price": 0.0405,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1770999317,
+              "price": 0.0495,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771006521,
+              "price": 0.046,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771013721,
+              "price": 0.047,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771016432,
+              "price": 0.0275,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771028116,
+              "price": 0.0335,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771038917,
+              "price": 0.0325,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771057837,
+              "price": 0.0335,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771083022,
+              "price": 0.0345,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771096518,
+              "price": 0.036,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771106425,
+              "price": 0.035,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771110916,
+              "price": 0.039,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            }
+          ],
+          "totalPnl": 0.029999999999999936,
+          "maxDrawdown": 0.058499999999999996,
+          "winRate": 0.29411764705882354,
+          "sharpe": 0.5181100109675587,
+          "riskEvents": 0
+        },
+        "test": {
+          "strategyName": "bitcoin-momentum",
+          "tokenId": "74341056958547120660405490893413766202610642702385621904694146292080006615573",
+          "marketQuestion": "Starmer out by February 28, 2026?",
+          "bars": 203,
+          "trades": [
+            {
+              "timestamp": 1771140624,
+              "price": 0.046,
+              "from": 0,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771154117,
+              "price": 0.047,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771164021,
+              "price": 0.046,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771240518,
+              "price": 0.0245,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771252221,
+              "price": 0.0235,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771256718,
+              "price": 0.0255,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771278330,
+              "price": 0.0335,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771281022,
+              "price": 0.036,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            },
+            {
+              "timestamp": 1771283718,
+              "price": 0.0315,
+              "from": 1,
+              "to": -1,
+              "reason": "Short MA below long MA"
+            },
+            {
+              "timestamp": 1771299918,
+              "price": 0.0315,
+              "from": -1,
+              "to": 1,
+              "reason": "Short MA above long MA"
+            }
+          ],
+          "totalPnl": 0.01750000000000001,
+          "maxDrawdown": 0.008999999999999994,
+          "winRate": 0,
+          "sharpe": 1.2382958091495608,
+          "riskEvents": 0
+        }
+      }
+    ],
+    "weather": [
+      {
+        "tokenId": "13244681086321087932946246027856416106585284024824496763706748621681543444582",
+        "question": "Will Trump deport 250,000-500,000 people?",
+        "bars": 672,
+        "bestParams": {
+          "window": 32,
+          "zEntry": 1,
+          "zExit": 0.2
+        },
+        "candidatesEvaluated": 27,
+        "train": {
+          "strategyName": "weather-mean-reversion",
+          "tokenId": "13244681086321087932946246027856416106585284024824496763706748621681543444582",
+          "marketQuestion": "Will Trump deport 250,000-500,000 people?",
+          "bars": 470,
+          "trades": [
+            {
+              "timestamp": 1770732020,
+              "price": 0.9005,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770778832,
+              "price": 0.9365,
+              "from": 1,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770797717,
+              "price": 0.917,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770805819,
+              "price": 0.907,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770807620,
+              "price": 0.925,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770809430,
+              "price": 0.8975,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770819316,
+              "price": 0.911,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770821117,
+              "price": 0.933,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770824719,
+              "price": 0.893,
+              "from": -1,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770826516,
+              "price": 0.931,
+              "from": 1,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770830116,
+              "price": 0.9105,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770831918,
+              "price": 0.8995,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770847222,
+              "price": 0.9005,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770849024,
+              "price": 0.8295,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770852624,
+              "price": 0.915,
+              "from": 1,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770854447,
+              "price": 0.8505,
+              "from": -1,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770857116,
+              "price": 0.8755,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770863418,
+              "price": 0.847,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770867917,
+              "price": 0.865,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770870619,
+              "price": 0.909,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770873319,
+              "price": 0.865,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770875146,
+              "price": 0.896,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770880516,
+              "price": 0.851,
+              "from": -1,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770889516,
+              "price": 0.9245,
+              "from": 1,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770895822,
+              "price": 0.879,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770909331,
+              "price": 0.894,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770920122,
+              "price": 0.863,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770925521,
+              "price": 0.8915,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770948020,
+              "price": 0.8865,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770961516,
+              "price": 0.8665,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770987622,
+              "price": 0.8625,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770991221,
+              "price": 0.8655,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771005630,
+              "price": 0.869,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771011020,
+              "price": 0.886,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771013721,
+              "price": 0.876,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771017321,
+              "price": 0.8685,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771020021,
+              "price": 0.8795,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771021825,
+              "price": 0.8695,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771029916,
+              "price": 0.8745,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771031716,
+              "price": 0.883,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771034424,
+              "price": 0.877,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771036221,
+              "price": 0.8665,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771042518,
+              "price": 0.8725,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771049717,
+              "price": 0.8675,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771053317,
+              "price": 0.882,
+              "from": 1,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771056022,
+              "price": 0.873,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771057838,
+              "price": 0.8835,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771065917,
+              "price": 0.8735,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771070442,
+              "price": 0.8835,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771074921,
+              "price": 0.8785,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771077621,
+              "price": 0.8885,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771079424,
+              "price": 0.868,
+              "from": -1,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771084822,
+              "price": 0.8935,
+              "from": 1,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771088431,
+              "price": 0.8815,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771098323,
+              "price": 0.873,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771102834,
+              "price": 0.89,
+              "from": 1,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771105521,
+              "price": 0.8745,
+              "from": -1,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771112717,
+              "price": 0.893,
+              "from": 1,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771121717,
+              "price": 0.872,
+              "from": -1,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            }
+          ],
+          "totalPnl": 0.8255,
+          "maxDrawdown": 0.06699999999999995,
+          "winRate": 0.8857142857142857,
+          "sharpe": 3.980476251401604,
+          "riskEvents": 0
+        },
+        "test": {
+          "strategyName": "weather-mean-reversion",
+          "tokenId": "13244681086321087932946246027856416106585284024824496763706748621681543444582",
+          "marketQuestion": "Will Trump deport 250,000-500,000 people?",
+          "bars": 203,
+          "trades": [
+            {
+              "timestamp": 1771155032,
+              "price": 0.8685,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771159520,
+              "price": 0.876,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771161319,
+              "price": 0.8635,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771174826,
+              "price": 0.866,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771179318,
+              "price": 0.8535,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771182936,
+              "price": 0.873,
+              "from": 1,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771193719,
+              "price": 0.875,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771198226,
+              "price": 0.892,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771202726,
+              "price": 0.874,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771228822,
+              "price": 0.884,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771240518,
+              "price": 0.8785,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771242333,
+              "price": 0.883,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771245917,
+              "price": 0.8795,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771247732,
+              "price": 0.875,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771249518,
+              "price": 0.8785,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771256719,
+              "price": 0.8845,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771264838,
+              "price": 0.882,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771266623,
+              "price": 0.891,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771288223,
+              "price": 0.8925,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771291822,
+              "price": 0.8855,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771296325,
+              "price": 0.893,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771307122,
+              "price": 0.9055,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            }
+          ],
+          "totalPnl": 0.0665,
+          "maxDrawdown": 0.029999999999999916,
+          "winRate": 0.8,
+          "sharpe": 1.2936570378757637,
+          "riskEvents": 0
+        }
+      },
+      {
+        "tokenId": "28946595841244317705636126646676849578876740730186646421280828201004700559420",
+        "question": "Will GTA 6 cost $100+?",
+        "bars": 672,
+        "bestParams": {
+          "window": 24,
+          "zEntry": 1.5,
+          "zExit": 0.4
+        },
+        "candidatesEvaluated": 27,
+        "train": {
+          "strategyName": "weather-mean-reversion",
+          "tokenId": "28946595841244317705636126646676849578876740730186646421280828201004700559420",
+          "marketQuestion": "Will GTA 6 cost $100+?",
+          "bars": 470,
+          "trades": [
+            {
+              "timestamp": 1770736526,
+              "price": 0.0075,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770740114,
+              "price": 0.009,
+              "from": 1,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770748215,
+              "price": 0.0085,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770757222,
+              "price": 0.0095,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770759015,
+              "price": 0.0085,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770760815,
+              "price": 0.0075,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770766217,
+              "price": 0.008,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770785113,
+              "price": 0.0095,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770796815,
+              "price": 0.0085,
+              "from": -1,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770817514,
+              "price": 0.0075,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770819313,
+              "price": 0.008,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770833714,
+              "price": 0.008,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770836416,
+              "price": 0.009,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770850817,
+              "price": 0.007,
+              "from": -1,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770862519,
+              "price": 0.01,
+              "from": 1,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770867015,
+              "price": 0.008,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770896713,
+              "price": 0.0055,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770902114,
+              "price": 0.0065,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770903917,
+              "price": 0.0045,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770909328,
+              "price": 0.0055,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770924616,
+              "price": 0.0065,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770937216,
+              "price": 0.0075,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770944424,
+              "price": 0.01,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770950716,
+              "price": 0.0065,
+              "from": -1,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770957914,
+              "price": 0.008,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770964216,
+              "price": 0.0055,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770977714,
+              "price": 0.0065,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770989415,
+              "price": 0.007,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770993017,
+              "price": 0.0065,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770994822,
+              "price": 0.0075,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770999315,
+              "price": 0.0055,
+              "from": -1,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771012818,
+              "price": 0.006,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771015514,
+              "price": 0.008,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771024515,
+              "price": 0.007,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771029017,
+              "price": 0.0095,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771036217,
+              "price": 0.0085,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771044315,
+              "price": 0.0065,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771050617,
+              "price": 0.008,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771069524,
+              "price": 0.0065,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771075816,
+              "price": 0.007,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771090220,
+              "price": 0.007,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771104616,
+              "price": 0.007,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771106420,
+              "price": 0.0075,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771108218,
+              "price": 0.007,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771119016,
+              "price": 0.0065,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771120825,
+              "price": 0.007,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771123514,
+              "price": 0.0065,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            }
+          ],
+          "totalPnl": 0.02550000000000001,
+          "maxDrawdown": 0.002999999999999999,
+          "winRate": 0.9523809523809523,
+          "sharpe": 2.748984506727353,
+          "riskEvents": 0
+        },
+        "test": {
+          "strategyName": "weather-mean-reversion",
+          "tokenId": "28946595841244317705636126646676849578876740730186646421280828201004700559420",
+          "marketQuestion": "Will GTA 6 cost $100+?",
+          "bars": 203,
+          "trades": [
+            {
+              "timestamp": 1771157715,
+              "price": 0.0075,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771182931,
+              "price": 0.0075,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771186515,
+              "price": 0.008,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771201817,
+              "price": 0.0065,
+              "from": -1,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771213514,
+              "price": 0.0075,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771234216,
+              "price": 0.0075,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771276516,
+              "price": 0.0045,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771305325,
+              "price": 0.0055,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            }
+          ],
+          "totalPnl": -0.0004999999999999996,
+          "maxDrawdown": 0.0035000000000000005,
+          "winRate": 1,
+          "sharpe": -0.16400252614791752,
+          "riskEvents": 0
+        }
+      },
+      {
+        "tokenId": "74341056958547120660405490893413766202610642702385621904694146292080006615573",
+        "question": "Starmer out by February 28, 2026?",
+        "bars": 672,
+        "bestParams": {
+          "window": 32,
+          "zEntry": 1.5,
+          "zExit": 0.2
+        },
+        "candidatesEvaluated": 27,
+        "train": {
+          "strategyName": "weather-mean-reversion",
+          "tokenId": "74341056958547120660405490893413766202610642702385621904694146292080006615573",
+          "marketQuestion": "Starmer out by February 28, 2026?",
+          "bars": 470,
+          "trades": [
+            {
+              "timestamp": 1770743731,
+              "price": 0.1155,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770779715,
+              "price": 0.0765,
+              "from": -1,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770797717,
+              "price": 0.077,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770817519,
+              "price": 0.072,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770842717,
+              "price": 0.053,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770859817,
+              "price": 0.0415,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770861622,
+              "price": 0.0465,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770866116,
+              "price": 0.053,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770869732,
+              "price": 0.0485,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770878718,
+              "price": 0.043,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770897636,
+              "price": 0.0425,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770906617,
+              "price": 0.049,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770922819,
+              "price": 0.0455,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770935424,
+              "price": 0.0505,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770947120,
+              "price": 0.0485,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770950719,
+              "price": 0.045,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1770975919,
+              "price": 0.0435,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1770981317,
+              "price": 0.047,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1770992116,
+              "price": 0.0385,
+              "from": -1,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771002040,
+              "price": 0.0465,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771016432,
+              "price": 0.0275,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771031716,
+              "price": 0.0365,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771061426,
+              "price": 0.0345,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771081233,
+              "price": 0.0345,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771087518,
+              "price": 0.0335,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771100118,
+              "price": 0.035,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771110041,
+              "price": 0.0365,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            }
+          ],
+          "totalPnl": 0.04650000000000001,
+          "maxDrawdown": 0.03149999999999999,
+          "winRate": 0.8571428571428571,
+          "sharpe": 1.2772287556068946,
+          "riskEvents": 0
+        },
+        "test": {
+          "strategyName": "weather-mean-reversion",
+          "tokenId": "74341056958547120660405490893413766202610642702385621904694146292080006615573",
+          "marketQuestion": "Starmer out by February 28, 2026?",
+          "bars": 203,
+          "trades": [
+            {
+              "timestamp": 1771168532,
+              "price": 0.0455,
+              "from": 0,
+              "to": 1,
+              "reason": "Price stretched below mean"
+            },
+            {
+              "timestamp": 1771238717,
+              "price": 0.0235,
+              "from": 1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            },
+            {
+              "timestamp": 1771253118,
+              "price": 0.0255,
+              "from": 0,
+              "to": -1,
+              "reason": "Price stretched above mean"
+            },
+            {
+              "timestamp": 1771281918,
+              "price": 0.0315,
+              "from": -1,
+              "to": 0,
+              "reason": "Reverted near mean"
+            }
+          ],
+          "totalPnl": -0.027999999999999997,
+          "maxDrawdown": 0.032999999999999995,
+          "winRate": 1,
+          "sharpe": -2.1227959182934875,
+          "riskEvents": 0
+        }
+      }
+    ]
+  }
+}
