@@ -52,6 +52,7 @@ interface StrategyParams {
 interface LongshotCandidate {
   tokenId: string;
   conditionId: string;
+  slug: string;
   question: string;
   currentPrice: number;
   bestBid: number;
@@ -65,6 +66,7 @@ interface LongshotCandidate {
 
 interface OrderTarget {
   tokenId: string;
+  slug: string;
   question: string;
   sellPrice: number;
   sizeContracts: number;
@@ -228,6 +230,7 @@ export class MakerLongshotSeller {
     return {
       tokenId: yesTokenId,
       conditionId: market.condition_id,
+      slug: market.slug,
       question: market.question,
       currentPrice: yesPrice,
       bestBid: yesPrice - 0.01, // Estimate
@@ -313,6 +316,7 @@ export class MakerLongshotSeller {
 
       targets.push({
         tokenId: candidate.tokenId,
+        slug: candidate.slug,
         question: candidate.question,
         sellPrice,
         sizeContracts: Math.round(sizeContracts),

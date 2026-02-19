@@ -27,6 +27,30 @@ const DEFAULT_WEIGHTS: ScoreWeights = {
 export class TriageReporter {
   private weights: ScoreWeights;
 
+  /**
+   * Escape special characters for Telegram Markdown v1
+   * Characters that need escaping: _ * [ ] ( ) ~ ` > # + - = | { } . !
+   */
+  private escapeMarkdown(text: string): string {
+    // For Markdown v1, mainly escape _ and * in content (not formatting)
+    return text
+      .replace(/([_*\[\]()~`>#+\-=|{}.!\\])/g, "\\$1");
+  }
+
+  /**
+   * Escape text for use inside markdown but keep it readable
+   * Only escapes characters that would break parsing
+   */
+  private safeText(text: string): string {
+    // Replace problematic characters with safe alternatives
+    return text
+      .replace(/_/g, "-")    // Underscores break markdown
+      .replace(/\*/g, "×")   // Asterisks break markdown
+      .replace(/\[/g, "(")   // Brackets can break links
+      .replace(/\]/g, ")")
+      .replace(/`/g, "'");   // Backticks break code blocks
+  }
+
   constructor(weights?: Partial<ScoreWeights>) {
     this.weights = { ...DEFAULT_WEIGHTS, ...weights };
   }
@@ -392,13 +416,13 @@ export class TriageReporter {
       security_blocked: "🚫",
     };
 
-    lines.push(`${verdictEmoji[verdict]} **${this.getVerdictText(verdict)}** · ${scores.overall}/10`);
+    lines.push(`${verdictEmoji[verdict]} *${this.getVerdictText(verdict)}* · ${scores.overall}/10`);
     lines.push(`━━━━━━━━━━━━━━━━━━━━━━━━━━━━`);
     lines.push(``);
 
-    // THE CLAIM - full text, no truncation
-    lines.push(`📝 **THE CLAIM**`);
-    lines.push(claim.summary || "No summary available");
+    // THE CLAIM - full text, no truncation, escaped for safety
+    lines.push(`📝 *THE CLAIM*`);
+    lines.push(this.safeText(claim.summary || "No summary available"));
     lines.push(``);
 
     // CLAIMED METRICS - if available
@@ -414,7 +438,7 @@ export class TriageReporter {
         metrics.push(`Return: ${claim.claimedEdge.returnPercent}%`);
       }
       if (metrics.length > 0) {
-        lines.push(`📈 **CLAIMED METRICS**`);
+        lines.push(`📈 *CLAIMED METRICS*`);
         lines.push(metrics.join(" · "));
         lines.push(``);
       }
@@ -430,9 +454,9 @@ export class TriageReporter {
       (params.exitConditions?.length ?? 0) > 0;
 
     if (hasTestableParams) {
-      lines.push(`⚙️ **TESTABLE PARAMETERS**`);
+      lines.push(`⚙️ *TESTABLE PARAMETERS*`);
       if (params.indicators?.length) {
-        lines.push(`• Indicators: ${params.indicators.join(", ")}`);
+        lines.push(`• Indicators: ${this.safeText(params.indicators.join(", "))}`);
       }
       if (params.windows?.length) {
         lines.push(`• Windows: ${params.windows.join(", ")}`);
@@ -444,17 +468,17 @@ export class TriageReporter {
         lines.push(`• Timeframe: ${params.timeframes.join(", ")}`);
       }
       if (params.entryConditions?.length) {
-        lines.push(`• Entry: ${params.entryConditions.join(" | ")}`);
+        lines.push(`• Entry: ${this.safeText(params.entryConditions.join(" | "))}`);
       }
       if (params.exitConditions?.length) {
-        lines.push(`• Exit: ${params.exitConditions.join(" | ")}`);
+        lines.push(`• Exit: ${this.safeText(params.exitConditions.join(" | "))}`);
       }
       lines.push(``);
     }
 
     // BTC MAPPING - if it maps to existing strategies
     if (btcMapping?.mapsToExisting) {
-      lines.push(`🎯 **MAPS TO EXISTING STRATEGY**`);
+      lines.push(`🎯 *MAPS TO EXISTING STRATEGY*`);
       lines.push(`• Family: ${btcMapping.strategyFamily}`);
       if (btcMapping.comparisonToExisting) {
         const comp = btcMapping.comparisonToExisting;
@@ -465,22 +489,22 @@ export class TriageReporter {
     }
 
     // SCORES - compact format
-    lines.push(`📊 **SCORES:** Legitimacy ${scores.legitimacy}/10 · Applicability ${scores.applicability}/10 · Feasibility ${scores.feasibility}/10`);
+    lines.push(`📊 *SCORES:* Legitimacy ${scores.legitimacy}/10 · Applicability ${scores.applicability}/10 · Feasibility ${scores.feasibility}/10`);
     lines.push(``);
 
     // HOW TO VALIDATE - detailed, actionable steps
-    lines.push(`🔬 **HOW TO VALIDATE**`);
+    lines.push(`🔬 *HOW TO VALIDATE*`);
     const actionSteps = this.generateActionableSteps(claim, btcMapping, generalValidation);
     actionSteps.forEach((step, i) => {
-      lines.push(`${i + 1}. ${step}`);
+      lines.push(`${i + 1}. ${this.safeText(step)}`);
     });
     lines.push(``);
 
     // WARNINGS - compact
     if (claim.warnings.length > 0) {
-      lines.push(`⚠️ **WATCH OUT FOR**`);
+      lines.push(`⚠️ *WATCH OUT FOR*`);
       claim.warnings.forEach(w => {
-        lines.push(`• ${w}`);
+        lines.push(`• ${this.safeText(w)}`);
       });
     }
 

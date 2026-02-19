@@ -191,19 +191,23 @@ bot.onText(/^\/maker$/, async (msg: TelegramBot.Message) => {
       message += `Total exposure: $${summary.totalExposure.toFixed(2)}\n`;
       message += `Avg edge: ${(summary.avgEdge * 100).toFixed(2)}%\n\n`;
 
-      message += `📝 *Order Targets*\n`;
+      message += `📝 *Order Targets*\n\n`;
       for (const t of targets.slice(0, 5)) {
-        const question = t.question.length > 40 ? t.question.slice(0, 40) + "..." : t.question;
-        message += `• *${question}*\n`;
-        message += `  Sell @ ${(t.sellPrice * 100).toFixed(1)}¢ | ${t.sizeContracts} contracts\n`;
-        message += `  Edge: +${(t.estimatedEdge * 100).toFixed(2)}% | Max loss: $${t.maxLossIfWrong.toFixed(0)}\n\n`;
+        const marketUrl = t.slug ? `https://polymarket.com/event/${t.slug}` : "";
+        message += `• *${t.question}*\n`;
+        message += `  SELL @ ${(t.sellPrice * 100).toFixed(1)}¢ | ${t.sizeContracts} contracts\n`;
+        message += `  Edge: +${(t.estimatedEdge * 100).toFixed(2)}% | Risk: $${t.maxLossIfWrong.toFixed(0)}\n`;
+        if (marketUrl) {
+          message += `  [View Market](${marketUrl})\n`;
+        }
+        message += `\n`;
       }
 
       if (targets.length > 5) {
         message += `_...and ${targets.length - 5} more_`;
       }
 
-      return bot.sendMessage(msg.chat.id, message, { parse_mode: "Markdown" });
+      return bot.sendMessage(msg.chat.id, message, { parse_mode: "Markdown", disable_web_page_preview: true });
     } else {
       return bot.sendMessage(msg.chat.id, "⚠️ Scan completed but no output file found.");
     }
