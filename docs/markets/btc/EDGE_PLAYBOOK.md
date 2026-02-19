@@ -6,6 +6,17 @@ This document simplifies the system into one operating loop:
 2. `Build` ranked strategy ideas from backtests.
 3. `Execute` with meta-allocator + risk guardrails.
 
+## Strategic Direction (Feb 2026 Update)
+
+Based on Becker dataset analysis (404M trades), we're pivoting from **taker** to **maker** strategies:
+
+- **Taker strategies** (momentum, breakout) have negative edge after spread costs
+- **Maker strategies** earn the spread and exploit longshot bias
+- **Focus**: Post limit SELL orders on BTC longshot YES tokens (< 20% price)
+- **Expected edge**: +1.5-2% on sub-10% contracts
+
+See [MAKER_STRATEGY.md](./MAKER_STRATEGY.md) for full details.
+
 ## Official API Surfaces To Exploit
 
 Primary references:
@@ -63,10 +74,17 @@ Endpoint usage:
 - Output: `backtests/btc-inefficiencies-latest.json`
 - Frequency: every 15-60 min.
 
+### Stage A2: Maker Scan (daily)
+- Script: `npm run maker:scan`
+- Output: `backtests/maker-scan-latest.json` (with --json flag)
+- Frequency: daily (via cron)
+- Telegram: `/maker` command or automated notifications
+
 ### Stage B: Build (research)
 - Script: `npm run ideas:build`
 - Output: `backtests/idea-factory-latest.json`
 - Frequency: hourly/daily based on compute budget.
+- Note: Deprioritized in favor of maker strategy.
 
 ### Stage C: Execute (live/paper)
 - Runtime: `npm run dev` with `STRATEGY_MODE=meta-allocator`

@@ -1,5 +1,7 @@
 # Trade Idea Factory
 
+> **Note (Feb 2026)**: Based on Becker dataset analysis, taker strategies have negative edge after spread costs. The Trade Idea Factory is now deprioritized in favor of the **Maker Longshot Strategy**. See [MAKER_STRATEGY.md](./markets/btc/MAKER_STRATEGY.md) for the current recommended approach.
+
 This pipeline is designed for ultra-high-timeframe prediction-market trading across BTC and weather markets.
 
 ## Objective
