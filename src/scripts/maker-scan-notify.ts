@@ -205,7 +205,8 @@ async function main() {
   const priceChanges: Array<{ target: Target; oldPrice: number; newPrice: number }> = [];
 
   for (const target of targets) {
-    const key = target.eventSlug || target.question;
+    // Use question as key since multiple markets can share the same eventSlug
+    const key = target.question;
     const prev = state.seenMarkets[key];
 
     if (!prev) {
