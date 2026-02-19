@@ -140,13 +140,72 @@ Parameters are loaded from `backtests/becker-reports/strategy-params.json`:
 
 ## Telegram Integration
 
-Use the `/maker` command in the Telegram bot to run a scan:
+### Manual Scan
+
+Use the `/maker` command in the Telegram bot to run a scan on-demand:
 
 ```
 /maker - Run maker opportunity scan
 ```
 
-Daily automated scans can be configured via cron to send opportunities to Telegram.
+Output shows:
+- Full market question
+- NO price (what you're betting)
+- $100 simulation (profit if you win)
+- Direct link to Polymarket
+
+### Automated Daily Notifications
+
+The system runs automated scans via cron and sends **smart notifications**:
+
+```bash
+# Cron (9am UTC daily)
+0 9 * * * cd ~/prediction-mkt && /usr/bin/npm run maker:notify >> ~/logs/maker-cron.log 2>&1
+```
+
+**Notification triggers:**
+- 🆕 **New markets** - Markets not previously seen
+- 📈 **Price changes** - >10% price movement on existing markets
+- 📅 **Weekly digest** - Summary if no changes for 7 days
+
+**Skips notification when:**
+- Same markets, same prices, less than 7 days since last alert
+
+**State tracking:** `backtests/maker-scan-state.json`
+
+**Force notification:** `npm run maker:notify -- --force`
+
+### 24/7 Operation (Lightsail VPS)
+
+The telegram bot runs 24/7 on AWS Lightsail via PM2:
+
+```bash
+# Check status
+ssh ubuntu@100.64.97.50 "pm2 status"
+
+# View logs
+ssh ubuntu@100.64.97.50 "pm2 logs telegram-bot --lines 50"
+
+# Restart if needed
+ssh ubuntu@100.64.97.50 "pm2 restart telegram-bot"
+
+# Check cron logs
+ssh ubuntu@100.64.97.50 "tail -50 ~/logs/maker-cron.log"
+```
+
+**Auto-recovery:**
+- PM2 auto-restarts on crash
+- PM2 startup enabled (survives reboots)
+- 1GB swap prevents OOM kills
+
+### Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `npm run maker:scan` | CLI scan with console output |
+| `npm run maker:scan -- --json` | JSON output to `backtests/maker-scan-latest.json` |
+| `npm run maker:notify` | Scan + Telegram notification (smart) |
+| `npm run maker:notify -- --force` | Force send even if no changes |
 
 ## Becker Analysis Scripts
 

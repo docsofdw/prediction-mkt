@@ -15,10 +15,12 @@ This guide covers deploying the Telegram bot to your VPS with proper security an
 |-----------|-------|
 | VPS Provider | AWS Lightsail |
 | Region | Tokyo (ap-northeast-1) |
-| Instance | $5/mo (512MB RAM) |
+| Instance | $5/mo (512MB RAM + 1GB swap) |
 | Public IP | 54.248.145.165 |
 | Tailscale IP | 100.64.97.50 |
 | Local Tailscale | 100.68.16.22 |
+| PM2 Startup | Enabled (survives reboots) |
+| Cron | 9am UTC daily maker scan |
 
 ## Deployment Steps
 
@@ -109,13 +111,69 @@ pm2 delete telegram-bot
 pm2 monit
 ```
 
+## Cron Tasks
+
+### Maker Longshot Scanner
+
+Daily automated scans for maker opportunities, sends smart notifications to Telegram:
+
+```bash
+# View current cron
+crontab -l
+
+# Edit cron
+crontab -e
+
+# Add this line (9am UTC daily):
+0 9 * * * cd ~/prediction-mkt && /usr/bin/npm run maker:notify >> ~/logs/maker-cron.log 2>&1
+```
+
+**Smart notifications only trigger when:**
+- 🆕 New markets found
+- 📈 Price changed >10%
+- 📅 Weekly digest (no changes for 7 days)
+
+**Check logs:**
+```bash
+# View recent cron output
+tail -50 ~/logs/maker-cron.log
+
+# Check state file
+cat ~/prediction-mkt/backtests/maker-scan-state.json
+```
+
+**Force notification (testing):**
+```bash
+cd ~/prediction-mkt && npm run maker:notify -- --force
+```
+
+### Setting Up Cron Log Directory
+
+```bash
+mkdir -p ~/logs
+```
+
 ## Memory Optimization
 
-The VPS has limited RAM. Key optimizations:
+The VPS has limited RAM (512MB). Key optimizations:
 
-1. **No ts-node**: We compile TypeScript locally and run plain Node.js
-2. **Production deps only**: `npm install --production` skips devDependencies
-3. **Single process**: No PM2 cluster mode
+1. **Swap space**: 1GB swap file prevents OOM kills during npm install
+2. **No ts-node**: We compile TypeScript locally and run plain Node.js
+3. **Production deps only**: `npm install --production` skips devDependencies
+4. **Single process**: No PM2 cluster mode
+
+**Swap setup (already configured):**
+```bash
+# Check swap
+free -h
+
+# If not set up:
+sudo fallocate -l 1G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+```
 
 Current memory usage: ~66MB (well within limits)
 
