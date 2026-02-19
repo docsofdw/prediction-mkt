@@ -92,11 +92,11 @@ function formatMessage(data: {
 
   for (const t of targets.slice(0, 5)) {
     const marketUrl = t.eventSlug ? `https://polymarket.com/event/${t.eventSlug}` : "";
-    const roi = t.returnPer1Dollar ? `$${t.returnPer1Dollar.toFixed(2)}` : "N/A";
     const noPrice = ((1 - t.sellPrice) * 100).toFixed(1);
+    const profitOn100 = (100 * t.sellPrice / (1 - t.sellPrice)).toFixed(2);
     message += `\n• *${t.question}*\n`;
     message += `  NO @ ${noPrice}¢ | ${t.sizeContracts} contracts\n`;
-    message += `  ROI: ${roi} per $1 risked | Risk: $${t.maxLossIfWrong.toFixed(0)}\n`;
+    message += `  💰 $100 bet → +$${profitOn100} if NO wins\n`;
     if (marketUrl) {
       message += `  [View Market](${marketUrl})`;
     }
