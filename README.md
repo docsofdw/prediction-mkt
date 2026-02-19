@@ -116,6 +116,11 @@ The dashboard shows:
 - Core vs Advanced view toggle:
   - Core: minimal controls + risk/system status
   - Advanced: diagnostics + logs + execution events
+- Validation controls:
+  - Phase 1 monitor (continuous 5m logging)
+  - Phase 2 ingest
+  - Run all thesis reports
+  - Run week-1/week-2 soft checkpoint reports
 
 Execution modes:
 - `EXECUTION_MODE=paper` (default): runs strategy and simulates fills/PnL
@@ -135,6 +140,12 @@ Runtime risk guardrails:
 - `RISK_MAX_ORDER_NOTIONAL` (block oversized single orders)
 - `RISK_MAX_DAILY_LOSS` (UTC day kill-switch; blocks all new orders after breach)
 - `RISK_SHADOW_INITIAL_EQUITY` (starting equity for guardrail shadow book)
+
+Validation protocol defaults:
+- `EXECUTION_MODE=paper` by default; live trading requires manual arming via env.
+- Validation data storage is SQLite (`VALIDATION_DB_PATH`).
+- Structural arb net estimate uses conservative `EXECUTION_HAIRCUT=0.40` by default.
+- Week-1/Week-2 checkpoints are soft-enforced (reports + warnings, no auto-stop).
 
 ## Trading Diagnostics
 
@@ -237,8 +248,18 @@ BTC scanner tuning vars:
 - `BTC_SCAN_STRUCTURAL_THRESHOLD`
 - `BTC_SCAN_SLIPPAGE_BUFFER`
 
+Validation protocol commands:
+- `npm run validation:init`
+- `npm run phase1:monitor`
+- `npm run phase1:report`
+- `npm run phase2:ingest`
+- `npm run phase2:report`
+- `npm run phase3:report`
+- `npm run validation:checkpoints`
+
 Detailed workflow and governance: `docs/TRADE_IDEA_FACTORY.md`
 BTC API edge playbook: `docs/POLYMARKET_BTC_EDGE_PLAYBOOK.md`
+Validation protocol implementation: `docs/VALIDATION_PROTOCOL_IMPLEMENTATION.md`
 
 ## Architecture
 

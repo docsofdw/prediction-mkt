@@ -1,4 +1,4 @@
-import { TradeSignal } from "../types";
+import { TradeSignal } from "../../types";
 
 interface PositionState {
   quantity: number;

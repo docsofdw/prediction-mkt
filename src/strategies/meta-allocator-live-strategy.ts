@@ -2,14 +2,14 @@ import fs from "node:fs";
 import path from "node:path";
 import { BacktestStrategy, PositionSide, PriceBar } from "../backtesting/types";
 import { computeMarketProfile, profileBucket } from "../backtesting/idea-factory";
-import { BitcoinBreakoutStrategy } from "./backtest/bitcoin-breakout";
-import { BitcoinMomentumStrategy } from "./backtest/bitcoin-momentum";
-import { BitcoinRegimeTrendStrategy } from "./backtest/bitcoin-regime-trend";
+import { BitcoinBreakoutStrategy } from "../markets/btc/strategies/bitcoin-breakout";
+import { BitcoinMomentumStrategy } from "../markets/btc/strategies/bitcoin-momentum";
+import { BitcoinRegimeTrendStrategy } from "../markets/btc/strategies/bitcoin-regime-trend";
 import { WeatherDriftTrendStrategy } from "./backtest/weather-drift-trend";
 import { WeatherMeanReversionStrategy } from "./backtest/weather-mean-reversion";
 import { WeatherRangeReversionStrategy } from "./backtest/weather-range-reversion";
 import { MarketSnapshot, Strategy, TradeSignal } from "../types";
-import { log } from "../utils/logger";
+import { log } from "../shared/utils/logger";
 
 type MarketType = "bitcoin" | "weather";
 

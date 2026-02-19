@@ -3,11 +3,11 @@ import path from "node:path";
 import { BacktestResult, BacktestRiskConfig } from "../backtesting/types";
 import { getBitcoinCandidates, getWeatherCandidates } from "../backtesting/optimizer";
 import { runWalkForward } from "../backtesting/walk-forward";
-import { MarketDiscovery } from "../services/market-discovery";
-import { HistoricalPrices } from "../services/historical-prices";
-import { BitcoinMomentumStrategy } from "../strategies/backtest/bitcoin-momentum";
+import { MarketDiscovery } from "../shared/services/market-discovery";
+import { HistoricalPrices } from "../shared/services/historical-prices";
+import { BitcoinMomentumStrategy } from "../markets/btc/strategies/bitcoin-momentum";
 import { WeatherMeanReversionStrategy } from "../strategies/backtest/weather-mean-reversion";
-import { log } from "../utils/logger";
+import { log } from "../shared/utils/logger";
 
 const gammaHost = process.env.GAMMA_HOST || "https://gamma-api.polymarket.com";
 const clobHost = process.env.CLOB_HOST || "https://clob.polymarket.com";

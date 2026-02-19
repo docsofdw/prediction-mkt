@@ -1,5 +1,5 @@
 import { Strategy, MarketSnapshot, TradeSignal } from "../types";
-import { log } from "../utils/logger";
+import { log } from "../shared/utils/logger";
 
 /**
  * ExampleStrategy — a no-op placeholder showing the strategy interface.

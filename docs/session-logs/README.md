@@ -14,3 +14,4 @@ Detailed development logs documenting changes, architecture decisions, and imple
   - Local dashboard UI and API
   - BTC inefficiency scanner
   - Backtest improvement plan implementation (ADX filter, EWMA, half-life, transaction costs, enhanced metrics)
+- `2026-02-17-validation-protocol-log.md` - Detailed validation-protocol log covering SQLite architecture, Phase 1/2/3 gate implementation, dashboard validation controls, BM Pro key wiring, and SQLite migration bug fix.

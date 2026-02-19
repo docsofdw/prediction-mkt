@@ -13,9 +13,13 @@ const dashboardHtmlPath = path.resolve(process.cwd(), "src/dashboard/index.html"
 const botCommand = process.env.DASHBOARD_BOT_CMD || "npm run dev";
 const ideasCommand = process.env.DASHBOARD_IDEAS_CMD || "npm run ideas:build";
 const scanCommand = process.env.DASHBOARD_SCAN_CMD || "npm run scan:btc:inefficiencies";
+const phase1MonitorCommand = process.env.DASHBOARD_PHASE1_MONITOR_CMD || "npm run phase1:monitor";
+const phase2IngestCommand = process.env.DASHBOARD_PHASE2_INGEST_CMD || "npm run phase2:ingest";
+const reportsCommand = process.env.DASHBOARD_REPORTS_CMD || "npm run phase1:report && npm run phase2:report && npm run phase3:report";
+const checkpointsCommand = process.env.DASHBOARD_CHECKPOINTS_CMD || "npm run validation:checkpoints";
 const autopilotIntervalMs = Number(process.env.DASHBOARD_AUTOPILOT_INTERVAL_MS || "3600000");
 
-type ProcKey = "bot" | "ideas" | "scan";
+type ProcKey = "bot" | "ideas" | "scan" | "phase1_monitor" | "phase2_ingest" | "reports" | "checkpoints";
 
 interface ProcState {
   name: ProcKey;
@@ -51,6 +55,31 @@ function readJson<T>(filePath: string): T | null {
   } catch {
     return null;
   }
+}
+
+function readLatestValidationReports(): {
+  phase1: Record<string, unknown> | null;
+  phase2: Record<string, unknown> | null;
+  phase3: Record<string, unknown> | null;
+} {
+  const dir = path.resolve(process.cwd(), "backtests", "validation-reports");
+  if (!fs.existsSync(dir)) {
+    return { phase1: null, phase2: null, phase3: null };
+  }
+
+  const files = fs.readdirSync(dir);
+  const latestFor = (prefix: string): Record<string, unknown> | null => {
+    const candidates = files.filter((f) => f.startsWith(prefix) && f.endsWith(".json")).sort();
+    if (candidates.length === 0) return null;
+    const latest = candidates[candidates.length - 1];
+    return readJson<Record<string, unknown>>(path.join(dir, latest));
+  };
+
+  return {
+    phase1: latestFor("phase1-report-"),
+    phase2: latestFor("phase2-report-"),
+    phase3: latestFor("phase3-report-"),
+  };
 }
 
 function sendJson(res: http.ServerResponse, payload: unknown): void {
@@ -129,6 +158,54 @@ class ProcessController {
       logs: [],
       child: null,
     },
+    phase1_monitor: {
+      name: "phase1_monitor",
+      command: phase1MonitorCommand,
+      running: false,
+      pid: null,
+      startedAt: null,
+      endedAt: null,
+      lastExitCode: null,
+      lastError: null,
+      logs: [],
+      child: null,
+    },
+    phase2_ingest: {
+      name: "phase2_ingest",
+      command: phase2IngestCommand,
+      running: false,
+      pid: null,
+      startedAt: null,
+      endedAt: null,
+      lastExitCode: null,
+      lastError: null,
+      logs: [],
+      child: null,
+    },
+    reports: {
+      name: "reports",
+      command: reportsCommand,
+      running: false,
+      pid: null,
+      startedAt: null,
+      endedAt: null,
+      lastExitCode: null,
+      lastError: null,
+      logs: [],
+      child: null,
+    },
+    checkpoints: {
+      name: "checkpoints",
+      command: checkpointsCommand,
+      running: false,
+      pid: null,
+      startedAt: null,
+      endedAt: null,
+      lastExitCode: null,
+      lastError: null,
+      logs: [],
+      child: null,
+    },
   };
 
   private workflow: WorkflowState = {
@@ -149,12 +226,20 @@ class ProcessController {
         bot: this.publicProc(this.procs.bot),
         ideas: this.publicProc(this.procs.ideas),
         scan: this.publicProc(this.procs.scan),
+        phase1_monitor: this.publicProc(this.procs.phase1_monitor),
+        phase2_ingest: this.publicProc(this.procs.phase2_ingest),
+        reports: this.publicProc(this.procs.reports),
+        checkpoints: this.publicProc(this.procs.checkpoints),
       },
       workflow: this.workflow,
       commands: {
         bot: this.procs.bot.command,
         ideas: this.procs.ideas.command,
         scan: this.procs.scan.command,
+        phase1Monitor: this.procs.phase1_monitor.command,
+        phase2Ingest: this.procs.phase2_ingest.command,
+        reports: this.procs.reports.command,
+        checkpoints: this.procs.checkpoints.command,
       },
     };
   }
@@ -172,6 +257,43 @@ class ProcessController {
       return { ok: false, message: "scan run already in progress" };
     }
     return this.spawnOneShot("scan");
+  }
+
+  startPhase1Monitor(): { ok: boolean; message: string } {
+    if (this.procs.phase1_monitor.running) {
+      return { ok: false, message: "phase1 monitor already running" };
+    }
+    this.spawnLongRunning("phase1_monitor");
+    return { ok: true, message: "phase1 monitor started" };
+  }
+
+  async stopPhase1Monitor(): Promise<{ ok: boolean; message: string }> {
+    if (!this.procs.phase1_monitor.running) {
+      return { ok: false, message: "phase1 monitor not running" };
+    }
+    await this.stopProc("phase1_monitor");
+    return { ok: true, message: "phase1 monitor stopped" };
+  }
+
+  async runPhase2Ingest(): Promise<{ ok: boolean; message: string }> {
+    if (this.procs.phase2_ingest.running) {
+      return { ok: false, message: "phase2 ingest already in progress" };
+    }
+    return this.spawnOneShot("phase2_ingest");
+  }
+
+  async runReports(): Promise<{ ok: boolean; message: string }> {
+    if (this.procs.reports.running) {
+      return { ok: false, message: "reports already running" };
+    }
+    return this.spawnOneShot("reports");
+  }
+
+  async runCheckpoints(): Promise<{ ok: boolean; message: string }> {
+    if (this.procs.checkpoints.running) {
+      return { ok: false, message: "checkpoints already running" };
+    }
+    return this.spawnOneShot("checkpoints");
   }
 
   startBot(): { ok: boolean; message: string } {
@@ -194,6 +316,9 @@ class ProcessController {
     await this.stopAutopilot();
     if (this.procs.bot.running) {
       await this.stopProc("bot");
+    }
+    if (this.procs.phase1_monitor.running) {
+      await this.stopProc("phase1_monitor");
     }
     if (this.procs.ideas.running) {
       await this.stopProc("ideas");
@@ -283,6 +408,7 @@ class ProcessController {
       this.workflow.lastCycleStatus = "success";
       this.workflow.lastCycleMessage = "autopilot cycle success";
       this.setNextAutopilotAt();
+      await this.runCheckpoints();
     }, this.workflow.autopilotIntervalMs);
 
     return { ok: true, message: "autopilot enabled" };
@@ -438,12 +564,14 @@ const server = http.createServer(async (req, res) => {
   if (req.method === "GET" && url === "/api/status") {
     const runtime = readJson<Record<string, unknown>>(statusPath);
     const idea = readJson<Record<string, unknown>>(ideaPath);
+    const validation = readLatestValidationReports();
     sendJson(res, {
       ok: true,
       now: new Date().toISOString(),
       paths: { statusPath, ideaPath },
       runtime,
       idea,
+      validation,
       control: controller.status(),
     });
     return;
@@ -456,6 +584,11 @@ const server = http.createServer(async (req, res) => {
     let result: { ok: boolean; message: string } = { ok: false, message: "unknown action" };
 
     if (action === "run_scan") result = await controller.runScan();
+    if (action === "start_phase1_monitor") result = controller.startPhase1Monitor();
+    if (action === "stop_phase1_monitor") result = await controller.stopPhase1Monitor();
+    if (action === "run_phase2_ingest") result = await controller.runPhase2Ingest();
+    if (action === "run_reports") result = await controller.runReports();
+    if (action === "run_checkpoints") result = await controller.runCheckpoints();
     if (action === "run_ideas") result = await controller.runIdeas();
     if (action === "start_bot") result = controller.startBot();
     if (action === "stop_bot") result = await controller.stopBot();
@@ -479,4 +612,8 @@ server.listen(port, host, () => {
   console.log(`Control bot cmd: ${botCommand}`);
   console.log(`Control ideas cmd: ${ideasCommand}`);
   console.log(`Control scan cmd: ${scanCommand}`);
+  console.log(`Control phase1 monitor cmd: ${phase1MonitorCommand}`);
+  console.log(`Control phase2 ingest cmd: ${phase2IngestCommand}`);
+  console.log(`Control reports cmd: ${reportsCommand}`);
+  console.log(`Control checkpoints cmd: ${checkpointsCommand}`);
 });

@@ -1,7 +1,7 @@
 import { AssetType, OrderType, Side } from "@polymarket/clob-client";
-import { loadConfig } from "../utils/config";
-import { TradingClient } from "../services/trading-client";
-import { log } from "../utils/logger";
+import { loadConfig } from "../shared/utils/config";
+import { TradingClient } from "../shared/services/trading-client";
+import { log } from "../shared/utils/logger";
 
 const tokenId = process.env.DIAG_TOKEN_ID || "";
 const price = Number(process.env.DIAG_PRICE || "0.01");

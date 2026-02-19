@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import { PriceBar } from "../backtesting/types";
+import { PriceBar } from "../../backtesting/types";
 
 type HistoryPoint = {
   p: number | string;

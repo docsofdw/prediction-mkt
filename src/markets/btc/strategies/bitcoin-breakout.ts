@@ -1,5 +1,5 @@
-import { BacktestStrategy, PositionSide, PriceBar, StrategySignal } from "../../backtesting/types";
-import { avg, highest, lowest, std } from "./indicators";
+import { BacktestStrategy, PositionSide, PriceBar, StrategySignal } from "../../../backtesting/types";
+import { avg, highest, lowest, std } from "../../../strategies/backtest/indicators";
 
 export interface BitcoinBreakoutParams {
   breakoutWindow: number;

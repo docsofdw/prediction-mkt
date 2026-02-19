@@ -1,6 +1,6 @@
 import { ClobClient } from "@polymarket/clob-client";
 import { Wallet } from "@ethersproject/wallet";
-import { AppConfig } from "../types";
+import { AppConfig } from "../../types";
 import { log } from "../utils/logger";
 
 /**

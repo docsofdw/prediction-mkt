@@ -6,8 +6,8 @@
  *
  * No wallet or API keys required — Gamma API is public.
  */
-import { MarketDiscovery } from "../services/market-discovery";
-import { log } from "../utils/logger";
+import { MarketDiscovery } from "../shared/services/market-discovery";
+import { log } from "../shared/utils/logger";
 
 const GAMMA_HOST = process.env.GAMMA_HOST || "https://gamma-api.polymarket.com";
 

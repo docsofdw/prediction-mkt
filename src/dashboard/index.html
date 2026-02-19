@@ -102,7 +102,7 @@ th { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spa
   <div class="grid" style="margin-top:10px;">
     <section class="card span-4">
       <div class="label">Simple Workflow</div>
-      <div class="muted">Run ideas once, then launch bot.</div>
+      <div class="muted">Run BTC scan, then ideas, then launch bot.</div>
       <div class="btn-row">
         <button class="btn-wide" data-action="simple_launch">One-Click Launch</button>
         <button data-action="run_scan">Run BTC Scan</button>
@@ -112,6 +112,18 @@ th { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spa
         <button class="btn-wide" data-action="stop_all">Stop All</button>
       </div>
       <div class="muted" id="controlMsg" style="margin-top:10px;">idle</div>
+    </section>
+
+    <section class="card span-4">
+      <div class="label">Validation Ops</div>
+      <div class="muted">Phase 1 monitor + Phase 2 ingest + checkpoint reports.</div>
+      <div class="btn-row">
+        <button data-action="start_phase1_monitor">Start P1 Monitor</button>
+        <button data-action="stop_phase1_monitor">Stop P1 Monitor</button>
+        <button data-action="run_phase2_ingest">Run P2 Ingest</button>
+        <button data-action="run_reports">Run All Reports</button>
+        <button class="btn-wide" data-action="run_checkpoints">Run Checkpoints</button>
+      </div>
     </section>
 
     <section class="card span-4">
@@ -127,6 +139,11 @@ th { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spa
     <section class="card span-4">
       <div class="label">Process State</div>
       <table><tbody id="procRows"></tbody></table>
+    </section>
+
+    <section class="card span-4">
+      <div class="label">Thesis Verdicts</div>
+      <table><tbody id="thesisRows"></tbody></table>
     </section>
 
     <section class="card span-6">
@@ -150,6 +167,11 @@ th { color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spa
     <section class="card span-4 advanced-only hidden">
       <div class="label">BTC Scan Log</div>
       <pre id="scanLog"></pre>
+    </section>
+
+    <section class="card span-4 advanced-only hidden">
+      <div class="label">Validation Log</div>
+      <pre id="validationLog"></pre>
     </section>
 
     <section class="card span-4 advanced-only hidden">
@@ -195,11 +217,16 @@ async function refresh(){
   const counters = status.counters || {};
   const config = status.config || {};
   const idea = data.idea || {};
+  const validation = data.validation || {};
   const control = data.control || {};
   const workflow = control.workflow || {};
   const bot = (control.processes && control.processes.bot) || {};
   const ideas = (control.processes && control.processes.ideas) || {};
   const scan = (control.processes && control.processes.scan) || {};
+  const p1 = (control.processes && control.processes.phase1_monitor) || {};
+  const p2 = (control.processes && control.processes.phase2_ingest) || {};
+  const reports = (control.processes && control.processes.reports) || {};
+  const checkpoints = (control.processes && control.processes.checkpoints) || {};
   const portfolio = (idea.results && idea.results.portfolio) || [];
 
   document.getElementById('lastUpdated').textContent = 'runtime: ' + (status.updatedAt || 'n/a') + ' | idea: ' + (idea.generatedAt || 'n/a');
@@ -231,6 +258,10 @@ async function refresh(){
     row('Bot Exit', bot.lastExitCode),
     row('Scan Running', scan.running ? '<span class="badge">RUNNING</span>' : 'IDLE'),
     row('Scan Exit', scan.lastExitCode),
+    row('P1 Monitor', p1.running ? '<span class="badge">RUNNING</span>' : 'STOPPED'),
+    row('P2 Ingest', p2.running ? '<span class="badge">RUNNING</span>' : 'IDLE'),
+    row('Reports', reports.running ? '<span class="badge">RUNNING</span>' : 'IDLE'),
+    row('Checkpoints', checkpoints.running ? '<span class="badge">RUNNING</span>' : 'IDLE'),
     row('Ideas Running', ideas.running ? '<span class="badge">RUNNING</span>' : 'IDLE'),
     row('Ideas PID', ideas.pid),
     row('Ideas Exit', ideas.lastExitCode),
@@ -249,6 +280,18 @@ async function refresh(){
     row('Max Per Market', risk.limits && risk.limits.maxPerMarketNotional),
     row('Max Order', risk.limits && risk.limits.maxOrderNotional),
     row('Max Daily Loss', risk.limits && risk.limits.maxDailyLoss),
+  ].join('');
+
+  const phase1 = validation.phase1 || {};
+  const phase2 = validation.phase2 || {};
+  const phase3 = validation.phase3 || {};
+  document.getElementById('thesisRows').innerHTML = [
+    row('Phase 1', (phase1.verdict || '-') + ' @ ' + (phase1.generatedAt || 'n/a')),
+    row('Phase 2', (phase2.verdict || '-') + ' @ ' + (phase2.generatedAt || 'n/a')),
+    row('Phase 3', (phase3.verdict || '-') + ' @ ' + (phase3.generatedAt || 'n/a')),
+    row('P1 Next', phase1.nextAction || '-'),
+    row('P2 Note', Array.isArray(phase2.reasons) ? phase2.reasons[0] : '-'),
+    row('P3 Note', Array.isArray(phase3.reasons) ? phase3.reasons[0] : '-'),
   ].join('');
 
   const diag = (status.strategy && status.strategy.diagnostics) || {};
@@ -276,9 +319,16 @@ async function refresh(){
   const botLogs = Array.isArray(bot.logs) ? bot.logs.slice(0, 120).join('\n') : '';
   const ideasLogs = Array.isArray(ideas.logs) ? ideas.logs.slice(0, 120).join('\n') : '';
   const scanLogs = Array.isArray(scan.logs) ? scan.logs.slice(0, 120).join('\n') : '';
+  const validationLogs = [
+    ...(Array.isArray(p1.logs) ? p1.logs.slice(0, 40) : []),
+    ...(Array.isArray(p2.logs) ? p2.logs.slice(0, 40) : []),
+    ...(Array.isArray(reports.logs) ? reports.logs.slice(0, 40) : []),
+    ...(Array.isArray(checkpoints.logs) ? checkpoints.logs.slice(0, 40) : []),
+  ].slice(0, 120).join('\n');
   document.getElementById('botLog').textContent = botLogs || '(no bot logs yet)';
   document.getElementById('ideasLog').textContent = ideasLogs || '(no ideas logs yet)';
   document.getElementById('scanLog').textContent = scanLogs || '(no scan logs yet)';
+  document.getElementById('validationLog').textContent = validationLogs || '(no validation logs yet)';
 
   const events = Array.isArray(status.recentEvents) ? status.recentEvents.slice(0, 50) : [];
   document.getElementById('eventRows').innerHTML = events.map(function(e){
@@ -301,6 +351,11 @@ async function refresh(){
     let disable = false;
     if (action === 'run_ideas' && ideas.running) disable = true;
     if (action === 'run_scan' && scan.running) disable = true;
+    if (action === 'start_phase1_monitor' && p1.running) disable = true;
+    if (action === 'stop_phase1_monitor' && !p1.running) disable = true;
+    if (action === 'run_phase2_ingest' && p2.running) disable = true;
+    if (action === 'run_reports' && reports.running) disable = true;
+    if (action === 'run_checkpoints' && checkpoints.running) disable = true;
     if (action === 'start_bot' && bot.running) disable = true;
     if (action === 'stop_bot' && !bot.running) disable = true;
     if (action === 'start_autopilot' && workflow.autopilotEnabled) disable = true;

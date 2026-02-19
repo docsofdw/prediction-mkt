@@ -1,5 +1,5 @@
-import { BacktestStrategy, PositionSide, PriceBar, StrategySignal } from "../../backtesting/types";
-import { avg, adx, volatility } from "./indicators";
+import { BacktestStrategy, PositionSide, PriceBar, StrategySignal } from "../../../backtesting/types";
+import { avg, adx, volatility } from "../../../strategies/backtest/indicators";
 
 export interface BitcoinMomentumParams {
   shortWindow: number;

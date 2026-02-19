@@ -1,5 +1,5 @@
-import { BacktestStrategy, PositionSide, PriceBar, StrategySignal } from "../../backtesting/types";
-import { avg, rsi, std } from "./indicators";
+import { BacktestStrategy, PositionSide, PriceBar, StrategySignal } from "../../../backtesting/types";
+import { avg, rsi, std } from "../../../strategies/backtest/indicators";
 
 export interface BitcoinRegimeTrendParams {
   trendWindow: number;

@@ -1,10 +1,14 @@
 import axios, { AxiosInstance } from "axios";
-import { GammaEvent, GammaMarket, MarketSnapshot } from "../types";
+import { GammaEvent, GammaMarket, MarketSnapshot } from "../../types";
 import { log } from "../utils/logger";
 
 // Strict keyword filters to ensure market relevance
 const BITCOIN_KEYWORDS = ["bitcoin", "btc", "cryptocurrency", "crypto price", "crypto market"];
 const WEATHER_KEYWORDS = ["temperature", "rainfall", "hurricane", "weather", "storm", "climate", "tornado", "flood"];
+
+// 5-minute market detection patterns
+const FIVE_MIN_SLUG_PATTERN = /^btc-updown-5m-(\d+)$/;
+const FIVE_MIN_QUESTION_PATTERN = /bitcoin\s+(?:up\s+or\s+down|updown)/i;
 
 /**
  * Check if an event is a valid Bitcoin/crypto market by examining the question text
@@ -83,7 +87,9 @@ export class MarketDiscovery {
 
   /** Find active bitcoin / crypto prediction markets */
   async discoverBitcoinMarkets(limit = 20): Promise<GammaEvent[]> {
-    const keywords = ["bitcoin", "btc", "crypto"];
+    // Use multiple search terms to capture BTC price target markets
+    // Gamma's search ranking can bury relevant markets, so cast a wide net
+    const keywords = ["bitcoin", "btc", "crypto", "bitcoin price", "bitcoin hit"];
     const results: GammaEvent[] = [];
 
     for (const kw of keywords) {
@@ -102,6 +108,62 @@ export class MarketDiscovery {
       seen.add(e.id);
       return true;
     });
+  }
+
+  /**
+   * Discover 5-minute Bitcoin Up/Down markets using deterministic slug calculation.
+   * These markets have predictable slugs: btc-updown-5m-{UNIX_TIMESTAMP}
+   * where timestamp is always a multiple of 300 (5 minutes).
+   */
+  async discover5MinBitcoinMarkets(windowCount = 6): Promise<GammaEvent[]> {
+    const now = Math.floor(Date.now() / 1000);
+    const currentWindow = now - (now % 300); // Round down to 5-min boundary
+    const events: GammaEvent[] = [];
+
+    // Fetch current window, previous windows, and upcoming windows
+    const windows: number[] = [];
+    for (let i = -2; i < windowCount; i++) {
+      windows.push(currentWindow + i * 300);
+    }
+
+    log.info(`[5m] Fetching ${windows.length} 5-minute BTC markets...`);
+
+    // Fetch in parallel for speed
+    const fetches = windows.map(async (windowTs) => {
+      const slug = `btc-updown-5m-${windowTs}`;
+      try {
+        const event = await this.getEventBySlug(slug);
+        if (event && event.active && !event.closed) {
+          return event;
+        }
+      } catch (err) {
+        log.debug(`[5m] Market not found for window ${windowTs}: ${slug}`);
+      }
+      return null;
+    });
+
+    const results = await Promise.all(fetches);
+    for (const event of results) {
+      if (event) events.push(event);
+    }
+
+    log.info(`[5m] Found ${events.length} active 5-minute BTC markets`);
+    return events;
+  }
+
+  /**
+   * Check if an event is a 5-minute Up/Down market
+   */
+  static is5MinMarket(event: GammaEvent): boolean {
+    return FIVE_MIN_SLUG_PATTERN.test(event.slug) || FIVE_MIN_QUESTION_PATTERN.test(event.title);
+  }
+
+  /**
+   * Extract window timestamp from 5-minute market slug
+   */
+  static get5MinWindowTimestamp(slug: string): number | null {
+    const match = slug.match(FIVE_MIN_SLUG_PATTERN);
+    return match ? parseInt(match[1], 10) : null;
   }
 
   // ─── Market Details ──────────────────────────────────

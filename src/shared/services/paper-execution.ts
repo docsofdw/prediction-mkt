@@ -1,4 +1,4 @@
-import { TradeSignal } from "../types";
+import { TradeSignal } from "../../types";
 import { log } from "../utils/logger";
 
 type PositionState = {

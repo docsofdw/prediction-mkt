@@ -4,9 +4,9 @@
  * Places a tiny test order to verify trading connectivity.
  * Run with: npx ts-node src/scripts/test-order.ts
  */
-import { loadConfig } from "../utils/config";
-import { log } from "../utils/logger";
-import { TradingClient } from "../services/trading-client";
+import { loadConfig } from "../shared/utils/config";
+import { log } from "../shared/utils/logger";
+import { TradingClient } from "../shared/services/trading-client";
 
 // MicroStrategy sells BTC by March 31, 2026 — good liquidity, low probability
 const TEST_TOKEN_ID = "108547978327958467449318042977006580876058560639743186491243488736783119648127";

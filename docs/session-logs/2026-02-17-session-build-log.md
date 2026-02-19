@@ -390,6 +390,48 @@ Use this default operating mode for simplicity:
 
 This keeps the daily workflow simple while preserving the full advanced toolchain underneath.
 
+## Addendum: Validation Protocol Refactor (Same Session)
+
+Following the initial buildout, the protocol was further aligned to explicit thesis gating with SQLite-backed storage and automation.
+
+### New validation framework
+- Added SQLite schema + metadata:
+  - `src/validation/sqlite.ts`
+  - `src/validation/config.ts`
+- Added initialization and checkpoint scripts:
+  - `src/scripts/validation-init.ts`
+  - `src/scripts/validation-checkpoints.ts`
+
+### Phase 1 implementation
+- Continuous monitor (5-minute cadence default):
+  - `src/scripts/phase1-monitor.ts`
+  - `src/validation/phase1/scanner.ts`
+- 7-day gate report:
+  - `src/scripts/phase1-report.ts`
+
+### Phase 2 implementation
+- Funding + resolved-contract ingestion:
+  - `src/scripts/phase2-ingest.ts`
+- Cohort/statistical gate report:
+  - `src/scripts/phase2-report.ts`
+
+### Phase 3 implementation
+- Weekly carry-style proxy report + gating:
+  - `src/scripts/phase3-report.ts`
+
+### Dashboard control-plane expansion
+- Added validation operations to UI + backend controls:
+  - start/stop phase1 monitor
+  - run phase2 ingest
+  - run all reports
+  - run checkpoints
+- Files:
+  - `src/scripts/dashboard.ts`
+  - `src/dashboard/index.html`
+
+### Additional docs
+- `docs/VALIDATION_PROTOCOL_IMPLEMENTATION.md`
+
 ---
 
 ## 10) Backtest Improvement Plan Implementation

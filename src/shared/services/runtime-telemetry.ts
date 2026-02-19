@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { AppConfig, TradeSignal } from "../types";
+import { AppConfig, TradeSignal } from "../../types";
 
 export interface RuntimeEvent {
   at: string;

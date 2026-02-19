@@ -9,16 +9,16 @@
  *   npm run build      # compile to JS
  *   npm start          # run compiled JS
  */
-import { loadConfig } from "./utils/config";
-import { log } from "./utils/logger";
-import { MarketDiscovery } from "./services/market-discovery";
-import { TradingClient } from "./services/trading-client";
-import { RealtimeFeed } from "./services/realtime-feed";
+import { loadConfig } from "./shared/utils/config";
+import { log } from "./shared/utils/logger";
+import { MarketDiscovery } from "./shared/services/market-discovery";
+import { TradingClient } from "./shared/services/trading-client";
+import { RealtimeFeed } from "./shared/services/realtime-feed";
 import { DualLiveStrategy } from "./strategies/dual-live-strategy";
 import { MetaAllocatorLiveStrategy } from "./strategies/meta-allocator-live-strategy";
-import { PaperExecution } from "./services/paper-execution";
-import { ExecutionRiskGuard } from "./services/execution-risk-guard";
-import { RuntimeTelemetry } from "./services/runtime-telemetry";
+import { PaperExecution } from "./shared/services/paper-execution";
+import { ExecutionRiskGuard } from "./shared/services/execution-risk-guard";
+import { RuntimeTelemetry } from "./shared/services/runtime-telemetry";
 import { Strategy, MarketSnapshot } from "./types";
 import fs from "node:fs";
 import path from "node:path";
