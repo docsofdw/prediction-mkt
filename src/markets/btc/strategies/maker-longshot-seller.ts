@@ -52,7 +52,7 @@ interface StrategyParams {
 interface LongshotCandidate {
   tokenId: string;
   conditionId: string;
-  slug: string;
+  eventSlug: string;
   question: string;
   currentPrice: number;
   bestBid: number;
@@ -66,12 +66,13 @@ interface LongshotCandidate {
 
 interface OrderTarget {
   tokenId: string;
-  slug: string;
+  eventSlug: string;
   question: string;
   sellPrice: number;
   sizeContracts: number;
   estimatedEdge: number;
   maxLossIfWrong: number;
+  returnPer1Dollar: number;  // ROI if you win (premium / risk)
   reason: string;
 }
 
@@ -178,7 +179,7 @@ export class MakerLongshotSeller {
 
     for (const event of events) {
       for (const market of event.markets) {
-        const candidate = this.extractCandidate(market, now);
+        const candidate = this.extractCandidate(market, event.slug, now);
         if (candidate) {
           allCandidates.push(candidate);
           if (this.passesFilters(candidate)) {
@@ -203,7 +204,7 @@ export class MakerLongshotSeller {
     return candidates;
   }
 
-  private extractCandidate(market: GammaMarket, now: number): LongshotCandidate | null {
+  private extractCandidate(market: GammaMarket, eventSlug: string, now: number): LongshotCandidate | null {
     if (!market.active || market.closed) return null;
 
     // Parse prices and token IDs
@@ -230,7 +231,7 @@ export class MakerLongshotSeller {
     return {
       tokenId: yesTokenId,
       conditionId: market.condition_id,
-      slug: market.slug,
+      eventSlug,
       question: market.question,
       currentPrice: yesPrice,
       bestBid: yesPrice - 0.01, // Estimate
@@ -314,14 +315,19 @@ export class MakerLongshotSeller {
 
       const maxLoss = sizeContracts * (1 - sellPrice);
 
+      // ROI calculation: if you sell at P, you risk (1-P) to make P
+      // Return per $1 risked = P / (1-P)
+      const returnPer1Dollar = sellPrice / (1 - sellPrice);
+
       targets.push({
         tokenId: candidate.tokenId,
-        slug: candidate.slug,
+        eventSlug: candidate.eventSlug,
         question: candidate.question,
         sellPrice,
         sizeContracts: Math.round(sizeContracts),
         estimatedEdge: candidate.estimatedEdge,
         maxLossIfWrong: maxLoss,
+        returnPer1Dollar,
         reason: `Longshot sell: ${(candidate.currentPrice * 100).toFixed(1)}% price, ${(candidate.estimatedEdge * 100).toFixed(2)}% edge, ${candidate.daysToExpiry.toFixed(0)}d expiry`,
       });
 

@@ -44,6 +44,7 @@ async function sendTelegramMessage(message: string): Promise<void> {
       chat_id: TELEGRAM_CHAT_ID,
       text: message,
       parse_mode: "Markdown",
+      disable_web_page_preview: true,
     });
 
     if (response.data.ok) {
@@ -67,10 +68,12 @@ function formatMessage(data: {
   };
   targets: Array<{
     question: string;
+    eventSlug: string;
     sellPrice: number;
     sizeContracts: number;
     estimatedEdge: number;
     maxLossIfWrong: number;
+    returnPer1Dollar: number;
   }>;
 }): string {
   const { summary, targets } = data;
@@ -88,10 +91,14 @@ function formatMessage(data: {
   message += `📝 *Top Opportunities*\n`;
 
   for (const t of targets.slice(0, 5)) {
-    const question = t.question.length > 35 ? t.question.slice(0, 35) + "..." : t.question;
-    message += `\n• *${question}*\n`;
+    const marketUrl = t.eventSlug ? `https://polymarket.com/event/${t.eventSlug}` : "";
+    const roi = t.returnPer1Dollar ? `$${t.returnPer1Dollar.toFixed(2)}` : "N/A";
+    message += `\n• *${t.question}*\n`;
     message += `  SELL @ ${(t.sellPrice * 100).toFixed(1)}¢ | ${t.sizeContracts} contracts\n`;
-    message += `  Edge: +${(t.estimatedEdge * 100).toFixed(2)}% | Risk: $${t.maxLossIfWrong.toFixed(0)}`;
+    message += `  ROI: ${roi} per $1 risked | Risk: $${t.maxLossIfWrong.toFixed(0)}\n`;
+    if (marketUrl) {
+      message += `  [View Market](${marketUrl})`;
+    }
   }
 
   if (targets.length > 5) {

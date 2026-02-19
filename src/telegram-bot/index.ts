@@ -193,10 +193,11 @@ bot.onText(/^\/maker$/, async (msg: TelegramBot.Message) => {
 
       message += `📝 *Order Targets*\n\n`;
       for (const t of targets.slice(0, 5)) {
-        const marketUrl = t.slug ? `https://polymarket.com/event/${t.slug}` : "";
+        const marketUrl = t.eventSlug ? `https://polymarket.com/event/${t.eventSlug}` : "";
+        const roi = t.returnPer1Dollar ? `$${t.returnPer1Dollar.toFixed(2)}` : "N/A";
         message += `• *${t.question}*\n`;
         message += `  SELL @ ${(t.sellPrice * 100).toFixed(1)}¢ | ${t.sizeContracts} contracts\n`;
-        message += `  Edge: +${(t.estimatedEdge * 100).toFixed(2)}% | Risk: $${t.maxLossIfWrong.toFixed(0)}\n`;
+        message += `  ROI: ${roi} per $1 risked | Risk: $${t.maxLossIfWrong.toFixed(0)}\n`;
         if (marketUrl) {
           message += `  [View Market](${marketUrl})\n`;
         }
