@@ -58,7 +58,7 @@ function logUnauthorized(msg: TelegramBot.Message): void {
 
 // ─── Command Handlers ────────────────────────────────────
 
-bot.onText(/^\/start/, async (msg) => {
+bot.onText(/^\/start/, async (msg: TelegramBot.Message) => {
   if (!isAuthorized(msg.from?.id ?? 0)) {
     logUnauthorized(msg);
     return bot.sendMessage(msg.chat.id, "⛔ Unauthorized. Contact admin to get access.");
@@ -86,12 +86,12 @@ I'll analyze them and tell you if they're worth exploring.
   return bot.sendMessage(msg.chat.id, welcome, { parse_mode: "Markdown" });
 });
 
-bot.onText(/^\/help/, async (msg) => {
+bot.onText(/^\/help/, async (msg: TelegramBot.Message) => {
   if (!isAuthorized(msg.from?.id ?? 0)) return;
   return bot.onText(/\/start/, () => {}); // Reuse start message
 });
 
-bot.onText(/^\/status$/, async (msg) => {
+bot.onText(/^\/status$/, async (msg: TelegramBot.Message) => {
   if (!isAuthorized(msg.from?.id ?? 0)) {
     logUnauthorized(msg);
     return;
@@ -126,7 +126,7 @@ Blocked: ${status.signals?.blocked ?? 0}
   }
 });
 
-bot.onText(/^\/scan$/, async (msg) => {
+bot.onText(/^\/scan$/, async (msg: TelegramBot.Message) => {
   if (!isAuthorized(msg.from?.id ?? 0)) {
     logUnauthorized(msg);
     return;
@@ -163,7 +163,7 @@ bot.onText(/^\/scan$/, async (msg) => {
   }
 });
 
-bot.onText(/^\/maker$/, async (msg) => {
+bot.onText(/^\/maker$/, async (msg: TelegramBot.Message) => {
   if (!isAuthorized(msg.from?.id ?? 0)) {
     logUnauthorized(msg);
     return;
@@ -212,7 +212,7 @@ bot.onText(/^\/maker$/, async (msg) => {
   }
 });
 
-bot.onText(/^\/portfolio$/, async (msg) => {
+bot.onText(/^\/portfolio$/, async (msg: TelegramBot.Message) => {
   if (!isAuthorized(msg.from?.id ?? 0)) {
     logUnauthorized(msg);
     return;
@@ -240,7 +240,7 @@ Unrealized PnL: $${status.paperExecution?.unrealizedPnl?.toFixed(2) ?? "N/A"}
   }
 });
 
-bot.onText(/^\/credibility$/, async (msg) => {
+bot.onText(/^\/credibility$/, async (msg: TelegramBot.Message) => {
   if (!isAuthorized(msg.from?.id ?? 0)) {
     logUnauthorized(msg);
     return;
@@ -266,7 +266,7 @@ bot.onText(/^\/credibility$/, async (msg) => {
   return bot.sendMessage(msg.chat.id, message, { parse_mode: "Markdown" });
 });
 
-bot.onText(/^\/validate (.+)/, async (msg, match) => {
+bot.onText(/^\/validate (.+)/, async (msg: TelegramBot.Message, match: RegExpExecArray | null) => {
   if (!isAuthorized(msg.from?.id ?? 0)) {
     logUnauthorized(msg);
     return;
@@ -282,7 +282,7 @@ bot.onText(/^\/validate (.+)/, async (msg, match) => {
 
 // ─── Message Handler (for URLs and text) ─────────────────
 
-bot.on("message", async (msg) => {
+bot.on("message", async (msg: TelegramBot.Message) => {
   // Skip commands
   if (msg.text?.startsWith("/")) return;
 
