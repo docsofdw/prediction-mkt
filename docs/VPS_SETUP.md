@@ -182,3 +182,9 @@ pm2 save
 - Keep SSH keys secure and use strong permissions (`chmod 400`)
 - Consider using AWS Secrets Manager for production deployments
 - Regularly rotate API credentials
+
+## Related Documentation
+
+- [Claim Validator System](./claim-validator/README.md) - Telegram bot for trading claim validation
+- [Infrastructure Security](../infra/README.md) - VPS hardening and firewall scripts
+- [Claim Validator VPS Deployment](./claim-validator/VPS_DEPLOYMENT.md) - Deploying the Telegram bot

@@ -1,0 +1,24 @@
+{"timestamp":"2026-02-19T04:21:18.937Z","eventType":"claim_received","claimId":"b80bbd28-0aee-4a98-8f1f-74a2fe316639"}
+{"timestamp":"2026-02-19T04:21:25.589Z","eventType":"claim_parsed","claimId":"b80bbd28-0aee-4a98-8f1f-74a2fe316639"}
+{"timestamp":"2026-02-19T04:21:27.544Z","eventType":"validation_complete","claimId":"b80bbd28-0aee-4a98-8f1f-74a2fe316639","verdict":"test_further"}
+{"timestamp":"2026-02-19T05:07:25.714Z","eventType":"claim_received","claimId":"52355da9-ad46-48c1-ae15-535b7bcc1638","sourceId":"test"}
+{"timestamp":"2026-02-19T05:07:33.325Z","eventType":"claim_parsed","claimId":"52355da9-ad46-48c1-ae15-535b7bcc1638","securityFlags":[{"type":"prompt_injection","severity":"low","description":"External URL detected (not X or Polymarket)","matchedPattern":"https://t.co/mzc1xbkxtQ"}]}
+{"timestamp":"2026-02-19T05:07:34.406Z","eventType":"validation_complete","claimId":"52355da9-ad46-48c1-ae15-535b7bcc1638","sourceId":"test","verdict":"ignore"}
+{"timestamp":"2026-02-19T05:11:49.159Z","eventType":"claim_received","claimId":"71ac5402-10f9-4193-b477-3860e1d3d3b6","sourceId":"test-good-claim"}
+{"timestamp":"2026-02-19T05:11:56.460Z","eventType":"claim_parsed","claimId":"71ac5402-10f9-4193-b477-3860e1d3d3b6"}
+{"timestamp":"2026-02-19T05:11:58.075Z","eventType":"validation_complete","claimId":"71ac5402-10f9-4193-b477-3860e1d3d3b6","sourceId":"test-good-claim","verdict":"test_further"}
+{"timestamp":"2026-02-19T05:12:54.667Z","eventType":"claim_received","claimId":"94ff6ca1-34e3-42d8-8df3-e8b104622388","sourceId":"test-good-claim"}
+{"timestamp":"2026-02-19T05:13:01.646Z","eventType":"claim_parsed","claimId":"94ff6ca1-34e3-42d8-8df3-e8b104622388"}
+{"timestamp":"2026-02-19T05:13:02.254Z","eventType":"validation_complete","claimId":"94ff6ca1-34e3-42d8-8df3-e8b104622388","sourceId":"test-good-claim","verdict":"explore"}
+{"timestamp":"2026-02-19T05:13:18.766Z","eventType":"claim_received","claimId":"2263ce6f-623c-4c9d-a12b-d485bd74b803","sourceId":"test-excellent-claim"}
+{"timestamp":"2026-02-19T05:13:27.251Z","eventType":"claim_parsed","claimId":"2263ce6f-623c-4c9d-a12b-d485bd74b803"}
+{"timestamp":"2026-02-19T05:13:28.615Z","eventType":"validation_complete","claimId":"2263ce6f-623c-4c9d-a12b-d485bd74b803","sourceId":"test-excellent-claim","verdict":"explore"}
+{"timestamp":"2026-02-19T05:17:50.462Z","eventType":"claim_received","claimId":"75175365-c2ba-4be2-843a-69cbc55fa1b8","sourceId":"browomo"}
+{"timestamp":"2026-02-19T05:18:00.126Z","eventType":"claim_parsed","claimId":"75175365-c2ba-4be2-843a-69cbc55fa1b8"}
+{"timestamp":"2026-02-19T05:18:01.913Z","eventType":"validation_complete","claimId":"75175365-c2ba-4be2-843a-69cbc55fa1b8","sourceId":"browomo","verdict":"explore"}
+{"timestamp":"2026-02-19T05:24:54.268Z","eventType":"claim_received","claimId":"8f2abefe-fc40-47a7-9157-e70486ee28da","sourceId":"browomo"}
+{"timestamp":"2026-02-19T05:25:04.532Z","eventType":"claim_parsed","claimId":"8f2abefe-fc40-47a7-9157-e70486ee28da"}
+{"timestamp":"2026-02-19T05:25:06.438Z","eventType":"validation_complete","claimId":"8f2abefe-fc40-47a7-9157-e70486ee28da","sourceId":"browomo","verdict":"explore"}
+{"timestamp":"2026-02-19T05:30:57.799Z","eventType":"claim_received","claimId":"072deede-93c0-499b-8fdb-1b5655d930d7","sourceId":"browomo"}
+{"timestamp":"2026-02-19T05:31:08.324Z","eventType":"claim_parsed","claimId":"072deede-93c0-499b-8fdb-1b5655d930d7"}
+{"timestamp":"2026-02-19T05:31:09.959Z","eventType":"validation_complete","claimId":"072deede-93c0-499b-8fdb-1b5655d930d7","sourceId":"browomo","verdict":"explore"}

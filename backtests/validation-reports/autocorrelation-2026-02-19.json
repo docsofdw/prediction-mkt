@@ -1,0 +1,84 @@
+{
+  "generatedAt": "2026-02-19T02:49:10.692Z",
+  "thesis": "autocorrelation_streaks",
+  "fiveMin": {
+    "overallUpRate": 0.5112612612612613,
+    "lag1": {
+      "afterUp": {
+        "total": 2042,
+        "up": 996
+      },
+      "afterDown": {
+        "total": 1953,
+        "up": 1047
+      },
+      "upAfterUp": 0.4877571008814887,
+      "upAfterDown": 0.5360983102918587,
+      "diff": -0.04834120941037001
+    },
+    "streaks": [
+      {
+        "streak": 2,
+        "total": 1901,
+        "continues": 874,
+        "rate": 0.4597580220936349
+      },
+      {
+        "streak": 3,
+        "total": 873,
+        "continues": 376,
+        "rate": 0.4306987399770905
+      },
+      {
+        "streak": 4,
+        "total": 376,
+        "continues": 166,
+        "rate": 0.44148936170212766
+      },
+      {
+        "streak": 5,
+        "total": 166,
+        "continues": 64,
+        "rate": 0.3855421686746988
+      }
+    ],
+    "verdict": "KILL"
+  },
+  "fourHour": {
+    "overallUpRate": 0.44692737430167595,
+    "lag1": {
+      "afterUp": {
+        "total": 79,
+        "up": 31
+      },
+      "afterDown": {
+        "total": 99,
+        "up": 49
+      },
+      "upAfterUp": 0.3924050632911392,
+      "upAfterDown": 0.494949494949495,
+      "diff": -0.10254443165835575
+    },
+    "streaks": [
+      {
+        "streak": 2,
+        "total": 81,
+        "continues": 36,
+        "rate": 0.4444444444444444
+      },
+      {
+        "streak": 3,
+        "total": 36,
+        "continues": 14,
+        "rate": 0.3888888888888889
+      },
+      {
+        "streak": 4,
+        "total": 14,
+        "continues": 5,
+        "rate": 0.35714285714285715
+      }
+    ],
+    "verdict": "KILL"
+  }
+}

@@ -1,0 +1,294 @@
+{
+  "generatedAt": "2026-02-19T02:42:30.189Z",
+  "thesis": "funding_rate_direction_correlation",
+  "summary": {
+    "hypothesis": "Extreme funding rates predict Up/Down market outcomes",
+    "combined": {
+      "marketType": "all",
+      "totalMarkets": 4175,
+      "overallUpRate": 0.5085029940119761,
+      "buckets": [
+        {
+          "name": "Very Low (0-10%)",
+          "range": [
+            0,
+            0.1
+          ],
+          "total": 274,
+          "upWins": 143,
+          "downWins": 131,
+          "upRate": 0.5218978102189781,
+          "expectedUp": 139.32982035928146,
+          "chiSquareContrib": 0.09667864754587392
+        },
+        {
+          "name": "Low (10-30%)",
+          "range": [
+            0.1,
+            0.3
+          ],
+          "total": 1023,
+          "upWins": 516,
+          "downWins": 507,
+          "upRate": 0.5043988269794721,
+          "expectedUp": 520.1985628742515,
+          "chiSquareContrib": 0.0338869260069526
+        },
+        {
+          "name": "Mid-Low (30-50%)",
+          "range": [
+            0.3,
+            0.5
+          ],
+          "total": 1221,
+          "upWins": 624,
+          "downWins": 597,
+          "upRate": 0.5110565110565111,
+          "expectedUp": 620.8821556886228,
+          "chiSquareContrib": 0.01565667987221455
+        },
+        {
+          "name": "Mid-High (50-70%)",
+          "range": [
+            0.5,
+            0.7
+          ],
+          "total": 1036,
+          "upWins": 516,
+          "downWins": 520,
+          "upRate": 0.4980694980694981,
+          "expectedUp": 526.8091017964072,
+          "chiSquareContrib": 0.2217818204861725
+        },
+        {
+          "name": "High (70-90%)",
+          "range": [
+            0.7,
+            0.9
+          ],
+          "total": 614,
+          "upWins": 321,
+          "downWins": 293,
+          "upRate": 0.5228013029315961,
+          "expectedUp": 312.2208383233533,
+          "chiSquareContrib": 0.24685629619916802
+        },
+        {
+          "name": "Very High (90-100%)",
+          "range": [
+            0.9,
+            1.01
+          ],
+          "total": 7,
+          "upWins": 3,
+          "downWins": 4,
+          "upRate": 0.42857142857142855,
+          "expectedUp": 3.5595209580838327,
+          "chiSquareContrib": 0.08795107718752669
+        }
+      ],
+      "chiTest": {
+        "chiSquare": 1.429940444672892,
+        "pValue": 0.92034940904624,
+        "df": 5
+      },
+      "verdict": "KILL",
+      "reasons": [
+        "No significant relationship (p=0.9203)",
+        "Funding rate does not predict Up/Down outcomes"
+      ]
+    },
+    "byType": {
+      "5m": {
+        "marketType": "5m",
+        "totalMarkets": 3996,
+        "overallUpRate": 0.5112612612612613,
+        "buckets": [
+          {
+            "name": "Very Low (0-10%)",
+            "range": [
+              0,
+              0.1
+            ],
+            "total": 240,
+            "upWins": 124,
+            "downWins": 116,
+            "upRate": 0.5166666666666667,
+            "expectedUp": 122.70270270270271,
+            "chiSquareContrib": 0.013715918561733409
+          },
+          {
+            "name": "Low (10-30%)",
+            "range": [
+              0.1,
+              0.3
+            ],
+            "total": 984,
+            "upWins": 501,
+            "downWins": 483,
+            "upRate": 0.5091463414634146,
+            "expectedUp": 503.0810810810811,
+            "chiSquareContrib": 0.008608748428239249
+          },
+          {
+            "name": "Mid-Low (30-50%)",
+            "range": [
+              0.3,
+              0.5
+            ],
+            "total": 1176,
+            "upWins": 605,
+            "downWins": 571,
+            "upRate": 0.5144557823129252,
+            "expectedUp": 601.2432432432432,
+            "chiSquareContrib": 0.023473396978746446
+          },
+          {
+            "name": "Mid-High (50-70%)",
+            "range": [
+              0.5,
+              0.7
+            ],
+            "total": 1006,
+            "upWins": 499,
+            "downWins": 507,
+            "upRate": 0.4960238568588469,
+            "expectedUp": 514.3288288288288,
+            "chiSquareContrib": 0.45685363155432546
+          },
+          {
+            "name": "High (70-90%)",
+            "range": [
+              0.7,
+              0.9
+            ],
+            "total": 590,
+            "upWins": 314,
+            "downWins": 276,
+            "upRate": 0.5322033898305085,
+            "expectedUp": 301.64414414414415,
+            "chiSquareContrib": 0.5061168164356392
+          },
+          {
+            "name": "Very High (90-100%)",
+            "range": [
+              0.9,
+              1.01
+            ],
+            "total": 0,
+            "upWins": 0,
+            "downWins": 0,
+            "upRate": 0,
+            "expectedUp": 0,
+            "chiSquareContrib": 0
+          }
+        ],
+        "chiTest": {
+          "chiSquare": 2.0640240521182283,
+          "pValue": 0.7270771454325695,
+          "df": 4
+        },
+        "verdict": "KILL",
+        "reasons": [
+          "No significant relationship (p=0.7271)",
+          "Funding rate does not predict Up/Down outcomes"
+        ]
+      },
+      "4h": {
+        "marketType": "4h",
+        "totalMarkets": 179,
+        "overallUpRate": 0.44692737430167595,
+        "buckets": [
+          {
+            "name": "Very Low (0-10%)",
+            "range": [
+              0,
+              0.1
+            ],
+            "total": 34,
+            "upWins": 19,
+            "downWins": 15,
+            "upRate": 0.5588235294117647,
+            "expectedUp": 15.195530726256983,
+            "chiSquareContrib": 0.9525160203746303
+          },
+          {
+            "name": "Low (10-30%)",
+            "range": [
+              0.1,
+              0.3
+            ],
+            "total": 39,
+            "upWins": 15,
+            "downWins": 24,
+            "upRate": 0.38461538461538464,
+            "expectedUp": 17.43016759776536,
+            "chiSquareContrib": 0.33882144391920893
+          },
+          {
+            "name": "Mid-Low (30-50%)",
+            "range": [
+              0.3,
+              0.5
+            ],
+            "total": 45,
+            "upWins": 19,
+            "downWins": 26,
+            "upRate": 0.4222222222222222,
+            "expectedUp": 20.111731843575416,
+            "chiSquareContrib": 0.06145406579764094
+          },
+          {
+            "name": "Mid-High (50-70%)",
+            "range": [
+              0.5,
+              0.7
+            ],
+            "total": 30,
+            "upWins": 17,
+            "downWins": 13,
+            "upRate": 0.5666666666666667,
+            "expectedUp": 13.407821229050278,
+            "chiSquareContrib": 0.9624045623836137
+          },
+          {
+            "name": "High (70-90%)",
+            "range": [
+              0.7,
+              0.9
+            ],
+            "total": 24,
+            "upWins": 7,
+            "downWins": 17,
+            "upRate": 0.2916666666666667,
+            "expectedUp": 10.726256983240223,
+            "chiSquareContrib": 1.2944861499068896
+          },
+          {
+            "name": "Very High (90-100%)",
+            "range": [
+              0.9,
+              1.01
+            ],
+            "total": 7,
+            "upWins": 3,
+            "downWins": 4,
+            "upRate": 0.42857142857142855,
+            "expectedUp": 3.1284916201117317,
+            "chiSquareContrib": 0.005277334397446114
+          }
+        ],
+        "chiTest": {
+          "chiSquare": 6.536139032762806,
+          "pValue": 0.25658495638936274,
+          "df": 5
+        },
+        "verdict": "KILL",
+        "reasons": [
+          "No significant relationship (p=0.2566)",
+          "Funding rate does not predict Up/Down outcomes"
+        ]
+      }
+    }
+  }
+}

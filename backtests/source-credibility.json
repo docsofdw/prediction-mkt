@@ -1,0 +1,38 @@
+[
+  {
+    "sourceId": "test",
+    "totalClaims": 1,
+    "verifiedEdges": 0,
+    "falseEdges": 0,
+    "averageLegitimacyScore": 2.5,
+    "lastClaimAt": "2026-02-19T05:07:34.406Z",
+    "credibilityScore": 0.25
+  },
+  {
+    "sourceId": "test-good-claim",
+    "totalClaims": 2,
+    "verifiedEdges": 0,
+    "falseEdges": 0,
+    "averageLegitimacyScore": 6,
+    "lastClaimAt": "2026-02-19T05:13:02.233Z",
+    "credibilityScore": 0.24
+  },
+  {
+    "sourceId": "test-excellent-claim",
+    "totalClaims": 1,
+    "verifiedEdges": 0,
+    "falseEdges": 0,
+    "averageLegitimacyScore": 8.5,
+    "lastClaimAt": "2026-02-19T05:13:28.615Z",
+    "credibilityScore": 0.85
+  },
+  {
+    "sourceId": "browomo",
+    "totalClaims": 3,
+    "verifiedEdges": 0,
+    "falseEdges": 0,
+    "averageLegitimacyScore": 10,
+    "lastClaimAt": "2026-02-19T05:31:09.959Z",
+    "credibilityScore": 0.4
+  }
+]

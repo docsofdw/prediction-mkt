@@ -1,0 +1,533 @@
+{
+  "generated_at": "2026-02-19T05:04:31.139021",
+  "data_source": "Becker prediction-market-analysis dataset",
+  "total_markets": 408863,
+  "total_trades": 404540000,
+  "btc_markets": 41958,
+  "resolved_btc_binary_markets": 41512,
+  "price_distribution": [
+    {
+      "price_bucket_pct": 0.0,
+      "trade_count": 27468676,
+      "total_volume_usd": 163283109.4073432,
+      "avg_price": 0.023210096471826813
+    },
+    {
+      "price_bucket_pct": 5.0,
+      "trade_count": 14693548,
+      "total_volume_usd": 194584238.8378718,
+      "avg_price": 0.06955729794289489
+    },
+    {
+      "price_bucket_pct": 10.0,
+      "trade_count": 12594110,
+      "total_volume_usd": 233799186.89085656,
+      "avg_price": 0.12029699573253202
+    },
+    {
+      "price_bucket_pct": 15.0,
+      "trade_count": 11704429,
+      "total_volume_usd": 271651119.9277619,
+      "avg_price": 0.17049520436732185
+    },
+    {
+      "price_bucket_pct": 20.0,
+      "trade_count": 12489638,
+      "total_volume_usd": 341086491.7029568,
+      "avg_price": 0.22001850542446533
+    },
+    {
+      "price_bucket_pct": 25.0,
+      "trade_count": 13747837,
+      "total_volume_usd": 452188937.367864,
+      "avg_price": 0.27087635539411586
+    },
+    {
+      "price_bucket_pct": 30.0,
+      "trade_count": 14977821,
+      "total_volume_usd": 632470462.9622018,
+      "avg_price": 0.3217850322435154
+    },
+    {
+      "price_bucket_pct": 35.0,
+      "trade_count": 16314301,
+      "total_volume_usd": 946585279.0214658,
+      "avg_price": 0.3709502619507901
+    },
+    {
+      "price_bucket_pct": 40.0,
+      "trade_count": 18105009,
+      "total_volume_usd": 1095273646.6474385,
+      "avg_price": 0.4209636689322989
+    },
+    {
+      "price_bucket_pct": 45.0,
+      "trade_count": 23050568,
+      "total_volume_usd": 1885861056.1753364,
+      "avg_price": 0.47254237053224635
+    },
+    {
+      "price_bucket_pct": 50.0,
+      "trade_count": 26099665,
+      "total_volume_usd": 2699365986.437516,
+      "avg_price": 0.5178254809539683
+    },
+    {
+      "price_bucket_pct": 55.0,
+      "trade_count": 17528372,
+      "total_volume_usd": 1490559448.6475189,
+      "avg_price": 0.5705891868702688
+    },
+    {
+      "price_bucket_pct": 60.0,
+      "trade_count": 17517438,
+      "total_volume_usd": 1581332868.4446604,
+      "avg_price": 0.6210688619318052
+    },
+    {
+      "price_bucket_pct": 65.0,
+      "trade_count": 14913368,
+      "total_volume_usd": 1235415903.4117494,
+      "avg_price": 0.6704307208055822
+    },
+    {
+      "price_bucket_pct": 70.0,
+      "trade_count": 13421709,
+      "total_volume_usd": 1087163405.1001353,
+      "avg_price": 0.7202213923261677
+    },
+    {
+      "price_bucket_pct": 75.0,
+      "trade_count": 12302996,
+      "total_volume_usd": 1051496919.525016,
+      "avg_price": 0.7699250547046609
+    },
+    {
+      "price_bucket_pct": 80.0,
+      "trade_count": 12088336,
+      "total_volume_usd": 1141646887.7246134,
+      "avg_price": 0.8206898156788742
+    },
+    {
+      "price_bucket_pct": 85.0,
+      "trade_count": 11717167,
+      "total_volume_usd": 1356296197.3850968,
+      "avg_price": 0.8714840551716087
+    },
+    {
+      "price_bucket_pct": 90.0,
+      "trade_count": 15283533,
+      "total_volume_usd": 2068807200.167212,
+      "avg_price": 0.9238963940437763
+    },
+    {
+      "price_bucket_pct": 95.0,
+      "trade_count": 32644612,
+      "total_volume_usd": 5583335590.7239685,
+      "avg_price": 0.9750971104553247
+    }
+  ],
+  "maker_taker_by_price": [
+    {
+      "price_bucket_pct": 0.0,
+      "trade_type": "maker_buys",
+      "trade_count": 18962338,
+      "total_volume": 103178929.22723474,
+      "avg_trade_size": 5.441255673600731,
+      "total_fees": 8762944.171403334
+    },
+    {
+      "price_bucket_pct": 0.0,
+      "trade_type": "taker_buys",
+      "trade_count": 8506338,
+      "total_volume": 60104180.180261984,
+      "avg_trade_size": 7.065811419703988,
+      "total_fees": 16292.756150002224
+    },
+    {
+      "price_bucket_pct": 5.0,
+      "trade_type": "maker_buys",
+      "trade_count": 10747475,
+      "total_volume": 132941616.47904736,
+      "avg_trade_size": 12.369567408070022,
+      "total_fees": 3307541.1202950245
+    },
+    {
+      "price_bucket_pct": 5.0,
+      "trade_type": "taker_buys",
+      "trade_count": 3946073,
+      "total_volume": 61642622.358576536,
+      "avg_trade_size": 15.621257477643352,
+      "total_fees": 38355.67629999884
+    },
+    {
+      "price_bucket_pct": 10.0,
+      "trade_type": "maker_buys",
+      "trade_count": 9475165,
+      "total_volume": 167317718.03991684,
+      "avg_trade_size": 17.658554551811694,
+      "total_fees": 2640652.420448992
+    },
+    {
+      "price_bucket_pct": 10.0,
+      "trade_type": "taker_buys",
+      "trade_count": 3118945,
+      "total_volume": 66481468.85106616,
+      "avg_trade_size": 21.315370694599025,
+      "total_fees": 59736.43805299283
+    },
+    {
+      "price_bucket_pct": 15.0,
+      "trade_type": "maker_buys",
+      "trade_count": 8961049,
+      "total_volume": 200232347.67723542,
+      "avg_trade_size": 22.34474420095632,
+      "total_fees": 2479275.0576843647
+    },
+    {
+      "price_bucket_pct": 15.0,
+      "trade_type": "taker_buys",
+      "trade_count": 2743380,
+      "total_volume": 71418772.25060807,
+      "avg_trade_size": 26.03313148401172,
+      "total_fees": 81896.6720000064
+    },
+    {
+      "price_bucket_pct": 20.0,
+      "trade_type": "maker_buys",
+      "trade_count": 9747063,
+      "total_volume": 256593663.59701616,
+      "avg_trade_size": 26.32522879938461,
+      "total_fees": 2741265.9467867734
+    },
+    {
+      "price_bucket_pct": 20.0,
+      "trade_type": "taker_buys",
+      "trade_count": 2742575,
+      "total_volume": 84492828.10735701,
+      "avg_trade_size": 30.80784595037766,
+      "total_fees": 115550.41274799732
+    },
+    {
+      "price_bucket_pct": 25.0,
+      "trade_type": "maker_buys",
+      "trade_count": 10737039,
+      "total_volume": 345104362.7266449,
+      "avg_trade_size": 32.14148358096165,
+      "total_fees": 2849948.13643423
+    },
+    {
+      "price_bucket_pct": 25.0,
+      "trade_type": "taker_buys",
+      "trade_count": 3010798,
+      "total_volume": 107084574.64494735,
+      "avg_trade_size": 35.56684129753884,
+      "total_fees": 145352.9378709615
+    },
+    {
+      "price_bucket_pct": 30.0,
+      "trade_type": "maker_buys",
+      "trade_count": 11767540,
+      "total_volume": 483855341.88125217,
+      "avg_trade_size": 41.117798782179804,
+      "total_fees": 3257696.558173297
+    },
+    {
+      "price_bucket_pct": 30.0,
+      "trade_type": "taker_buys",
+      "trade_count": 3210281,
+      "total_volume": 148615121.0823685,
+      "avg_trade_size": 46.29349302518019,
+      "total_fees": 201498.88168896388
+    },
+    {
+      "price_bucket_pct": 35.0,
+      "trade_type": "maker_buys",
+      "trade_count": 12658609,
+      "total_volume": 717288003.8727283,
+      "avg_trade_size": 56.664046094853575,
+      "total_fees": 3271312.886002452
+    },
+    {
+      "price_bucket_pct": 35.0,
+      "trade_type": "taker_buys",
+      "trade_count": 3655692,
+      "total_volume": 229297275.14935502,
+      "avg_trade_size": 62.72335720551814,
+      "total_fees": 233284.95249105664
+    },
+    {
+      "price_bucket_pct": 40.0,
+      "trade_type": "maker_buys",
+      "trade_count": 14396113,
+      "total_volume": 863401830.6316581,
+      "avg_trade_size": 59.97464945097736,
+      "total_fees": 4148669.2836640254
+    },
+    {
+      "price_bucket_pct": 40.0,
+      "trade_type": "taker_buys",
+      "trade_count": 3708896,
+      "total_volume": 231871816.0173402,
+      "avg_trade_size": 62.51774544698482,
+      "total_fees": 315737.2825579793
+    },
+    {
+      "price_bucket_pct": 45.0,
+      "trade_type": "maker_buys",
+      "trade_count": 18915045,
+      "total_volume": 1527958953.915093,
+      "avg_trade_size": 80.78008558346507,
+      "total_fees": 6924327.381800414
+    },
+    {
+      "price_bucket_pct": 45.0,
+      "trade_type": "taker_buys",
+      "trade_count": 4135523,
+      "total_volume": 357902102.24420583,
+      "avg_trade_size": 86.5433712360458,
+      "total_fees": 367007.2592778195
+    },
+    {
+      "price_bucket_pct": 50.0,
+      "trade_type": "maker_buys",
+      "trade_count": 21609067,
+      "total_volume": 2268402535.467983,
+      "avg_trade_size": 104.97457088119458,
+      "total_fees": 7276357.0455890745
+    },
+    {
+      "price_bucket_pct": 50.0,
+      "trade_type": "taker_buys",
+      "trade_count": 4490598,
+      "total_volume": 430963450.9568045,
+      "avg_trade_size": 95.97016944220002,
+      "total_fees": 372897.54856479657
+    },
+    {
+      "price_bucket_pct": 55.0,
+      "trade_type": "maker_buys",
+      "trade_count": 13841947,
+      "total_volume": 1183863517.3499174,
+      "avg_trade_size": 85.52723958196903,
+      "total_fees": 3022599.0163299823
+    },
+    {
+      "price_bucket_pct": 55.0,
+      "trade_type": "taker_buys",
+      "trade_count": 3686425,
+      "total_volume": 306695931.28930354,
+      "avg_trade_size": 83.19603173516442,
+      "total_fees": 241995.5279200152
+    },
+    {
+      "price_bucket_pct": 60.0,
+      "trade_type": "maker_buys",
+      "trade_count": 13527550,
+      "total_volume": 1217622694.8061495,
+      "avg_trade_size": 90.0105854205787,
+      "total_fees": 2087047.0010452687
+    },
+    {
+      "price_bucket_pct": 60.0,
+      "trade_type": "taker_buys",
+      "trade_count": 3989888,
+      "total_volume": 363710173.62244004,
+      "avg_trade_size": 91.15799080636852,
+      "total_fees": 200954.04038902518
+    },
+    {
+      "price_bucket_pct": 65.0,
+      "trade_type": "maker_buys",
+      "trade_count": 11649634,
+      "total_volume": 968752000.8103471,
+      "avg_trade_size": 83.15729067628624,
+      "total_fees": 1503218.667526844
+    },
+    {
+      "price_bucket_pct": 65.0,
+      "trade_type": "taker_buys",
+      "trade_count": 3263734,
+      "total_volume": 266663902.60196003,
+      "avg_trade_size": 81.70515814155199,
+      "total_fees": 156506.1538409994
+    },
+    {
+      "price_bucket_pct": 70.0,
+      "trade_type": "maker_buys",
+      "trade_count": 10480783,
+      "total_volume": 858225069.9508433,
+      "avg_trade_size": 81.8855871694742,
+      "total_fees": 1054139.6136251364
+    },
+    {
+      "price_bucket_pct": 70.0,
+      "trade_type": "taker_buys",
+      "trade_count": 2940926,
+      "total_volume": 228938335.1521498,
+      "avg_trade_size": 77.84566328841657,
+      "total_fees": 126256.44531300498
+    },
+    {
+      "price_bucket_pct": 75.0,
+      "trade_type": "maker_buys",
+      "trade_count": 9643185,
+      "total_volume": 831507875.8736587,
+      "avg_trade_size": 86.22751465139979,
+      "total_fees": 794670.6781567424
+    },
+    {
+      "price_bucket_pct": 75.0,
+      "trade_type": "taker_buys",
+      "trade_count": 2659811,
+      "total_volume": 219989043.65346944,
+      "avg_trade_size": 82.70852464835639,
+      "total_fees": 101417.9433899949
+    },
+    {
+      "price_bucket_pct": 80.0,
+      "trade_type": "maker_buys",
+      "trade_count": 9371116,
+      "total_volume": 890062099.6000562,
+      "avg_trade_size": 94.97930658419511,
+      "total_fees": 571126.4078612356
+    },
+    {
+      "price_bucket_pct": 80.0,
+      "trade_type": "taker_buys",
+      "trade_count": 2717220,
+      "total_volume": 251584788.12733233,
+      "avg_trade_size": 92.58903884386702,
+      "total_fees": 82360.92857600635
+    },
+    {
+      "price_bucket_pct": 85.0,
+      "trade_type": "maker_buys",
+      "trade_count": 8841461,
+      "total_volume": 1032379898.4685265,
+      "avg_trade_size": 116.76575833660596,
+      "total_fees": 365059.3093693207
+    },
+    {
+      "price_bucket_pct": 85.0,
+      "trade_type": "taker_buys",
+      "trade_count": 2875706,
+      "total_volume": 323916298.9186446,
+      "avg_trade_size": 112.63887856360998,
+      "total_fees": 59284.678547998265
+    },
+    {
+      "price_bucket_pct": 90.0,
+      "trade_type": "maker_buys",
+      "trade_count": 11048814,
+      "total_volume": 1511836605.739246,
+      "avg_trade_size": 136.83247864786628,
+      "total_fees": 273743.1751563359
+    },
+    {
+      "price_bucket_pct": 90.0,
+      "trade_type": "taker_buys",
+      "trade_count": 4234719,
+      "total_volume": 556970594.4254521,
+      "avg_trade_size": 131.5248058786078,
+      "total_fees": 49564.53011798768
+    },
+    {
+      "price_bucket_pct": 95.0,
+      "trade_type": "maker_buys",
+      "trade_count": 21400867,
+      "total_volume": 3750522722.5670166,
+      "avg_trade_size": 175.25097102687553,
+      "total_fees": 336542.3039433912
+    },
+    {
+      "price_bucket_pct": 95.0,
+      "trade_type": "taker_buys",
+      "trade_count": 11243745,
+      "total_volume": 1832812868.1091645,
+      "avg_trade_size": 163.00733146377516,
+      "total_fees": 156577.58433498727
+    }
+  ],
+  "longshot_analysis": [
+    {
+      "price_range": "0-5%",
+      "trade_type": "maker_buys",
+      "trades": 20753294,
+      "volume": 115537216.1053639,
+      "avg_price_pct": 2.522551136382177
+    },
+    {
+      "price_range": "0-5%",
+      "trade_type": "taker_buys",
+      "trades": 8950903,
+      "volume": 65910641.9234707,
+      "avg_price_pct": 2.5228093329275927
+    },
+    {
+      "price_range": "10-15%",
+      "trade_type": "maker_buys",
+      "trades": 9017028,
+      "volume": 171563423.38172603,
+      "avg_price_pct": 12.898171904219705
+    },
+    {
+      "price_range": "10-15%",
+      "trade_type": "taker_buys",
+      "trades": 3034486,
+      "volume": 67602355.44455434,
+      "avg_price_pct": 12.862390035049204
+    },
+    {
+      "price_range": "15-20%",
+      "trade_type": "maker_buys",
+      "trades": 9521338,
+      "volume": 215251054.80038953,
+      "avg_price_pct": 17.954164997104588
+    },
+    {
+      "price_range": "15-20%",
+      "trade_type": "taker_buys",
+      "trades": 2820196,
+      "volume": 75289605.17223388,
+      "avg_price_pct": 17.94408898669672
+    },
+    {
+      "price_range": "5-10%",
+      "trade_type": "maker_buys",
+      "trades": 10823616,
+      "volume": 144227824.56014514,
+      "avg_price_pct": 7.785483251823957
+    },
+    {
+      "price_range": "5-10%",
+      "trade_type": "taker_buys",
+      "trades": 4028311,
+      "volume": 64295733.398146994,
+      "avg_price_pct": 7.620728269157591
+    }
+  ],
+  "summary": [
+    {
+      "trade_type": "maker_buys",
+      "trade_count": 299609911,
+      "total_volume": 25226421171.69139,
+      "avg_trade_size": 84.19755236899152,
+      "total_fees": 59435837.49224515,
+      "avg_fee": 0.1983774077895746
+    },
+    {
+      "trade_type": "taker_buys",
+      "trade_count": 104930089,
+      "total_volume": 9750814648.29696,
+      "avg_trade_size": 92.92677382840074,
+      "total_fees": 3123997.608184397,
+      "avg_fee": 0.029772181058422595
+    }
+  ],
+  "key_findings": [
+    "Total trading volume: $34977.24M",
+    "Total fees collected: $62.56M",
+    "Effective fee rate: 0.179%"
+  ]
+}

@@ -1,0 +1,199 @@
+{
+  "generatedAt": "2026-02-19T05:30:00.000Z",
+  "title": "Strategy Refinements from Becker Dataset Analysis",
+  "overview": {
+    "summary": "Pivot from TAKER to MAKER strategy based on 404M trade analysis",
+    "keyInsight": "Takers systematically lose to makers at all price levels. Longshot bias creates 1.5-2% seller edge on sub-15% contracts.",
+    "recommendation": "Post limit SELL orders on BTC longshot YES tokens instead of crossing spreads"
+  },
+  "beckerFindings": {
+    "dataset": "404.5M trades across 408,863 Polymarket markets",
+    "btcSubset": "41,958 BTC-related markets (10.3% of total)",
+    "longshotVolumeAnalysis": {
+      "makersAsBuyers": "$646.6M (takers sold to makers)",
+      "makersAsSellers": "$273.1M (takers bought from makers)",
+      "netTakerFlow": "SELLING $373.5M",
+      "interpretation": "Retail takers are net SELLERS of longshots - they're taking profits/cutting losses on cheap options"
+    },
+    "estimatedEdgeByPrice": [
+      { "price": "5%", "sellerEdge": "+1.8%", "confidence": "high" },
+      { "price": "10%", "sellerEdge": "+1.6%", "confidence": "high" },
+      { "price": "15%", "sellerEdge": "+1.4%", "confidence": "medium" },
+      { "price": "20%", "sellerEdge": "+1.2%", "confidence": "medium" }
+    ]
+  },
+  "strategyRefinements": {
+    "existingInfrastructure": {
+      "kept": [
+        "MarketDiscovery service - reused for BTC market scanning",
+        "TradingClient - placeLimitOrder() already supports SELL orders",
+        "ExecutionRiskGuard - risk limits apply to maker strategy",
+        "RuntimeTelemetry - tracking/monitoring unchanged",
+        "SQLite validation DB - can track maker order lifecycle"
+      ],
+      "deprecated": [
+        "Momentum/breakout/mean-reversion taker strategies - negative edge after spread",
+        "5-minute market trading - too fast, spread kills edge",
+        "Arbitrage violation hunting - edge too small vs execution risk"
+      ],
+      "added": [
+        "MakerLongshotSeller strategy module",
+        "maker:scan CLI for opportunity discovery",
+        "Becker analysis scripts for ongoing calibration"
+      ]
+    },
+    "positionManagement": {
+      "current": "Paper execution tracks fill simulation",
+      "needed": [
+        "Order lifecycle tracking (posted → filled → expired)",
+        "Partial fill handling",
+        "Order refresh/cancel logic when price moves",
+        "Inventory management (track short YES exposure)"
+      ]
+    },
+    "riskRefinements": {
+      "existingLimits": {
+        "maxGrossExposure": "$500 (proof of concept)",
+        "maxPerMarket": "5% of daily volume",
+        "maxDailyLoss": "$50"
+      },
+      "newConsiderations": [
+        "Correlation limit: max 30% in correlated BTC markets",
+        "Expiry spread: don't cluster all positions in same week",
+        "Strike distribution: spread across price targets",
+        "Stop-loss: exit if price doubles (5% → 10%)"
+      ]
+    }
+  },
+  "newIdeas": [
+    {
+      "id": "maker-btc-longshot",
+      "priority": "HIGH",
+      "description": "Post limit sell orders on BTC longshot YES tokens (2-10 cent range)",
+      "expectedEdge": "+1.5-2% of notional",
+      "implementation": "DONE - see src/markets/btc/strategies/maker-longshot-seller.ts",
+      "nextSteps": [
+        "Run npm run maker:scan to see current opportunities",
+        "Paper trade for 1 week to validate fill rates",
+        "Graduate to $100 live exposure"
+      ]
+    },
+    {
+      "id": "expiry-timing-optimization",
+      "priority": "MEDIUM",
+      "description": "Analyze whether edge varies by days-to-expiry",
+      "hypothesis": "Longshot bias may be stronger closer to expiry as retail capitulates",
+      "implementation": "Need to run Colab PnL analysis segmented by expiry",
+      "dataNeeded": "Becker dataset with settlement dates"
+    },
+    {
+      "id": "cross-market-arb",
+      "priority": "LOW",
+      "description": "If same BTC target has different prices across markets, arb the difference",
+      "caveat": "Polymarket likely already arbed, check liquidity depth",
+      "implementation": "Extend scanner to detect cross-market mispricings"
+    },
+    {
+      "id": "weather-maker-extension",
+      "priority": "LOW",
+      "description": "Apply maker strategy to weather markets if longshot bias exists there",
+      "blocker": "Need to analyze weather markets in Becker dataset first",
+      "implementation": "Extend Colab notebook to filter weather markets"
+    },
+    {
+      "id": "real-time-order-management",
+      "priority": "MEDIUM",
+      "description": "Integrate with WebSocket feed to manage orders in real-time",
+      "features": [
+        "Cancel stale orders when price moves away",
+        "Refresh orders to maintain queue priority",
+        "Track fill notifications"
+      ],
+      "implementation": "Extend RealtimeFeed service with order callbacks"
+    },
+    {
+      "id": "inventory-hedging",
+      "priority": "LOW",
+      "description": "When short YES inventory grows, consider buying NO tokens as hedge",
+      "caveat": "May not be necessary if position sizing is conservative",
+      "implementation": "Future consideration for larger scale"
+    }
+  ],
+  "testingPlan": {
+    "phase1": {
+      "name": "Scanner Validation",
+      "duration": "1-2 days",
+      "tasks": [
+        "Run npm run maker:scan daily",
+        "Verify candidate selection makes sense",
+        "Tune filters in strategy-params.json",
+        "Check that estimated edges align with intuition"
+      ]
+    },
+    "phase2": {
+      "name": "Paper Trading",
+      "duration": "1 week",
+      "tasks": [
+        "Enable maker strategy in paper mode",
+        "Track simulated fills",
+        "Monitor P&L and drawdowns",
+        "Identify any bugs in order generation"
+      ]
+    },
+    "phase3": {
+      "name": "Small Live",
+      "duration": "2 weeks",
+      "tasks": [
+        "Start with $100 exposure limit",
+        "Place real orders on 2-3 markets",
+        "Monitor fill rates vs paper assumptions",
+        "Track actual vs expected edge"
+      ]
+    },
+    "phase4": {
+      "name": "Scale Up",
+      "duration": "Ongoing",
+      "tasks": [
+        "Increase to $500 exposure",
+        "Add more markets",
+        "Implement order management refinements",
+        "Consider automation"
+      ]
+    }
+  },
+  "integrationWithExisting": {
+    "ideaFactory": {
+      "status": "Keep but deprioritize",
+      "reason": "Taker strategies have negative edge after spread. Use for research only."
+    },
+    "validationScanner": {
+      "status": "Keep for monitoring",
+      "reason": "Useful to track BTC markets and orderbook depth even if not trading arb"
+    },
+    "runtimeTelemetry": {
+      "status": "Extend for maker tracking",
+      "additions": [
+        "Track open orders by market",
+        "Track fill rate metrics",
+        "Track average time-to-fill"
+      ]
+    }
+  },
+  "scripts": {
+    "existing": [
+      "npm run becker:download - Download Becker dataset (36GB)",
+      "npm run becker:explore - Explore dataset structure",
+      "npm run becker:calibration - Analyze BTC calibration",
+      "npm run becker:maker-taker - Analyze maker/taker flows",
+      "npm run becker:strategy - Generate strategy params"
+    ],
+    "new": [
+      "npm run maker:scan - Scan for longshot opportunities",
+      "npm run maker:scan -- --json - Output JSON for automation"
+    ],
+    "colab": [
+      "notebooks/becker-analysis.ipynb - Main Becker analysis",
+      "notebooks/becker-pnl-analysis.ipynb - PnL calibration analysis"
+    ]
+  }
+}

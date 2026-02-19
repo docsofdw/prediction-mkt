@@ -1,0 +1,99 @@
+{
+  "generatedAt": "2026-02-19T05:16:25.935Z",
+  "source": "Becker prediction-market-analysis dataset (404M trades)",
+  "longshotThreshold": 0.2,
+  "optimalPriceRange": {
+    "min": 0.01,
+    "max": 0.20
+  },
+  "edgeByPriceBucket": [
+    {
+      "priceMin": 0,
+      "priceMax": 0.05,
+      "estimatedSellerEdge": 0.015000000000000001,
+      "volumeAvailable": 163283109.4073432,
+      "confidence": "high"
+    },
+    {
+      "priceMin": 0.05,
+      "priceMax": 0.1,
+      "estimatedSellerEdge": 0.017,
+      "volumeAvailable": 194584238.8378718,
+      "confidence": "high"
+    },
+    {
+      "priceMin": 0.1,
+      "priceMax": 0.15,
+      "estimatedSellerEdge": 0.015,
+      "volumeAvailable": 233799186.89085656,
+      "confidence": "medium"
+    },
+    {
+      "priceMin": 0.15,
+      "priceMax": 0.2,
+      "estimatedSellerEdge": 0.013000000000000012,
+      "volumeAvailable": 271651119.9277619,
+      "confidence": "medium"
+    },
+    {
+      "priceMin": 0.2,
+      "priceMax": 0.25,
+      "estimatedSellerEdge": 0.01100000000000001,
+      "volumeAvailable": 341086491.7029568,
+      "confidence": "medium"
+    },
+    {
+      "priceMin": 0.25,
+      "priceMax": 0.3,
+      "estimatedSellerEdge": 0.009000000000000008,
+      "volumeAvailable": 452188937.367864,
+      "confidence": "low"
+    }
+  ],
+  "sizing": {
+    "maxPositionPerMarket": 0.05,
+    "maxGrossExposure": 500,
+    "minEdgeToTrade": 0.01
+  },
+  "marketFilters": {
+    "minDailyVolume": 100,
+    "minDaysToExpiry": 1,
+    "maxDaysToExpiry": 180,
+    "preferredCategories": [
+      "crypto",
+      "bitcoin",
+      "btc"
+    ]
+  },
+  "risk": {
+    "maxLossPerPosition": 50,
+    "stopLossThreshold": 0.5,
+    "correlationLimit": 0.3
+  },
+  "insights": [
+    "Dataset: 404,540,000 trades across 408,863 markets",
+    "BTC markets: 41,958 (10.3% of total)",
+    "",
+    "LONGSHOT BIAS CONFIRMED:",
+    "  - Estimated seller edge at 5% price: +1.80%",
+    "  - Estimated seller edge at 10% price: +1.60%",
+    "  - Estimated seller edge at 20% price: +1.20%",
+    "",
+    "VOLUME ANALYSIS (longshots <20%):",
+    "  - Takers SOLD $646.6M to makers (maker_buys)",
+    "  - Takers BOUGHT $273.1M from makers (taker_buys)",
+    "  - Net taker flow: SELLING $373.5M",
+    "",
+    "STRATEGY RECOMMENDATION:",
+    "  1. POST LIMIT SELL ORDERS on longshot YES tokens (price < 20%)",
+    "  2. Target BTC markets: 'Will BTC hit $X by date' at 2-10 cents",
+    "  3. Expected edge: ~2% of notional on sub-10% contracts",
+    "  4. Let orders get filled by takers crossing the spread",
+    "",
+    "WHAT THIS MEANS:",
+    "  - You're essentially selling lottery tickets to retail",
+    "  - Most longshots expire worthless (you keep premium)",
+    "  - Occasionally one hits (you lose $1 - price)",
+    "  - Net expected value is positive due to mispricing"
+  ]
+}

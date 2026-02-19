@@ -1,0 +1,42 @@
+{
+  "generatedAt": "2026-02-17T20:07:35.269Z",
+  "thesis": "phase2_funding_tail_mispricing",
+  "verdict": "INCONCLUSIVE",
+  "reasons": [
+    "Sample size below minimum (n<20) for all cohorts."
+  ],
+  "sampleSize": 0,
+  "cohorts": {
+    "A": {
+      "name": "A",
+      "n": 0,
+      "settlementAvg": 0,
+      "marketAvg": 0,
+      "edge": 0,
+      "se": 0,
+      "twoSe": 0
+    },
+    "B": {
+      "name": "B",
+      "n": 0,
+      "settlementAvg": 0,
+      "marketAvg": 0,
+      "edge": 0,
+      "se": 0,
+      "twoSe": 0
+    },
+    "C": {
+      "name": "C",
+      "n": 0,
+      "settlementAvg": 0,
+      "marketAvg": 0,
+      "edge": 0,
+      "se": 0,
+      "twoSe": 0
+    }
+  },
+  "criteria": {
+    "minContractsPerCohort": 20,
+    "passRule": "edge > 2*SE and |edge| > 0.03"
+  }
+}

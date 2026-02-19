@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-02-17T20:07:35.746Z",
+  "thesis": "phase3_range_bound_carry",
+  "verdict": "INCONCLUSIVE",
+  "reasons": [
+    "Insufficient weekly observations (<20)."
+  ],
+  "metrics": {
+    "observations": 0,
+    "winRate": 0,
+    "averageWeeklyPnl": 0,
+    "worstSingleWeek": 0,
+    "maxConsecutiveLosingWeeks": 0,
+    "sharpe": 0,
+    "sortino": 0,
+    "maxDrawdownPct": 0,
+    "correlationToBtc": 0
+  },
+  "thresholds": {
+    "pass": {
+      "sharpe": 0.5,
+      "winRate": 0.55,
+      "maxDrawdownPct": 0.3,
+      "correlationToBtc": 0.4
+    },
+    "kill": {
+      "sharpe": 0.3,
+      "winRate": 0.45,
+      "maxDrawdownPct": 0.5,
+      "correlationToBtc": 0.6
+    }
+  }
+}

@@ -8,3 +8,7 @@ WALLET_REFERENCE.md
 
 # SSH keys
 *.pem
+
+# Becker dataset (36GB+ of Parquet files)
+data/becker/
+*.parquet

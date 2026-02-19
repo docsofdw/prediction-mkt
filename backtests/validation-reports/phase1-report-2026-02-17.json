@@ -1,0 +1,41 @@
+{
+  "generatedAt": "2026-02-17T20:06:37.223Z",
+  "thesis": "phase1_structural_arbitrage",
+  "verdict": "KILL",
+  "reasons": [
+    "Theoretical net revenue below kill threshold.",
+    "Violation frequency below kill threshold.",
+    "Violation duration below kill threshold."
+  ],
+  "metrics": {
+    "windowStart": "2026-02-10T20:06:37.223Z",
+    "windowEnd": "2026-02-17T20:06:37.223Z",
+    "totalViolationsDetected": 0,
+    "violationsPerDay": {
+      "mean": 0,
+      "median": 0,
+      "min": 0,
+      "max": 0
+    },
+    "averageViolationSizeCents": 0,
+    "averageFillableNotionalUsd": 0,
+    "averageDurationSeconds": 0,
+    "theoreticalGrossRevenuePerWeek": 0,
+    "theoreticalNetRevenuePerWeek": 0,
+    "executionHaircut": 0.4,
+    "correlationViolationSizeToBtc1hVol": 0
+  },
+  "thresholds": {
+    "pass": {
+      "netRevenuePerWeek": 75,
+      "medianViolationsPerDay": 2,
+      "avgDurationSeconds": 30
+    },
+    "kill": {
+      "netRevenuePerWeek": 25,
+      "medianViolationsPerDay": 1,
+      "avgDurationSeconds": 10
+    }
+  },
+  "nextAction": "Kill thesis and stop execution work on phase 1."
+}

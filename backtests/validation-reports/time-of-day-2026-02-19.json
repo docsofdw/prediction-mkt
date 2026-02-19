@@ -1,0 +1,85 @@
+{
+  "generatedAt": "2026-02-19T02:49:05.674Z",
+  "thesis": "time_of_day_pattern",
+  "fiveMin": {
+    "totalMarkets": 3996,
+    "overallUpRate": 0.5112612612612613,
+    "sessionStats": [
+      {
+        "session": "Asian",
+        "hours": "00-08 UTC",
+        "total": 1327,
+        "upWins": 672,
+        "upRate": 0.506405425772419,
+        "ciLow": 0.47950525893278456,
+        "ciHigh": 0.5333055926120533
+      },
+      {
+        "session": "European",
+        "hours": "08-16 UTC",
+        "total": 1332,
+        "upWins": 683,
+        "upRate": 0.5127627627627628,
+        "ciLow": 0.48591967728426655,
+        "ciHigh": 0.539605848241259
+      },
+      {
+        "session": "US",
+        "hours": "16-24 UTC",
+        "total": 1337,
+        "upWins": 688,
+        "upRate": 0.5145848915482424,
+        "ciLow": 0.4877947179395361,
+        "ciHigh": 0.5413750651569487
+      }
+    ],
+    "sessionChiTest": {
+      "chiSquare": 0.19634645735941564,
+      "pValue": 0.9002050640044114,
+      "df": 2
+    },
+    "hourlyChiTest": {
+      "chiSquare": 12.64987237855661,
+      "pValue": 0.9590588996436638,
+      "df": 23
+    }
+  },
+  "fourHour": {
+    "totalMarkets": 179,
+    "overallUpRate": 0.44692737430167595,
+    "sessionStats": [
+      {
+        "session": "Asian",
+        "hours": "00-08 UTC",
+        "total": 59,
+        "upWins": 26,
+        "upRate": 0.4406779661016949,
+        "ciLow": 0.31399398645798693,
+        "ciHigh": 0.5673619457454029
+      },
+      {
+        "session": "European",
+        "hours": "08-16 UTC",
+        "total": 60,
+        "upWins": 24,
+        "upRate": 0.4,
+        "ciLow": 0.2760387157213996,
+        "ciHigh": 0.5239612842786004
+      },
+      {
+        "session": "US",
+        "hours": "16-24 UTC",
+        "total": 60,
+        "upWins": 30,
+        "upRate": 0.5,
+        "ciLow": 0.373482544023891,
+        "ciHigh": 0.626517455976109
+      }
+    ],
+    "sessionChiTest": {
+      "chiSquare": 1.227579609655881,
+      "pValue": 0.5466217996927938,
+      "df": 2
+    }
+  }
+}
