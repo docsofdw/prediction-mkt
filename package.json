@@ -35,6 +35,7 @@
     "cset:scan": "ts-node src/scripts/complete-set-scanner.ts",
     "cset:once": "ts-node src/scripts/complete-set-scanner.ts --once",
     "cset:stats": "ts-node src/scripts/complete-set-scanner.ts --stats",
+    "cset:report": "ts-node src/scripts/complete-set-scanner.ts --report",
     "clean": "rm -rf dist",
     "typecheck": "tsc --noEmit"
   },

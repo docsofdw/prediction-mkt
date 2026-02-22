@@ -5,7 +5,7 @@
  * yesAsk + noAsk < $1.00?
  *
  * Runs at high frequency, logs every opportunity with gap size and depth.
- * After 48 hours, analyze the data to decide if execution is worth building.
+ * After 48 hours, sends detailed Telegram report with verdict.
  */
 
 import "dotenv/config";
@@ -18,10 +18,14 @@ import { log } from "../shared/utils/logger";
 
 const GAMMA_HOST = process.env.GAMMA_HOST || "https://gamma-api.polymarket.com";
 const CLOB_HOST = process.env.CLOB_HOST || "https://clob.polymarket.com";
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 // Much lower threshold than P1 monitor - we want to see ALL opportunities
 const MIN_EDGE_CENTS = 0.5; // 0.5 cent minimum
 const SCAN_INTERVAL_MS = 30_000; // 30 seconds
+const REPORT_AFTER_HOURS = 48; // Send detailed report after this many hours
+const INTERIM_REPORT_HOURS = 12; // Send interim updates every N hours
 
 const OUTPUT_DIR = path.join(process.cwd(), "backtests");
 const LOG_FILE = path.join(OUTPUT_DIR, "complete-set-opportunities.jsonl");
@@ -53,10 +57,24 @@ interface ScanStats {
   totalScans: number;
   totalOpportunities: number;
   opportunitiesByType: { "5min": number; daily: number; other: number };
+  opportunitiesByDirection: { buy: number; sell: number };
   avgEdgeCents: number;
   maxEdgeCents: number;
+  minEdgeCents: number;
   avgFillableUsd: number;
+  maxFillableUsd: number;
   totalTheoreticalProfit: number;
+  edgeDistribution: { "0.5-1": number; "1-2": number; "2-5": number; "5+": number };
+  bestOpportunities: Array<{
+    timestamp: string;
+    question: string;
+    marketType: string;
+    direction: string;
+    edgeCents: number;
+    fillableUsd: number;
+  }>;
+  lastReportSentAt: string | null;
+  reportsSent: number;
 }
 
 type BookLevel = { price: string; size: string };
@@ -181,7 +199,26 @@ function calcDepthUsd(levels: BookLevel[] | undefined): number {
 function loadStats(): ScanStats {
   try {
     if (fs.existsSync(STATS_FILE)) {
-      return JSON.parse(fs.readFileSync(STATS_FILE, "utf8"));
+      const loaded = JSON.parse(fs.readFileSync(STATS_FILE, "utf8"));
+      // Ensure all fields exist (handle upgrades)
+      return {
+        startedAt: loaded.startedAt || new Date().toISOString(),
+        lastScanAt: loaded.lastScanAt || new Date().toISOString(),
+        totalScans: loaded.totalScans || 0,
+        totalOpportunities: loaded.totalOpportunities || 0,
+        opportunitiesByType: loaded.opportunitiesByType || { "5min": 0, daily: 0, other: 0 },
+        opportunitiesByDirection: loaded.opportunitiesByDirection || { buy: 0, sell: 0 },
+        avgEdgeCents: loaded.avgEdgeCents || 0,
+        maxEdgeCents: loaded.maxEdgeCents || 0,
+        minEdgeCents: loaded.minEdgeCents || 999,
+        avgFillableUsd: loaded.avgFillableUsd || 0,
+        maxFillableUsd: loaded.maxFillableUsd || 0,
+        totalTheoreticalProfit: loaded.totalTheoreticalProfit || 0,
+        edgeDistribution: loaded.edgeDistribution || { "0.5-1": 0, "1-2": 0, "2-5": 0, "5+": 0 },
+        bestOpportunities: loaded.bestOpportunities || [],
+        lastReportSentAt: loaded.lastReportSentAt || null,
+        reportsSent: loaded.reportsSent || 0,
+      };
     }
   } catch {}
   return {
@@ -190,10 +227,17 @@ function loadStats(): ScanStats {
     totalScans: 0,
     totalOpportunities: 0,
     opportunitiesByType: { "5min": 0, daily: 0, other: 0 },
+    opportunitiesByDirection: { buy: 0, sell: 0 },
     avgEdgeCents: 0,
     maxEdgeCents: 0,
+    minEdgeCents: 999,
     avgFillableUsd: 0,
+    maxFillableUsd: 0,
     totalTheoreticalProfit: 0,
+    edgeDistribution: { "0.5-1": 0, "1-2": 0, "2-5": 0, "5+": 0 },
+    bestOpportunities: [],
+    lastReportSentAt: null,
+    reportsSent: 0,
   };
 }
 
@@ -203,6 +247,180 @@ function saveStats(stats: ScanStats): void {
 
 function appendOpportunity(opp: Opportunity): void {
   fs.appendFileSync(LOG_FILE, JSON.stringify(opp) + "\n");
+}
+
+// ─── Telegram Notifications ─────────────────────────────────
+
+async function sendTelegramMessage(message: string): Promise<boolean> {
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+    log.warn("[cset-scanner] Telegram credentials not configured");
+    return false;
+  }
+
+  const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+  try {
+    const response = await axios.post(url, {
+      chat_id: TELEGRAM_CHAT_ID,
+      text: message,
+      parse_mode: "Markdown",
+      disable_web_page_preview: true,
+    });
+
+    if (response.data.ok) {
+      log.info("[cset-scanner] Telegram report sent successfully");
+      return true;
+    } else {
+      log.error(`[cset-scanner] Telegram API error: ${response.data.description}`);
+      return false;
+    }
+  } catch (error) {
+    const msg = error instanceof Error ? error.message : String(error);
+    log.error(`[cset-scanner] Failed to send Telegram message: ${msg}`);
+    return false;
+  }
+}
+
+function getHoursRunning(stats: ScanStats): number {
+  return (new Date().getTime() - new Date(stats.startedAt).getTime()) / (1000 * 60 * 60);
+}
+
+function formatDetailedReport(stats: ScanStats, isFinal: boolean): string {
+  const hoursRunning = getHoursRunning(stats);
+  const oppsPerHour = stats.totalOpportunities / Math.max(hoursRunning, 0.01);
+  const scansPerHour = stats.totalScans / Math.max(hoursRunning, 0.01);
+
+  const header = isFinal
+    ? `🏁 *Complete-Set Arb Scanner - FINAL REPORT*`
+    : `📊 *Complete-Set Arb Scanner - ${Math.round(hoursRunning)}h Update*`;
+
+  let msg = `${header}\n\n`;
+
+  // Runtime stats
+  msg += `⏱ *Runtime*\n`;
+  msg += `• Started: ${new Date(stats.startedAt).toUTCString()}\n`;
+  msg += `• Duration: ${hoursRunning.toFixed(1)} hours\n`;
+  msg += `• Total scans: ${stats.totalScans.toLocaleString()} (${scansPerHour.toFixed(1)}/hr)\n\n`;
+
+  // Opportunity summary
+  msg += `🎯 *Opportunities Found*\n`;
+  msg += `• Total: ${stats.totalOpportunities}\n`;
+  msg += `• Rate: ${oppsPerHour.toFixed(2)}/hour\n`;
+
+  if (stats.totalOpportunities > 0) {
+    msg += `• By type: 5min=${stats.opportunitiesByType["5min"]}, daily=${stats.opportunitiesByType.daily}, other=${stats.opportunitiesByType.other}\n`;
+    msg += `• By direction: buy=${stats.opportunitiesByDirection.buy}, sell=${stats.opportunitiesByDirection.sell}\n\n`;
+
+    // Edge analysis
+    msg += `💰 *Edge Analysis*\n`;
+    msg += `• Average: ${stats.avgEdgeCents.toFixed(2)}¢\n`;
+    msg += `• Range: ${stats.minEdgeCents.toFixed(2)}¢ - ${stats.maxEdgeCents.toFixed(2)}¢\n`;
+    msg += `• Distribution:\n`;
+    msg += `  0.5-1¢: ${stats.edgeDistribution["0.5-1"]} | 1-2¢: ${stats.edgeDistribution["1-2"]}\n`;
+    msg += `  2-5¢: ${stats.edgeDistribution["2-5"]} | 5+¢: ${stats.edgeDistribution["5+"]}\n\n`;
+
+    // Fillable depth
+    msg += `📦 *Fillable Depth*\n`;
+    msg += `• Average: $${stats.avgFillableUsd.toFixed(2)}\n`;
+    msg += `• Max seen: $${stats.maxFillableUsd.toFixed(2)}\n`;
+    msg += `• Total theo profit: $${stats.totalTheoreticalProfit.toFixed(2)}\n\n`;
+
+    // Best opportunities
+    if (stats.bestOpportunities.length > 0) {
+      msg += `🏆 *Top Opportunities*\n`;
+      for (const opp of stats.bestOpportunities.slice(0, 5)) {
+        const time = new Date(opp.timestamp).toLocaleTimeString("en-US", { hour12: false });
+        msg += `• ${opp.edgeCents.toFixed(1)}¢ @ $${opp.fillableUsd.toFixed(0)} (${opp.marketType} ${opp.direction})\n`;
+        msg += `  _${opp.question.slice(0, 40)}..._\n`;
+      }
+      msg += `\n`;
+    }
+  } else {
+    msg += `\n_No opportunities detected above ${MIN_EDGE_CENTS}¢ threshold_\n\n`;
+  }
+
+  // Verdict
+  msg += `📋 *Verdict*\n`;
+  if (stats.totalOpportunities === 0) {
+    msg += `❌ *NO EDGE DETECTED*\n`;
+    msg += `Competition has squeezed out complete-set arbs. The BoneReader strategy is no longer viable at current thresholds.\n`;
+  } else if (oppsPerHour < 1) {
+    msg += `⚠️ *MARGINAL EDGE*\n`;
+    msg += `Only ${oppsPerHour.toFixed(2)} opps/hour. Not enough volume to justify execution infrastructure.\n`;
+  } else if (stats.avgEdgeCents < 1.0) {
+    msg += `⚠️ *THIN EDGE*\n`;
+    msg += `Average edge ${stats.avgEdgeCents.toFixed(2)}¢ is sub-penny. Trading fees may eat profits.\n`;
+  } else if (stats.avgFillableUsd < 20) {
+    msg += `⚠️ *LOW DEPTH*\n`;
+    msg += `Average fillable $${stats.avgFillableUsd.toFixed(0)} is too small for meaningful profit.\n`;
+  } else {
+    msg += `✅ *WORTH TESTING*\n`;
+    msg += `${oppsPerHour.toFixed(1)} opps/hr at ${stats.avgEdgeCents.toFixed(1)}¢ avg edge. Consider building execution layer.\n`;
+  }
+
+  if (isFinal) {
+    msg += `\n_Scanner complete. Run /cset:stats for full data._`;
+  }
+
+  return msg;
+}
+
+function shouldSendReport(stats: ScanStats): { send: boolean; isFinal: boolean } {
+  const hoursRunning = getHoursRunning(stats);
+
+  // Final report at 48 hours
+  if (hoursRunning >= REPORT_AFTER_HOURS && stats.reportsSent === 0) {
+    return { send: true, isFinal: true };
+  }
+
+  // Interim reports every N hours
+  const hoursSinceLastReport = stats.lastReportSentAt
+    ? (new Date().getTime() - new Date(stats.lastReportSentAt).getTime()) / (1000 * 60 * 60)
+    : hoursRunning;
+
+  if (hoursSinceLastReport >= INTERIM_REPORT_HOURS && hoursRunning < REPORT_AFTER_HOURS) {
+    return { send: true, isFinal: false };
+  }
+
+  return { send: false, isFinal: false };
+}
+
+function updateStatsWithOpportunity(stats: ScanStats, opp: Opportunity): void {
+  stats.totalOpportunities++;
+  stats.opportunitiesByType[opp.marketType]++;
+  stats.opportunitiesByDirection[opp.direction]++;
+  stats.maxEdgeCents = Math.max(stats.maxEdgeCents, opp.edgeCents);
+  stats.minEdgeCents = Math.min(stats.minEdgeCents, opp.edgeCents);
+  stats.maxFillableUsd = Math.max(stats.maxFillableUsd, opp.fillableUsd);
+  stats.totalTheoreticalProfit += opp.theoreticalProfitUsd;
+
+  // Edge distribution
+  if (opp.edgeCents >= 5) {
+    stats.edgeDistribution["5+"]++;
+  } else if (opp.edgeCents >= 2) {
+    stats.edgeDistribution["2-5"]++;
+  } else if (opp.edgeCents >= 1) {
+    stats.edgeDistribution["1-2"]++;
+  } else {
+    stats.edgeDistribution["0.5-1"]++;
+  }
+
+  // Rolling averages
+  const n = stats.totalOpportunities;
+  stats.avgEdgeCents = ((n - 1) * stats.avgEdgeCents + opp.edgeCents) / n;
+  stats.avgFillableUsd = ((n - 1) * stats.avgFillableUsd + opp.fillableUsd) / n;
+
+  // Track best opportunities (keep top 10 by edge)
+  stats.bestOpportunities.push({
+    timestamp: opp.timestamp,
+    question: opp.question,
+    marketType: opp.marketType,
+    direction: opp.direction,
+    edgeCents: opp.edgeCents,
+    fillableUsd: opp.fillableUsd,
+  });
+  stats.bestOpportunities.sort((a, b) => b.edgeCents - a.edgeCents);
+  stats.bestOpportunities = stats.bestOpportunities.slice(0, 10);
 }
 
 async function runScan(discovery: MarketDiscovery, clobBooks: ClobBooks): Promise<Opportunity[]> {
@@ -329,10 +547,11 @@ async function main() {
 
   const runOnce = process.argv.includes("--once");
   const showStats = process.argv.includes("--stats");
+  const sendReport = process.argv.includes("--report");
 
   if (showStats) {
     const stats = loadStats();
-    const hoursRunning = (new Date().getTime() - new Date(stats.startedAt).getTime()) / (1000 * 60 * 60);
+    const hoursRunning = getHoursRunning(stats);
     const oppsPerHour = stats.totalOpportunities / Math.max(hoursRunning, 0.01);
 
     console.log("\n=== Complete-Set Arbitrage Scanner Stats ===\n");
@@ -341,13 +560,44 @@ async function main() {
     console.log(`Hours running:    ${hoursRunning.toFixed(1)}`);
     console.log(`Total scans:      ${stats.totalScans}`);
     console.log(`Total opps:       ${stats.totalOpportunities}`);
-    console.log(`Opps/hour:        ${oppsPerHour.toFixed(1)}`);
-    console.log(`Opps by type:     5min=${stats.opportunitiesByType["5min"]}, daily=${stats.opportunitiesByType.daily}, other=${stats.opportunitiesByType.other}`);
-    console.log(`Avg edge:         ${stats.avgEdgeCents.toFixed(2)}¢`);
-    console.log(`Max edge:         ${stats.maxEdgeCents.toFixed(2)}¢`);
-    console.log(`Avg fillable:     $${stats.avgFillableUsd.toFixed(2)}`);
-    console.log(`Total theo profit: $${stats.totalTheoreticalProfit.toFixed(2)}`);
+    console.log(`Opps/hour:        ${oppsPerHour.toFixed(2)}`);
+    console.log(`\nBy type:          5min=${stats.opportunitiesByType["5min"]}, daily=${stats.opportunitiesByType.daily}, other=${stats.opportunitiesByType.other}`);
+    console.log(`By direction:     buy=${stats.opportunitiesByDirection.buy}, sell=${stats.opportunitiesByDirection.sell}`);
+    console.log(`\nEdge stats:`);
+    console.log(`  Average:        ${stats.avgEdgeCents.toFixed(2)}¢`);
+    console.log(`  Range:          ${stats.minEdgeCents === 999 ? "N/A" : stats.minEdgeCents.toFixed(2)}¢ - ${stats.maxEdgeCents.toFixed(2)}¢`);
+    console.log(`  Distribution:   0.5-1¢: ${stats.edgeDistribution["0.5-1"]} | 1-2¢: ${stats.edgeDistribution["1-2"]} | 2-5¢: ${stats.edgeDistribution["2-5"]} | 5+¢: ${stats.edgeDistribution["5+"]}`);
+    console.log(`\nFillable depth:`);
+    console.log(`  Average:        $${stats.avgFillableUsd.toFixed(2)}`);
+    console.log(`  Max:            $${stats.maxFillableUsd.toFixed(2)}`);
+    console.log(`  Total profit:   $${stats.totalTheoreticalProfit.toFixed(2)}`);
+
+    if (stats.bestOpportunities.length > 0) {
+      console.log(`\nTop opportunities:`);
+      for (const opp of stats.bestOpportunities.slice(0, 5)) {
+        console.log(`  ${opp.edgeCents.toFixed(1)}¢ @ $${opp.fillableUsd.toFixed(0)} (${opp.marketType} ${opp.direction}) - ${opp.question.slice(0, 40)}...`);
+      }
+    }
+
+    console.log(`\nReports sent:     ${stats.reportsSent}`);
+    console.log(`Last report:      ${stats.lastReportSentAt || "never"}`);
     console.log(`\nData: ${LOG_FILE}`);
+    return;
+  }
+
+  if (sendReport) {
+    const stats = loadStats();
+    console.log("Sending Telegram report...");
+    const report = formatDetailedReport(stats, false);
+    const sent = await sendTelegramMessage(report);
+    if (sent) {
+      stats.lastReportSentAt = new Date().toISOString();
+      stats.reportsSent++;
+      saveStats(stats);
+      console.log("Report sent successfully!");
+    } else {
+      console.log("Failed to send report. Check Telegram credentials.");
+    }
     return;
   }
 
@@ -369,6 +619,16 @@ async function main() {
     return;
   }
 
+  // Send startup notification
+  await sendTelegramMessage(
+    `🚀 *Complete-Set Arb Scanner Started*\n\n` +
+    `• Min edge: ${MIN_EDGE_CENTS}¢\n` +
+    `• Scan interval: ${SCAN_INTERVAL_MS / 1000}s\n` +
+    `• Report after: ${REPORT_AFTER_HOURS}h\n` +
+    `• Interim updates: every ${INTERIM_REPORT_HOURS}h\n\n` +
+    `_Scanning for BoneReader-style complete-set arbitrage..._`
+  );
+
   // Continuous loop
   while (true) {
     try {
@@ -379,18 +639,10 @@ async function main() {
 
       for (const opp of opps) {
         appendOpportunity(opp);
-        stats.totalOpportunities++;
-        stats.opportunitiesByType[opp.marketType]++;
-        stats.maxEdgeCents = Math.max(stats.maxEdgeCents, opp.edgeCents);
-        stats.totalTheoreticalProfit += opp.theoreticalProfitUsd;
-
-        // Rolling averages
-        const n = stats.totalOpportunities;
-        stats.avgEdgeCents = ((n - 1) * stats.avgEdgeCents + opp.edgeCents) / n;
-        stats.avgFillableUsd = ((n - 1) * stats.avgFillableUsd + opp.fillableUsd) / n;
+        updateStatsWithOpportunity(stats, opp);
 
         log.info(
-          `[cset-scanner] OPP #${n}: ${opp.marketType} ${opp.direction} ` +
+          `[cset-scanner] OPP #${stats.totalOpportunities}: ${opp.marketType} ${opp.direction} ` +
           `edge=${opp.edgeCents.toFixed(1)}¢ fillable=$${opp.fillableUsd.toFixed(0)} ` +
           `[${opp.question.slice(0, 50)}...]`
         );
@@ -398,8 +650,26 @@ async function main() {
 
       saveStats(stats);
 
-      if (opps.length === 0) {
-        log.debug(`[cset-scanner] scan #${stats.totalScans} - no opportunities`);
+      // Check if we should send a report
+      const { send, isFinal } = shouldSendReport(stats);
+      if (send) {
+        const report = formatDetailedReport(stats, isFinal);
+        const sent = await sendTelegramMessage(report);
+        if (sent) {
+          stats.lastReportSentAt = new Date().toISOString();
+          stats.reportsSent++;
+          saveStats(stats);
+        }
+
+        if (isFinal) {
+          log.info("[cset-scanner] Final report sent. Continuing to scan...");
+        }
+      }
+
+      if (opps.length === 0 && stats.totalScans % 60 === 0) {
+        // Log every ~30 minutes if no opps
+        const hours = getHoursRunning(stats);
+        log.info(`[cset-scanner] ${hours.toFixed(1)}h elapsed, ${stats.totalScans} scans, ${stats.totalOpportunities} opps`);
       }
     } catch (error) {
       const msg = error instanceof Error ? error.message : String(error);
