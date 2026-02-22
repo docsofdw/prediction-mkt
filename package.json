@@ -32,6 +32,7 @@
     "becker:strategy": "ts-node src/scripts/becker/generate-strategy-params.ts",
     "maker:scan": "ts-node src/scripts/maker-scan.ts",
     "maker:notify": "ts-node src/scripts/maker-scan-notify.ts",
+    "maker:place": "ts-node src/scripts/place-maker-order.ts",
     "cset:scan": "ts-node src/scripts/complete-set-scanner.ts",
     "cset:once": "ts-node src/scripts/complete-set-scanner.ts --once",
     "cset:stats": "ts-node src/scripts/complete-set-scanner.ts --stats",
