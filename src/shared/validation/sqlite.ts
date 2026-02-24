@@ -202,6 +202,62 @@ export function migrateValidationDb(db: SqliteDatabase): void {
 
     CREATE INDEX IF NOT EXISTS idx_live_snapshots_streak
       ON updown_live_snapshots(streak_length, outcome);
+
+    -- ═══════════════════════════════════════════════════════════
+    -- Paper Trading for Maker Longshot Strategy
+    -- ═══════════════════════════════════════════════════════════
+
+    CREATE TABLE IF NOT EXISTS paper_orders (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      order_id TEXT NOT NULL UNIQUE,
+      token_id TEXT NOT NULL,
+      question TEXT NOT NULL,
+      side TEXT NOT NULL,
+      price REAL NOT NULL,
+      size INTEGER NOT NULL,
+      estimated_edge REAL,
+      max_loss REAL,
+
+      -- Timestamps
+      created_at TEXT NOT NULL,
+      filled_at TEXT,
+      cancelled_at TEXT,
+      expired_at TEXT,
+
+      -- Fill simulation
+      status TEXT NOT NULL DEFAULT 'open',
+      fill_price REAL,
+      fill_size INTEGER,
+
+      -- Market metadata
+      event_slug TEXT,
+      end_date TEXT,
+
+      -- P&L tracking (set after market resolves)
+      outcome TEXT,
+      pnl REAL,
+      resolved_at TEXT
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_paper_orders_status
+      ON paper_orders(status);
+
+    CREATE INDEX IF NOT EXISTS idx_paper_orders_token
+      ON paper_orders(token_id);
+
+    CREATE TABLE IF NOT EXISTS paper_trading_summary (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      date TEXT NOT NULL UNIQUE,
+      orders_placed INTEGER DEFAULT 0,
+      orders_filled INTEGER DEFAULT 0,
+      orders_expired INTEGER DEFAULT 0,
+      markets_resolved INTEGER DEFAULT 0,
+      realized_pnl REAL DEFAULT 0,
+      unrealized_pnl REAL DEFAULT 0,
+      win_count INTEGER DEFAULT 0,
+      loss_count INTEGER DEFAULT 0,
+      total_exposure REAL DEFAULT 0
+    );
   `);
 
   const now = new Date().toISOString();
