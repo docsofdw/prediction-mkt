@@ -57,6 +57,10 @@
     "cset:stats": "ts-node src/scripts/complete-set-scanner.ts --stats",
     "cset:report": "ts-node src/scripts/complete-set-scanner.ts --report",
 
+    "final:record": "ts-node src/scripts/final-seconds-recorder.ts",
+    "final:analyze": "ts-node src/scripts/final-seconds-analyze.ts",
+    "final:report": "ts-node src/scripts/final-seconds-analyze.ts --report",
+
     "telegram:bot": "ts-node src/telegram-bot/index.ts",
     "validate:claim": "ts-node src/claim-validator/scripts/validate-claim.ts"
   },

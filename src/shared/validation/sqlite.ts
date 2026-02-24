@@ -258,6 +258,86 @@ export function migrateValidationDb(db: SqliteDatabase): void {
       loss_count INTEGER DEFAULT 0,
       total_exposure REAL DEFAULT 0
     );
+
+    -- ═══════════════════════════════════════════════════════════
+    -- Final Seconds Recorder for 5-Minute Markets
+    -- ═══════════════════════════════════════════════════════════
+
+    CREATE TABLE IF NOT EXISTS final_seconds_snapshots (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+      -- Market identification
+      slug TEXT NOT NULL,
+      window_start INTEGER NOT NULL,
+      window_end INTEGER NOT NULL,
+      up_token_id TEXT,
+      down_token_id TEXT,
+
+      -- Snapshot timing
+      seconds_remaining INTEGER NOT NULL,
+      snapshot_ts TEXT NOT NULL,
+
+      -- Order book state for UP token
+      up_best_bid REAL,
+      up_best_ask REAL,
+      up_bid_depth REAL,
+      up_ask_depth REAL,
+      up_mid_price REAL,
+
+      -- Order book state for DOWN token
+      down_best_bid REAL,
+      down_best_ask REAL,
+      down_bid_depth REAL,
+      down_ask_depth REAL,
+      down_mid_price REAL,
+
+      -- Current BTC price context
+      btc_spot REAL,
+      btc_target REAL,
+      btc_distance REAL,
+
+      -- Derived metrics
+      spread_cents REAL,
+      high_confidence_side TEXT,
+      high_confidence_price REAL,
+
+      UNIQUE(slug, seconds_remaining)
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_final_seconds_slug
+      ON final_seconds_snapshots(slug);
+
+    CREATE INDEX IF NOT EXISTS idx_final_seconds_confidence
+      ON final_seconds_snapshots(high_confidence_price, seconds_remaining);
+
+    CREATE TABLE IF NOT EXISTS final_seconds_outcomes (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+      -- Market identification
+      slug TEXT NOT NULL UNIQUE,
+      window_start INTEGER NOT NULL,
+      window_end INTEGER NOT NULL,
+
+      -- Pre-resolution state (at T-15s or closest snapshot)
+      final_up_price REAL,
+      final_down_price REAL,
+      final_high_side TEXT,
+      final_high_price REAL,
+      btc_distance_at_final REAL,
+
+      -- Resolution
+      outcome TEXT,
+      resolved_at TEXT,
+
+      -- Analysis flags
+      high_side_won INTEGER,
+      was_98c_plus INTEGER,
+      was_sub_15s INTEGER,
+      btc_distance_25_plus INTEGER
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_outcomes_analysis
+      ON final_seconds_outcomes(was_98c_plus, was_sub_15s, high_side_won);
   `);
 
   const now = new Date().toISOString();
