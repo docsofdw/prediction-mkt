@@ -1,6 +1,6 @@
-# VPS Cron Setup for Paper Trading
+# VPS Setup for Final Seconds Recorder
 
-## Quick Setup Commands
+## Quick Start
 
 SSH into your VPS and run:
 
@@ -8,52 +8,55 @@ SSH into your VPS and run:
 # Pull latest code
 cd ~/prediction-mkt
 git pull
+npm install
 
 # Create logs directory
 mkdir -p ~/logs
 
-# Reset paper trading (fresh start with $200 max)
-npm run maker:paper:reset
+# Start the recorder in a detached screen session
+screen -dmS final-recorder bash -c 'npm run final:record >> ~/logs/final-recorder.log 2>&1'
 
-# Test that it works
-npm run maker:paper:cron
-
-# Set up cron
-crontab -e
+# Verify it's running
+screen -ls
+tail -20 ~/logs/final-recorder.log
 ```
 
-Add these lines to crontab:
+## Managing the Recorder
 
 ```bash
-# Paper trading - every 4 hours (check fills, place new orders)
-0 */4 * * * cd ~/prediction-mkt && npm run maker:paper:cron >> ~/logs/paper-cron.log 2>&1
+# View recent log output
+tail -100 ~/logs/final-recorder.log
 
-# Daily summary at 9am UTC
-0 9 * * * cd ~/prediction-mkt && npm run maker:paper:cron:summary >> ~/logs/paper-cron.log 2>&1
+# Attach to screen session (Ctrl+A, D to detach)
+screen -r final-recorder
+
+# Stop the recorder
+screen -S final-recorder -X quit
+
+# Restart the recorder
+screen -S final-recorder -X quit 2>/dev/null
+screen -dmS final-recorder bash -c 'npm run final:record >> ~/logs/final-recorder.log 2>&1'
 ```
 
-Save and verify:
+## Analyzing Results
+
 ```bash
-crontab -l
+# Quick summary
+npm run final:analyze
+
+# Full report
+npm run final:report
 ```
 
-## Verify It's Working
+## What It Records
 
-```bash
-# Check cron logs
-tail -50 ~/logs/paper-cron.log
+The recorder captures order book snapshots at T-60s, T-30s, T-15s, T-10s, T-5s before resolution for every 5-minute BTC market:
+- Best bid/ask for UP and DOWN tokens
+- Bid/ask depth (USD value)
+- BTC spot price vs target
+- High-confidence side and price
 
-# Check paper trading status
-npm run maker:paper:report
-```
-
-## Configuration
-
-Current settings (in `backtests/becker-reports/strategy-params.json`):
-- Max gross exposure: $200
-- Max loss per position: $25
-- Min edge to trade: 1%
-- Price range: 1-20 cents
+After markets resolve, it records outcomes and calculates win rates.
 
 ## Troubleshooting
 
@@ -61,3 +64,13 @@ If VPS is unreachable:
 1. Check AWS Lightsail console
 2. Restart instance if needed
 3. After restart: `sudo systemctl start tailscaled`
+
+---
+
+## Archived: Maker Longshot Paper Trading
+
+The maker longshot paper trading scripts have been archived to `src/scripts/_archive/`:
+- `maker-paper-trade.ts`
+- `maker-paper-cron.ts`
+
+These were for testing the longshot seller strategy on long-dated markets, but those markets take weeks/months to resolve. The final-seconds recorder provides faster validation (5-minute feedback loops).

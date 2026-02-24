@@ -44,13 +44,6 @@
     "maker:scan": "ts-node src/scripts/maker-scan.ts",
     "maker:notify": "ts-node src/scripts/maker-scan-notify.ts",
     "maker:place": "ts-node src/scripts/place-maker-order.ts",
-    "maker:paper": "ts-node src/scripts/maker-paper-trade.ts",
-    "maker:paper:scan": "ts-node src/scripts/maker-paper-trade.ts --scan",
-    "maker:paper:check": "ts-node src/scripts/maker-paper-trade.ts --check",
-    "maker:paper:report": "ts-node src/scripts/maker-paper-trade.ts --report",
-    "maker:paper:reset": "ts-node src/scripts/maker-paper-trade.ts --reset",
-    "maker:paper:cron": "ts-node src/scripts/maker-paper-cron.ts",
-    "maker:paper:cron:summary": "ts-node src/scripts/maker-paper-cron.ts --summary",
 
     "cset:scan": "ts-node src/scripts/complete-set-scanner.ts",
     "cset:once": "ts-node src/scripts/complete-set-scanner.ts --once",
