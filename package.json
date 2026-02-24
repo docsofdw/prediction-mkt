@@ -54,6 +54,10 @@
     "final:analyze": "ts-node src/scripts/final-seconds-analyze.ts",
     "final:report": "ts-node src/scripts/final-seconds-analyze.ts --report",
 
+    "weather:scan": "ts-node src/markets/weather/scripts/scan-weather-markets.ts",
+    "weather:earthquake": "ts-node src/markets/weather/scripts/scan-weather-markets.ts --type=earthquake",
+    "weather:temperature": "ts-node src/markets/weather/scripts/scan-weather-markets.ts --type=temperature",
+
     "telegram:bot": "ts-node src/telegram-bot/index.ts",
     "validate:claim": "ts-node src/claim-validator/scripts/validate-claim.ts"
   },
