@@ -1,6 +1,6 @@
 # Validation Results Summary
 
-**Last Updated:** 2026-02-23
+**Last Updated:** 2026-02-24
 
 This document consolidates all strategy validation results and their verdicts.
 
@@ -17,7 +17,8 @@ This document consolidates all strategy validation results and their verdicts.
 | Autocorrelation Streaks | **KILL** | No | Dead |
 | Funding Direction | **KILL** | No | Dead |
 | Time-of-Day Patterns | **KILL** | No | Dead |
-| Maker Longshot Selling | **ACTIVE** | ~1.5-1.8% | Active strategy |
+| Maker Longshot Selling | **SHELVED** | ~1.5-1.8% theoretical | Too slow to validate |
+| Final Seconds (98c+ Buy) | **KILL** | No | Dead (no liquidity) |
 
 ---
 
@@ -162,7 +163,7 @@ This document consolidates all strategy validation results and their verdicts.
 
 ---
 
-### Maker Longshot Selling (ACTIVE)
+### Maker Longshot Selling (SHELVED)
 
 **Source:** Becker dataset analysis (404M trades across 408,863 markets)
 
@@ -182,11 +183,50 @@ This document consolidates all strategy validation results and their verdicts.
 - Net taker flow: SELLING $373.5M to makers (longshots < 20%)
 - Retail is systematically overpaying for low-probability events
 
-**Verdict:** `ACTIVE`
+**Verdict:** `SHELVED`
 
-**Strategy:** Post limit sell orders on longshot YES tokens (price < 20%) in BTC markets. Let orders fill against taker flow. Expected edge ~1.5-2% of notional.
+**Why shelved:** The strategy targets long-dated markets (weeks to months until resolution). Validation would take too long - we can't wait months to know if orders filled profitably. Theoretical edge exists but practical validation is impractical for our timeline.
 
-**Current Status:** Telegram bot operational for scanning. Order placement infrastructure ready. Paper trading phase pending.
+**Status:** Code archived in `src/scripts/_archive/`. Can revisit if willing to run multi-month paper trading.
+
+---
+
+### Final Seconds Strategy (98c+ Buy)
+
+**Source:** Polymarket 5-minute BTC Up/Down markets
+
+**Hypothesis:** In the final 15 seconds before resolution, when BTC is far from the target price, one side trades at 98c+. Buy at 98c+, collect $1 at resolution. Win rate should be >98% to profit.
+
+**Test Method:** Built order book recorder to capture snapshots at T-60s, T-30s, T-15s, T-10s, T-5s before resolution.
+
+**Test Date:** Feb 24, 2026
+
+**Results:**
+
+Order book state observed:
+```
+Market: btc-updown-5m-1771960200
+UP token:   0 bids, 99 asks @ 99c
+DOWN token: 99 bids @ 1c, 0 asks
+```
+
+**Critical Finding:** When outcome is "decided" (BTC far from target):
+- Winning side has **no sellers** below 99c (why sell if it resolves to $1?)
+- Winning side has **no buyers** at all (everyone's already positioned)
+- Losing side has **no buyers** above 1c (it's going to $0)
+
+**Verdict:** `KILL`
+
+**Why it failed:** **Liquidity problem, not win-rate problem.** The strategy assumes you can buy at 98c+, but:
+
+1. When the outcome is obvious, there's nothing to buy
+2. The only offers are at 99c from people trying to exit
+3. No one is selling the winning side below fair value
+4. The order book empties in the final 15-30 seconds
+
+This is a fundamental market microstructure issue. The strategy is mathematically sound but physically impossible to execute.
+
+**Key Insight:** Markets are efficient at the extremes. When one outcome is nearly certain, the order book reflects that immediately - there's no "free money" sitting around for 15 seconds.
 
 ---
 
@@ -207,6 +247,8 @@ This document consolidates all strategy validation results and their verdicts.
 | `npm run cset:report` | Generate 24h scanner report | Working |
 | `npm run maker:scan` | Scan for longshot opportunities | Working |
 | `npm run maker:notify` | Telegram notifications | Working |
+| `npm run final:record` | Final seconds order book recorder | Working |
+| `npm run final:report` | Final seconds analysis report | Working |
 
 ---
 
@@ -233,14 +275,35 @@ becker-reports/
 └── strategy-refinements.json
 ```
 
+Archived code in `src/scripts/_archive/`:
+
+```
+_archive/
+├── maker-paper-trade.ts
+└── maker-paper-cron.ts
+```
+
 ---
 
 ## Conclusions
 
-1. **Taker strategies are dead.** Structural arb, complete-set arb, and directional prediction all show zero edge. Competition has eliminated these opportunities.
+1. **All taker strategies are dead.** Structural arb, complete-set arb, final-seconds, and directional prediction all show zero exploitable edge. Competition and market efficiency have eliminated these opportunities.
 
 2. **Statistical patterns don't exist.** Autocorrelation, funding direction, and time-of-day all fail statistical significance tests. BTC Up/Down outcomes are effectively random conditional on these factors.
 
-3. **Maker strategy has edge.** Longshot selling shows 1.5-1.8% theoretical edge based on 404M historical trades. This is the only viable path forward.
+3. **Maker strategy has theoretical edge but is impractical.** Longshot selling shows 1.5-1.8% theoretical edge based on 404M historical trades, but markets take weeks/months to resolve - too slow for practical validation.
 
-4. **Execution is everything.** Even with theoretical edge, actual profitability depends on fill rates, position sizing, and tail risk management.
+4. **Liquidity kills execution.** Even when theoretical edge exists (final seconds), the order book structure makes execution impossible. When outcomes are obvious, there's no counterparty.
+
+5. **The efficient market hypothesis wins.** Every strategy tested has been either competed away or structurally impossible to execute. Polymarket's BTC markets are effectively efficient.
+
+---
+
+## What's Next?
+
+Options to consider:
+
+1. **Exit Polymarket BTC markets** - Evidence suggests no exploitable edge exists
+2. **Explore other market types** - Politics, sports, weather may have different dynamics
+3. **Accept maker longshot timeline** - Run paper trading for months, accept slow feedback
+4. **Look for illiquid edges** - Low-volume markets may have inefficiencies but also execution risk
